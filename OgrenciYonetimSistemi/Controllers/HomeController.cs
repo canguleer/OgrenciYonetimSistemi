@@ -13,9 +13,9 @@ namespace OgrenciYonetimSistemi.Controllers
             return View();
         }
 
-        public ActionResult DataTable()
+        public ActionResult DataTable()  
         {
-            return View();  // test
+            return View();  // gitgun repo testi başarıyla yapıldı..
         }
 
 
