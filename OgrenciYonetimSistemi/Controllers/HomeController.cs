@@ -18,6 +18,6 @@ namespace OgrenciYonetimSistemi.Controllers
             return View();  // gitgun repo testi başarıyla yapıldı..
         }
 
-
+         
     }
 }
