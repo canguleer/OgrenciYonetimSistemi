@@ -15,7 +15,7 @@ namespace OgrenciYonetimSistemi.Controllers
 
         public ActionResult DataTable()
         {
-            return View();
+            return View();  // test
         }
 
 
