@@ -18,6 +18,9 @@ namespace OgrenciYonetimSistemi.Controllers
             return View();  // gitgun repo testi başarıyla yapıldı..asdfsdsdfsdf   ewfrwef
         }
 
-         
+        public ActionResult DataTable2()
+        {
+            return View();  // gitgun repo testi başarıyla yapıldı..asdfsdsdfsdf   ewfrwef
+        }
     }
 } 
