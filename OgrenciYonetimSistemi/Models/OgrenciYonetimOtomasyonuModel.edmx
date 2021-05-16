@@ -1,0 +1,1009 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OgrenciYonetimSistemiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bolum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fakulte_Id" Type="int" Nullable="false" />
+          <Property Name="BolumAdi" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="OgrenciNumaraFormati" Type="int" Nullable="false" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="int" Nullable="false" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DersKodu" Type="nvarchar" MaxLength="16" />
+          <Property Name="GrupNo" Type="tinyint" Nullable="false" />
+          <Property Name="DersAdi" Type="nvarchar" MaxLength="64" />
+          <Property Name="KrediSayisi" Type="tinyint" Nullable="false" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="int" Nullable="false" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Donem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DonemAdi" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Yil" Type="int" Nullable="false" />
+          <Property Name="BaslamaTarihi" Type="datetime" Nullable="false" />
+          <Property Name="BitisTarihi" Type="datetime" Nullable="false" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="int" Nullable="false" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DonemDers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Donem_Id" Type="int" Nullable="false" />
+          <Property Name="Ders_Id" Type="int" Nullable="false" />
+          <Property Name="Ogretmen_Id" Type="int" Nullable="false" />
+          <Property Name="BaslamaSaati" Type="time" Precision="7" Nullable="false" />
+          <Property Name="BitisSaati" Type="time" Precision="7" />
+          <Property Name="DersGunu" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="SinifAdi" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Kapasite" Type="tinyint" Nullable="false" />
+          <Property Name="DersiAlanOgrenciSayisi" Type="tinyint" Nullable="false" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="int" Nullable="false" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fakulte">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FakulteAdi" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="int" Nullable="false" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rol_Id" Type="int" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Soyadi" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Resim" Type="nvarchar(max)" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesajlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Icerik" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AliciUye_Id" Type="int" Nullable="false" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="int" Nullable="false" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ogrenci">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UyeKullanici_Id" Type="int" Nullable="false" />
+          <Property Name="OgrenciNumarasi" Type="bigint" Nullable="false" />
+          <Property Name="Bolum_Id" Type="int" Nullable="false" />
+          <Property Name="TcNo" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="CepTel" Type="nvarchar" MaxLength="32" />
+          <Property Name="DogumTarihi" Type="datetime" />
+          <Property Name="Adres" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sinif" Type="int" Nullable="false" />
+          <Property Name="Donem" Type="int" Nullable="false" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="int" Nullable="false" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OgrenciDers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ogrenci_Id" Type="int" Nullable="false" />
+          <Property Name="Ders_Id" Type="int" Nullable="false" />
+          <Property Name="Donem_Id" Type="int" Nullable="false" />
+          <Property Name="Sinav_1" Type="tinyint" Nullable="false" />
+          <Property Name="Sinav_2" Type="tinyint" Nullable="false" />
+          <Property Name="Final" Type="tinyint" Nullable="false" />
+          <Property Name="HarfNotu" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="int" Nullable="false" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ogretmen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UyeKullanici_Id" Type="int" Nullable="false" />
+          <Property Name="TcNo" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="CepTel" Type="nvarchar" MaxLength="32" />
+          <Property Name="DogumTarihi" Type="datetime" />
+          <Property Name="Adres" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Alani" Type="nvarchar" MaxLength="64" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="int" Nullable="false" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Bolum__KayitTari__3F466844">
+          <End Role="Fakulte" Type="Self.Fakulte" Multiplicity="1" />
+          <End Role="Bolum" Type="Self.Bolum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fakulte">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bolum">
+              <PropertyRef Name="Fakulte_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonemDers__Ders___1BC821DD">
+          <End Role="Ders" Type="Self.Ders" Multiplicity="1" />
+          <End Role="DonemDers" Type="Self.DonemDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DonemDers">
+              <PropertyRef Name="Ders_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonemDers__Donem__1CBC4616">
+          <End Role="Donem" Type="Self.Donem" Multiplicity="1" />
+          <End Role="DonemDers" Type="Self.DonemDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DonemDers">
+              <PropertyRef Name="Donem_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonemDers__Ogret__1AD3FDA4">
+          <End Role="Ogretmen" Type="Self.Ogretmen" Multiplicity="1" />
+          <End Role="DonemDers" Type="Self.DonemDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogretmen">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DonemDers">
+              <PropertyRef Name="Ogretmen_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kullanici__Rol_I__22AA2996">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="Rol_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mesajlar__KayitT__3587F3E0">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Mesajlar" Type="Self.Mesajlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mesajlar">
+              <PropertyRef Name="AliciUye_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ogrenci__Bolum_I__4222D4EF">
+          <End Role="Bolum" Type="Self.Bolum" Multiplicity="1" />
+          <End Role="Ogrenci" Type="Self.Ogrenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bolum">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ogrenci">
+              <PropertyRef Name="Bolum_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ogrenci__Kullani__2A164134">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Ogrenci" Type="Self.Ogrenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ogrenci">
+              <PropertyRef Name="Kullanici_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OgrenciDe__Ders___1332DBDC">
+          <End Role="Ders" Type="Self.Ders" Multiplicity="1" />
+          <End Role="OgrenciDers" Type="Self.OgrenciDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OgrenciDers">
+              <PropertyRef Name="Ders_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OgrenciDe__Donem__14270015">
+          <End Role="Donem" Type="Self.Donem" Multiplicity="1" />
+          <End Role="OgrenciDers" Type="Self.OgrenciDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OgrenciDers">
+              <PropertyRef Name="Donem_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OgrenciDe__Ogren__123EB7A3">
+          <End Role="Ogrenci" Type="Self.Ogrenci" Multiplicity="1" />
+          <End Role="OgrenciDers" Type="Self.OgrenciDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogrenci">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OgrenciDers">
+              <PropertyRef Name="Ogrenci_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ogretmen_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Ogretmen" Type="Self.Ogretmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ogretmen">
+              <PropertyRef Name="UyeKullanici_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_OgrenciListesi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$OgrenciListesi" />
+        <Function Name="SP_YazismaDetayGetir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$YazismaDetayGetir">
+          <Parameter Name="YazismaGecmisiIstenilenUye_Id" Type="int" Mode="In" />
+          <Parameter Name="LoginKullanici_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_YazismaListesiGetir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$YazismaListesiGetir">
+          <Parameter Name="AliciUye_Id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="OgrenciYonetimSistemiModelStoreContainer">
+          <EntitySet Name="Bolum" EntityType="Self.Bolum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ders" EntityType="Self.Ders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donem" EntityType="Self.Donem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DonemDers" EntityType="Self.DonemDers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fakulte" EntityType="Self.Fakulte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesajlar" EntityType="Self.Mesajlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ogrenci" EntityType="Self.Ogrenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OgrenciDers" EntityType="Self.OgrenciDers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ogretmen" EntityType="Self.Ogretmen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Bolum__KayitTari__3F466844" Association="Self.FK__Bolum__KayitTari__3F466844">
+            <End Role="Fakulte" EntitySet="Fakulte" />
+            <End Role="Bolum" EntitySet="Bolum" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonemDers__Ders___1BC821DD" Association="Self.FK__DonemDers__Ders___1BC821DD">
+            <End Role="Ders" EntitySet="Ders" />
+            <End Role="DonemDers" EntitySet="DonemDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonemDers__Donem__1CBC4616" Association="Self.FK__DonemDers__Donem__1CBC4616">
+            <End Role="Donem" EntitySet="Donem" />
+            <End Role="DonemDers" EntitySet="DonemDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonemDers__Ogret__1AD3FDA4" Association="Self.FK__DonemDers__Ogret__1AD3FDA4">
+            <End Role="Ogretmen" EntitySet="Ogretmen" />
+            <End Role="DonemDers" EntitySet="DonemDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kullanici__Rol_I__22AA2996" Association="Self.FK__Kullanici__Rol_I__22AA2996">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mesajlar__KayitT__3587F3E0" Association="Self.FK__Mesajlar__KayitT__3587F3E0">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Mesajlar" EntitySet="Mesajlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ogrenci__Bolum_I__4222D4EF" Association="Self.FK__Ogrenci__Bolum_I__4222D4EF">
+            <End Role="Bolum" EntitySet="Bolum" />
+            <End Role="Ogrenci" EntitySet="Ogrenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ogrenci__Kullani__2A164134" Association="Self.FK__Ogrenci__Kullani__2A164134">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Ogrenci" EntitySet="Ogrenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OgrenciDe__Ders___1332DBDC" Association="Self.FK__OgrenciDe__Ders___1332DBDC">
+            <End Role="Ders" EntitySet="Ders" />
+            <End Role="OgrenciDers" EntitySet="OgrenciDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OgrenciDe__Donem__14270015" Association="Self.FK__OgrenciDe__Donem__14270015">
+            <End Role="Donem" EntitySet="Donem" />
+            <End Role="OgrenciDers" EntitySet="OgrenciDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OgrenciDe__Ogren__123EB7A3" Association="Self.FK__OgrenciDe__Ogren__123EB7A3">
+            <End Role="Ogrenci" EntitySet="Ogrenci" />
+            <End Role="OgrenciDers" EntitySet="OgrenciDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ogretmen_Kullanici" Association="Self.FK_Ogretmen_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Ogretmen" EntitySet="Ogretmen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OgrenciYonetimSistemiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OgrenciYonetimSistemiEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="SP_OgrenciListesi" ReturnType="Collection(OgrenciYonetimSistemiModel.SP_OgrenciListesi_Result)" />
+          <EntitySet Name="Bolum" EntityType="OgrenciYonetimSistemiModel.Bolum" />
+          <EntitySet Name="Ders" EntityType="OgrenciYonetimSistemiModel.Ders" />
+          <EntitySet Name="Donem" EntityType="OgrenciYonetimSistemiModel.Donem" />
+          <EntitySet Name="DonemDers" EntityType="OgrenciYonetimSistemiModel.DonemDers" />
+          <EntitySet Name="Fakulte" EntityType="OgrenciYonetimSistemiModel.Fakulte" />
+          <EntitySet Name="Kullanici" EntityType="OgrenciYonetimSistemiModel.Kullanici" />
+          <EntitySet Name="Ogrenci" EntityType="OgrenciYonetimSistemiModel.Ogrenci" />
+          <EntitySet Name="OgrenciDers" EntityType="OgrenciYonetimSistemiModel.OgrenciDers" />
+          <EntitySet Name="Ogretmen" EntityType="OgrenciYonetimSistemiModel.Ogretmen" />
+          <EntitySet Name="Rol" EntityType="OgrenciYonetimSistemiModel.Rol" />
+          <AssociationSet Name="FK__Bolum__KayitTari__3F466844" Association="OgrenciYonetimSistemiModel.FK__Bolum__KayitTari__3F466844">
+            <End Role="Fakulte" EntitySet="Fakulte" />
+            <End Role="Bolum" EntitySet="Bolum" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ogrenci__Bolum_I__4222D4EF" Association="OgrenciYonetimSistemiModel.FK__Ogrenci__Bolum_I__4222D4EF">
+            <End Role="Bolum" EntitySet="Bolum" />
+            <End Role="Ogrenci" EntitySet="Ogrenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonemDers__Ders___1BC821DD" Association="OgrenciYonetimSistemiModel.FK__DonemDers__Ders___1BC821DD">
+            <End Role="Ders" EntitySet="Ders" />
+            <End Role="DonemDers" EntitySet="DonemDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OgrenciDe__Ders___1332DBDC" Association="OgrenciYonetimSistemiModel.FK__OgrenciDe__Ders___1332DBDC">
+            <End Role="Ders" EntitySet="Ders" />
+            <End Role="OgrenciDers" EntitySet="OgrenciDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonemDers__Donem__1CBC4616" Association="OgrenciYonetimSistemiModel.FK__DonemDers__Donem__1CBC4616">
+            <End Role="Donem" EntitySet="Donem" />
+            <End Role="DonemDers" EntitySet="DonemDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OgrenciDe__Donem__14270015" Association="OgrenciYonetimSistemiModel.FK__OgrenciDe__Donem__14270015">
+            <End Role="Donem" EntitySet="Donem" />
+            <End Role="OgrenciDers" EntitySet="OgrenciDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonemDers__Ogret__1AD3FDA4" Association="OgrenciYonetimSistemiModel.FK__DonemDers__Ogret__1AD3FDA4">
+            <End Role="Ogretmen" EntitySet="Ogretmen" />
+            <End Role="DonemDers" EntitySet="DonemDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kullanici__Rol_I__22AA2996" Association="OgrenciYonetimSistemiModel.FK__Kullanici__Rol_I__22AA2996">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ogrenci__Kullani__2A164134" Association="OgrenciYonetimSistemiModel.FK__Ogrenci__Kullani__2A164134">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Ogrenci" EntitySet="Ogrenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ogretmen_Kullanici" Association="OgrenciYonetimSistemiModel.FK_Ogretmen_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Ogretmen" EntitySet="Ogretmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OgrenciDe__Ogren__123EB7A3" Association="OgrenciYonetimSistemiModel.FK__OgrenciDe__Ogren__123EB7A3">
+            <End Role="Ogrenci" EntitySet="Ogrenci" />
+            <End Role="OgrenciDers" EntitySet="OgrenciDers" />
+          </AssociationSet>
+          <EntitySet Name="Mesajlar" EntityType="OgrenciYonetimSistemiModel.Mesajlar" />
+          <AssociationSet Name="FK__Mesajlar__KayitT__3587F3E0" Association="OgrenciYonetimSistemiModel.FK__Mesajlar__KayitT__3587F3E0">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Mesajlar" EntitySet="Mesajlar" />
+          </AssociationSet>
+          <FunctionImport Name="SP_YazismaDetayGetir" ReturnType="Collection(OgrenciYonetimSistemiModel.SP_YazismaDetayGetir_Result)">
+            <Parameter Name="YazismaGecmisiIstenilenUye_Id" Mode="In" Type="Int32" />
+            <Parameter Name="LoginKullanici_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_YazismaListesiGetir" ReturnType="Collection(OgrenciYonetimSistemiModel.SP_YazismaListesiGetir_Result)">
+          <Parameter Name="AliciUye_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          </EntityContainer>
+        <ComplexType Name="SP_OgrenciListesi_Result">
+          <Property Type="String" Name="Adres" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Bolum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fakulte_Id" Type="Int32" Nullable="false" />
+          <Property Name="BolumAdi" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="OgrenciNumaraFormati" Type="Int32" Nullable="false" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="Int32" Nullable="false" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Fakulte" Relationship="OgrenciYonetimSistemiModel.FK__Bolum__KayitTari__3F466844" FromRole="Bolum" ToRole="Fakulte" />
+          <NavigationProperty Name="Ogrenci" Relationship="OgrenciYonetimSistemiModel.FK__Ogrenci__Bolum_I__4222D4EF" FromRole="Bolum" ToRole="Ogrenci" />
+        </EntityType>
+        <EntityType Name="Ders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DersKodu" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="GrupNo" Type="Byte" Nullable="false" />
+          <Property Name="DersAdi" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="KrediSayisi" Type="Byte" Nullable="false" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="Int32" Nullable="false" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DonemDers" Relationship="OgrenciYonetimSistemiModel.FK__DonemDers__Ders___1BC821DD" FromRole="Ders" ToRole="DonemDers" />
+          <NavigationProperty Name="OgrenciDers" Relationship="OgrenciYonetimSistemiModel.FK__OgrenciDe__Ders___1332DBDC" FromRole="Ders" ToRole="OgrenciDers" />
+        </EntityType>
+        <EntityType Name="Donem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DonemAdi" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Yil" Type="Int32" Nullable="false" />
+          <Property Name="BaslamaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BitisTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="Int32" Nullable="false" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DonemDers" Relationship="OgrenciYonetimSistemiModel.FK__DonemDers__Donem__1CBC4616" FromRole="Donem" ToRole="DonemDers" />
+          <NavigationProperty Name="OgrenciDers" Relationship="OgrenciYonetimSistemiModel.FK__OgrenciDe__Donem__14270015" FromRole="Donem" ToRole="OgrenciDers" />
+        </EntityType>
+        <EntityType Name="DonemDers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Donem_Id" Type="Int32" Nullable="false" />
+          <Property Name="Ders_Id" Type="Int32" Nullable="false" />
+          <Property Name="Ogretmen_Id" Type="Int32" Nullable="false" />
+          <Property Name="BaslamaSaati" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="BitisSaati" Type="Time" Precision="7" />
+          <Property Name="DersGunu" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="SinifAdi" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Kapasite" Type="Byte" Nullable="false" />
+          <Property Name="DersiAlanOgrenciSayisi" Type="Byte" Nullable="false" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="Int32" Nullable="false" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Ders" Relationship="OgrenciYonetimSistemiModel.FK__DonemDers__Ders___1BC821DD" FromRole="DonemDers" ToRole="Ders" />
+          <NavigationProperty Name="Donem" Relationship="OgrenciYonetimSistemiModel.FK__DonemDers__Donem__1CBC4616" FromRole="DonemDers" ToRole="Donem" />
+          <NavigationProperty Name="Ogretmen" Relationship="OgrenciYonetimSistemiModel.FK__DonemDers__Ogret__1AD3FDA4" FromRole="DonemDers" ToRole="Ogretmen" />
+        </EntityType>
+        <EntityType Name="Fakulte">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FakulteAdi" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="Int32" Nullable="false" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Bolum" Relationship="OgrenciYonetimSistemiModel.FK__Bolum__KayitTari__3F466844" FromRole="Fakulte" ToRole="Bolum" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rol_Id" Type="Int32" Nullable="false" />
+          <Property Name="Adi" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Soyadi" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Kullanici_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rol" Relationship="OgrenciYonetimSistemiModel.FK__Kullanici__Rol_I__22AA2996" FromRole="Kullanici" ToRole="Rol" />
+          <NavigationProperty Name="Ogrenci" Relationship="OgrenciYonetimSistemiModel.FK__Ogrenci__Kullani__2A164134" FromRole="Kullanici" ToRole="Ogrenci" />
+          <NavigationProperty Name="Ogretmen" Relationship="OgrenciYonetimSistemiModel.FK_Ogretmen_Kullanici" FromRole="Kullanici" ToRole="Ogretmen" />
+          <NavigationProperty Name="Mesajlar" Relationship="OgrenciYonetimSistemiModel.FK__Mesajlar__KayitT__3587F3E0" FromRole="Kullanici" ToRole="Mesajlar" />
+        </EntityType>
+        <EntityType Name="Ogrenci">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UyeKullanici_Id" Type="Int32" Nullable="false" />
+          <Property Name="OgrenciNumarasi" Type="Int64" Nullable="false" />
+          <Property Name="Bolum_Id" Type="Int32" Nullable="false" />
+          <Property Name="TcNo" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="CepTel" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="DogumTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Adres" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sinif" Type="Int32" Nullable="false" />
+          <Property Name="Donem" Type="Int32" Nullable="false" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="Int32" Nullable="false" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Bolum" Relationship="OgrenciYonetimSistemiModel.FK__Ogrenci__Bolum_I__4222D4EF" FromRole="Ogrenci" ToRole="Bolum" />
+          <NavigationProperty Name="Kullanici" Relationship="OgrenciYonetimSistemiModel.FK__Ogrenci__Kullani__2A164134" FromRole="Ogrenci" ToRole="Kullanici" />
+          <NavigationProperty Name="OgrenciDers" Relationship="OgrenciYonetimSistemiModel.FK__OgrenciDe__Ogren__123EB7A3" FromRole="Ogrenci" ToRole="OgrenciDers" />
+        </EntityType>
+        <EntityType Name="OgrenciDers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ogrenci_Id" Type="Int32" Nullable="false" />
+          <Property Name="Ders_Id" Type="Int32" Nullable="false" />
+          <Property Name="Donem_Id" Type="Int32" Nullable="false" />
+          <Property Name="Sinav_1" Type="Byte" Nullable="false" />
+          <Property Name="Sinav_2" Type="Byte" Nullable="false" />
+          <Property Name="Final" Type="Byte" Nullable="false" />
+          <Property Name="HarfNotu" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="Int32" Nullable="false" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Ders" Relationship="OgrenciYonetimSistemiModel.FK__OgrenciDe__Ders___1332DBDC" FromRole="OgrenciDers" ToRole="Ders" />
+          <NavigationProperty Name="Donem" Relationship="OgrenciYonetimSistemiModel.FK__OgrenciDe__Donem__14270015" FromRole="OgrenciDers" ToRole="Donem" />
+          <NavigationProperty Name="Ogrenci" Relationship="OgrenciYonetimSistemiModel.FK__OgrenciDe__Ogren__123EB7A3" FromRole="OgrenciDers" ToRole="Ogrenci" />
+        </EntityType>
+        <EntityType Name="Ogretmen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UyeKullanici_Id" Type="Int32" Nullable="false" />
+          <Property Name="TcNo" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="CepTel" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="DogumTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Adres" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Alani" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="Int32" Nullable="false" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DonemDers" Relationship="OgrenciYonetimSistemiModel.FK__DonemDers__Ogret__1AD3FDA4" FromRole="Ogretmen" ToRole="DonemDers" />
+          <NavigationProperty Name="Kullanici" Relationship="OgrenciYonetimSistemiModel.FK_Ogretmen_Kullanici" FromRole="Ogretmen" ToRole="Kullanici" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Kullanici_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kullanici" Relationship="OgrenciYonetimSistemiModel.FK__Kullanici__Rol_I__22AA2996" FromRole="Rol" ToRole="Kullanici" />
+        </EntityType>
+        <Association Name="FK__Bolum__KayitTari__3F466844">
+          <End Type="OgrenciYonetimSistemiModel.Fakulte" Role="Fakulte" Multiplicity="1" />
+          <End Type="OgrenciYonetimSistemiModel.Bolum" Role="Bolum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fakulte">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bolum">
+              <PropertyRef Name="Fakulte_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ogrenci__Bolum_I__4222D4EF">
+          <End Type="OgrenciYonetimSistemiModel.Bolum" Role="Bolum" Multiplicity="1" />
+          <End Type="OgrenciYonetimSistemiModel.Ogrenci" Role="Ogrenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bolum">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ogrenci">
+              <PropertyRef Name="Bolum_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonemDers__Ders___1BC821DD">
+          <End Type="OgrenciYonetimSistemiModel.Ders" Role="Ders" Multiplicity="1" />
+          <End Type="OgrenciYonetimSistemiModel.DonemDers" Role="DonemDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DonemDers">
+              <PropertyRef Name="Ders_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OgrenciDe__Ders___1332DBDC">
+          <End Type="OgrenciYonetimSistemiModel.Ders" Role="Ders" Multiplicity="1" />
+          <End Type="OgrenciYonetimSistemiModel.OgrenciDers" Role="OgrenciDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OgrenciDers">
+              <PropertyRef Name="Ders_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonemDers__Donem__1CBC4616">
+          <End Type="OgrenciYonetimSistemiModel.Donem" Role="Donem" Multiplicity="1" />
+          <End Type="OgrenciYonetimSistemiModel.DonemDers" Role="DonemDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DonemDers">
+              <PropertyRef Name="Donem_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OgrenciDe__Donem__14270015">
+          <End Type="OgrenciYonetimSistemiModel.Donem" Role="Donem" Multiplicity="1" />
+          <End Type="OgrenciYonetimSistemiModel.OgrenciDers" Role="OgrenciDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OgrenciDers">
+              <PropertyRef Name="Donem_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonemDers__Ogret__1AD3FDA4">
+          <End Type="OgrenciYonetimSistemiModel.Ogretmen" Role="Ogretmen" Multiplicity="1" />
+          <End Type="OgrenciYonetimSistemiModel.DonemDers" Role="DonemDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogretmen">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DonemDers">
+              <PropertyRef Name="Ogretmen_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kullanici__Rol_I__22AA2996">
+          <End Type="OgrenciYonetimSistemiModel.Rol" Role="Rol" Multiplicity="1" />
+          <End Type="OgrenciYonetimSistemiModel.Kullanici" Role="Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="Rol_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ogrenci__Kullani__2A164134">
+          <End Type="OgrenciYonetimSistemiModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+          <End Type="OgrenciYonetimSistemiModel.Ogrenci" Role="Ogrenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ogrenci">
+              <PropertyRef Name="Kullanici_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ogretmen_Kullanici">
+          <End Type="OgrenciYonetimSistemiModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+          <End Type="OgrenciYonetimSistemiModel.Ogretmen" Role="Ogretmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ogretmen">
+              <PropertyRef Name="UyeKullanici_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OgrenciDe__Ogren__123EB7A3">
+          <End Type="OgrenciYonetimSistemiModel.Ogrenci" Role="Ogrenci" Multiplicity="1" />
+          <End Type="OgrenciYonetimSistemiModel.OgrenciDers" Role="OgrenciDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogrenci">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OgrenciDers">
+              <PropertyRef Name="Ogrenci_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Mesajlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Icerik" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AliciUye_Id" Type="Int32" Nullable="false" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="Kullanici_Id" Type="Int32" Nullable="false" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Kullanici" Relationship="OgrenciYonetimSistemiModel.FK__Mesajlar__KayitT__3587F3E0" FromRole="Mesajlar" ToRole="Kullanici" />
+        </EntityType>
+        <Association Name="FK__Mesajlar__KayitT__3587F3E0">
+          <End Type="OgrenciYonetimSistemiModel.Kullanici" Role="Kullanici" Multiplicity="1" />
+          <End Type="OgrenciYonetimSistemiModel.Mesajlar" Role="Mesajlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mesajlar">
+              <PropertyRef Name="AliciUye_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SP_YazismaDetayGetir_Result">
+          <Property Type="Int32" Name="AliciUye_Id" Nullable="false" />
+          <Property Type="String" Name="AliciAdiSoyadi" Nullable="false" MaxLength="129" />
+          <Property Type="Int32" Name="GonderenUye_Id" Nullable="false" />
+          <Property Type="String" Name="GonderenAdiSoyadi" Nullable="false" MaxLength="129" />
+          <Property Type="String" Name="Icerik" Nullable="false" />
+          <Property Type="DateTime" Name="KayitTarihi" Nullable="false" Precision="23" />
+          <Property Type="String" Name="MesajKonum" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="SP_YazismaListesiGetir_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Icerik" Nullable="false" />
+          <Property Type="Int32" Name="AliciUye_Id" Nullable="false" />
+          <Property Type="Boolean" Name="Statu" Nullable="false" />
+          <Property Type="Int32" Name="Kullanici_Id" Nullable="false" />
+          <Property Type="DateTime" Name="KayitTarihi" Nullable="false" Precision="23" />
+          <Property Type="String" Name="GonderenAdiSoyadi" Nullable="false" MaxLength="129" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OgrenciYonetimSistemiModelStoreContainer" CdmEntityContainer="OgrenciYonetimSistemiEntities">
+          <FunctionImportMapping FunctionImportName="SP_OgrenciListesi" FunctionName="OgrenciYonetimSistemiModel.Store.SP_OgrenciListesi" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OgrenciYonetimSistemiModel.SP_OgrenciListesi_Result">
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Bolum">
+            <EntityTypeMapping TypeName="OgrenciYonetimSistemiModel.Bolum">
+              <MappingFragment StoreEntitySet="Bolum">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="OgrenciNumaraFormati" ColumnName="OgrenciNumaraFormati" />
+                <ScalarProperty Name="BolumAdi" ColumnName="BolumAdi" />
+                <ScalarProperty Name="Fakulte_Id" ColumnName="Fakulte_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ders">
+            <EntityTypeMapping TypeName="OgrenciYonetimSistemiModel.Ders">
+              <MappingFragment StoreEntitySet="Ders">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="KrediSayisi" ColumnName="KrediSayisi" />
+                <ScalarProperty Name="DersAdi" ColumnName="DersAdi" />
+                <ScalarProperty Name="GrupNo" ColumnName="GrupNo" />
+                <ScalarProperty Name="DersKodu" ColumnName="DersKodu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donem">
+            <EntityTypeMapping TypeName="OgrenciYonetimSistemiModel.Donem">
+              <MappingFragment StoreEntitySet="Donem">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
+                <ScalarProperty Name="BaslamaTarihi" ColumnName="BaslamaTarihi" />
+                <ScalarProperty Name="Yil" ColumnName="Yil" />
+                <ScalarProperty Name="DonemAdi" ColumnName="DonemAdi" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonemDers">
+            <EntityTypeMapping TypeName="OgrenciYonetimSistemiModel.DonemDers">
+              <MappingFragment StoreEntitySet="DonemDers">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="DersiAlanOgrenciSayisi" ColumnName="DersiAlanOgrenciSayisi" />
+                <ScalarProperty Name="Kapasite" ColumnName="Kapasite" />
+                <ScalarProperty Name="SinifAdi" ColumnName="SinifAdi" />
+                <ScalarProperty Name="DersGunu" ColumnName="DersGunu" />
+                <ScalarProperty Name="BitisSaati" ColumnName="BitisSaati" />
+                <ScalarProperty Name="BaslamaSaati" ColumnName="BaslamaSaati" />
+                <ScalarProperty Name="Ogretmen_Id" ColumnName="Ogretmen_Id" />
+                <ScalarProperty Name="Ders_Id" ColumnName="Ders_Id" />
+                <ScalarProperty Name="Donem_Id" ColumnName="Donem_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fakulte">
+            <EntityTypeMapping TypeName="OgrenciYonetimSistemiModel.Fakulte">
+              <MappingFragment StoreEntitySet="Fakulte">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="FakulteAdi" ColumnName="FakulteAdi" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanici">
+            <EntityTypeMapping TypeName="OgrenciYonetimSistemiModel.Kullanici">
+              <MappingFragment StoreEntitySet="Kullanici">
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="Resim" ColumnName="Resim" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Rol_Id" ColumnName="Rol_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ogrenci">
+            <EntityTypeMapping TypeName="OgrenciYonetimSistemiModel.Ogrenci">
+              <MappingFragment StoreEntitySet="Ogrenci">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="Donem" ColumnName="Donem" />
+                <ScalarProperty Name="Sinif" ColumnName="Sinif" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+                <ScalarProperty Name="CepTel" ColumnName="CepTel" />
+                <ScalarProperty Name="TcNo" ColumnName="TcNo" />
+                <ScalarProperty Name="Bolum_Id" ColumnName="Bolum_Id" />
+                <ScalarProperty Name="OgrenciNumarasi" ColumnName="OgrenciNumarasi" />
+                <ScalarProperty Name="UyeKullanici_Id" ColumnName="UyeKullanici_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OgrenciDers">
+            <EntityTypeMapping TypeName="OgrenciYonetimSistemiModel.OgrenciDers">
+              <MappingFragment StoreEntitySet="OgrenciDers">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="HarfNotu" ColumnName="HarfNotu" />
+                <ScalarProperty Name="Final" ColumnName="Final" />
+                <ScalarProperty Name="Sinav_2" ColumnName="Sinav_2" />
+                <ScalarProperty Name="Sinav_1" ColumnName="Sinav_1" />
+                <ScalarProperty Name="Donem_Id" ColumnName="Donem_Id" />
+                <ScalarProperty Name="Ders_Id" ColumnName="Ders_Id" />
+                <ScalarProperty Name="Ogrenci_Id" ColumnName="Ogrenci_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ogretmen">
+            <EntityTypeMapping TypeName="OgrenciYonetimSistemiModel.Ogretmen">
+              <MappingFragment StoreEntitySet="Ogretmen">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="Alani" ColumnName="Alani" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+                <ScalarProperty Name="CepTel" ColumnName="CepTel" />
+                <ScalarProperty Name="TcNo" ColumnName="TcNo" />
+                <ScalarProperty Name="UyeKullanici_Id" ColumnName="UyeKullanici_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="OgrenciYonetimSistemiModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesajlar">
+            <EntityTypeMapping TypeName="OgrenciYonetimSistemiModel.Mesajlar">
+              <MappingFragment StoreEntitySet="Mesajlar">
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="AliciUye_Id" ColumnName="AliciUye_Id" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_YazismaDetayGetir" FunctionName="OgrenciYonetimSistemiModel.Store.SP_YazismaDetayGetir">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OgrenciYonetimSistemiModel.SP_YazismaDetayGetir_Result">
+                <ScalarProperty Name="AliciUye_Id" ColumnName="AliciUye_Id" />
+                <ScalarProperty Name="AliciAdiSoyadi" ColumnName="AliciAdiSoyadi" />
+                <ScalarProperty Name="GonderenUye_Id" ColumnName="GonderenUye_Id" />
+                <ScalarProperty Name="GonderenAdiSoyadi" ColumnName="GonderenAdiSoyadi" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="MesajKonum" ColumnName="MesajKonum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_YazismaListesiGetir" FunctionName="OgrenciYonetimSistemiModel.Store.SP_YazismaListesiGetir">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OgrenciYonetimSistemiModel.SP_YazismaListesiGetir_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+                <ScalarProperty Name="AliciUye_Id" ColumnName="AliciUye_Id" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="GonderenAdiSoyadi" ColumnName="GonderenAdiSoyadi" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

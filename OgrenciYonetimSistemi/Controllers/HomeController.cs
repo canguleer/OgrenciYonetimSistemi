@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OgrenciYonetimSistemi.Models.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,21 +7,29 @@ using System.Web.Mvc;
 
 namespace OgrenciYonetimSistemi.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index()  
         {
-            return View();
+            ChatDetayGetir chat = new ChatDetayGetir() {
+                 YazismaDetayListesi = db.SP_YazismaDetayGetir(4, 2).ToList(),
+                  YazismaListesi = db.SP_YazismaListesiGetir(2).ToList()
+            };
+
+            var mesajlasilanKisi = "Ahmet Güler";
+
+            ViewData["mesajlasilanKisi"] = mesajlasilanKisi;
+
+
+            return View(chat);
+
         }
 
         public ActionResult DataTable()  
         {
-            return View();  // gitgun repo testi başarıyla yapıldı..asdfsdsdfsdf   ewfrwef
+            return View();  
         }
 
-        public ActionResult DataTable2()
-        {
-            return View();  // gitgun repo testi başarıyla yapıldı..asdfsdsdfsdf   ewfrwef
-        }
+ 
     }
 } 

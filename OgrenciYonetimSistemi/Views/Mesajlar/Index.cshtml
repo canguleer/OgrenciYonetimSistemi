@@ -1,0 +1,448 @@
+﻿
+@model OgrenciYonetimSistemi.Models.Helper.ChatDetayGetir
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/BootstrapChat.css" rel="stylesheet" />
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Mesajlar</h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <section class="col-lg-12 connectedSortable">
+
+                    <!-- DIRECT CHAT -->
+                    <div class="card direct-chat direct-chat-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Yazışmalarım</h3>
+                            <div class="card-tools">
+                                <span title="3 New Messages" class="badge badge-primary">3</span>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+
+
+                            </div>
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+
+                            <div class="container">
+                                <div class="row clearfix">
+                                    <div class="col-lg-12">
+
+                                        <div class="container">
+                                            <h3 class=" text-center">Yazışmalarım</h3>
+
+                                            <div class="messaging">
+                                                <div class="inbox_msg">
+                                                    <div class="inbox_people">
+                                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#sohbetGecmisi" role="tab" aria-controls="sohbetGecmisi" aria-selected="true">Yazışmalar</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#yeniMesaj" role="tab" aria-controls="yeniMesaj" aria-selected="false">Yeni Mesaj</a>
+                                                            </li>
+
+                                                        </ul>
+                                                        <div class="tab-content" id="myTabContent">
+                                                            <div class="tab-pane fade show active" id="sohbetGecmisi" role="tabpanel" aria-labelledby="sohbetGecmisi-tab">
+
+                                                                <div class="headind_srch">
+                                                                    <div class="recent_heading">
+                                                                        <h4>Sohbet Geçmişi</h4>
+                                                                    </div>
+                                                                    <div class="srch_bar">
+                                                                        <div class="stylish-input-group">
+                                                                            <input type="text" class="search-bar" placeholder="Search" id="sohbetGecmisiAra">
+                                                                            <span class="input-group-addon">
+                                                                                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="inbox_chat sohbetGecmisiListe">
+                                                                    <div class="chat_list active_chat">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Ahmet Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chat_list">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Can Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chat_list">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Deniz Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chat_list">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Suna Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chat_list">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Dnemet Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chat_list">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Mehmet Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chat_list">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Ayşe Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="yeniMesaj" role="tabpanel" aria-labelledby="yeniMesaj-tab">
+
+                                                                <div class="headind_srch">
+                                                                    <div class="recent_heading">
+                                                                        <h4>Yeni Mesaj</h4>
+                                                                    </div>
+                                                                    <div class="srch_bar">
+                                                                        <div class="stylish-input-group">
+                                                                            <input type="text" class="search-bar" placeholder="Search" id="yeniMesajAra">
+                                                                            <span class="input-group-addon">
+                                                                                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="inbox_chat yeniMesajListe">
+                                                                    <div class="chat_list active_chat">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Ahmet Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chat_list">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Can Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chat_list">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Deniz Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chat_list">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Suna Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chat_list">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Dnemet Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chat_list">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Mehmet Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chat_list">
+                                                                        <div class="chat_people">
+                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                            <div class="chat_ib">
+                                                                                <h5>Ayşe Rajput </h5>
+                                                                                <p>
+                                                                                    Test, which is a new approach to have all solutions
+                                                                                    astrology under one roof.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="mesgs">
+                                                        <div class="msg_history">
+                                                            <div class="incoming_msg">
+                                                                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                <div class="received_msg">
+                                                                    <div class="received_withd_msg">
+                                                                        <p>
+                                                                            Test which is a new approach to have all
+                                                                            solutions
+                                                                        </p>
+                                                                        <span class="time_date"> 11:01 AM    |    June 9</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="outgoing_msg">
+                                                                <div class="sent_msg">
+                                                                    <p>
+                                                                        Test which is a new approach to have all
+                                                                        solutions
+                                                                    </p>
+                                                                    <span class="time_date"> 11:01 AM    |    June 9</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="incoming_msg">
+                                                                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                <div class="received_msg">
+                                                                    <div class="received_withd_msg">
+                                                                        <p>Test, which is a new approach to have</p>
+                                                                        <span class="time_date"> 11:01 AM    |    Yesterday</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="outgoing_msg">
+                                                                <div class="sent_msg">
+                                                                    <p>Apollo University, Delhi, India Test</p>
+                                                                    <span class="time_date"> 11:01 AM    |    Today</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="incoming_msg">
+                                                                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                <div class="received_msg">
+                                                                    <div class="received_withd_msg">
+                                                                        <p>
+                                                                            We work directly with our designers and suppliers,
+                                                                            and sell direct to you, which means quality, exclusive
+                                                                            products, at a price anyone can afford.
+                                                                        </p>
+                                                                        <span class="time_date"> 11:01 AM    |    Today</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="incoming_msg">
+                                                                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                <div class="received_msg">
+                                                                    <div class="received_withd_msg">
+                                                                        <p>
+                                                                            We work directly with our designers and suppliers,
+                                                                            and sell direct to you, which means quality, exclusive
+                                                                            products, at a price anyone can afford.
+                                                                        </p>
+                                                                        <span class="time_date"> 11:01 AM    |    Today</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="incoming_msg">
+                                                                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                <div class="received_msg">
+                                                                    <div class="received_withd_msg">
+                                                                        <p>
+                                                                            We work directly with our designers and suppliers,
+                                                                            and sell direct to you, which means quality, exclusive
+                                                                            products, at a price anyone can afford.
+                                                                        </p>
+                                                                        <span class="time_date"> 11:01 AM    |    Today</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="incoming_msg">
+                                                                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                <div class="received_msg">
+                                                                    <div class="received_withd_msg">
+                                                                        <p>
+                                                                            We work directly with our designers and suppliers,
+                                                                            and sell direct to you, which means quality, exclusive
+                                                                            products, at a price anyone can afford.
+                                                                        </p>
+                                                                        <span class="time_date"> 11:01 AM    |    Today</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="type_msg" style="margin-top:20px;">
+                                                            <div class="input_msg_write">
+                                                                <input type="text" class="write_msg" placeholder="Type a message" />
+
+                                                                <button class="msg_send_btn" type="button">
+                                                                    <i class="fas fa-paper-plane"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $("#sohbetGecmisiAra").keyup(function () {
+                PersonelAra("sohbetGecmisiAra");
+            });
+
+            $("#yeniMesajAra").keyup(function () {
+                PersonelAra("yeniMesajAra");
+            })
+        });
+
+        function PersonelAra(data) {
+            var input, filter, mylist, txtValue, name;
+            if (data == "sohbetGecmisiAra") {
+                name = "sohbetGecmisiAra";
+                mylist = $(".sohbetGecmisiListe")[0];
+            }
+            else if (data == "yeniMesajAra") {
+                name = "yeniMesajAra";
+                mylist = $(".yeniMesajListe")[0];
+            }
+
+
+            input = $("#" + name);
+            filter = input.val().toUpperCase();
+
+            $(".chat_list", mylist).each(function (i, e) {
+                if ($(this)) {
+                    txtValue = $("h5", $(this)).html().toUpperCase();
+                    if (txtValue.indexOf(filter) > -1) {
+
+                        $(".chat_list", mylist)[i].style.display = "";
+                    }
+                    else {
+                        $(".chat_list", mylist)[i].style.display = "none";
+                    }
+                }
+            })
+        }
+    </script>
+}
+
