@@ -27,6 +27,8 @@ namespace OgrenciYonetimSistemi.Controllers
 
         }
 
+        
+
 
 
         public PartialViewResult _sohbetGecmisiGetir(int? SohbetGecmisiIstenilenUye_Id)

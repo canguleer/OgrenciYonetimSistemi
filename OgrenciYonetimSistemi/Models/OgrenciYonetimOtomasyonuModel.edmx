@@ -781,6 +781,7 @@
           <Property Type="Int32" Name="Kullanici_Id" Nullable="false" />
           <Property Type="DateTime" Name="KayitTarihi" Nullable="false" Precision="23" />
           <Property Type="String" Name="GonderenAdiSoyadi" Nullable="false" MaxLength="129" />
+          <Property Type="Int64" Name="sira" Nullable="true" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -980,6 +981,7 @@
                 <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
                 <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
                 <ScalarProperty Name="GonderenAdiSoyadi" ColumnName="GonderenAdiSoyadi" />
+                <ScalarProperty Name="sira" ColumnName="sira" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

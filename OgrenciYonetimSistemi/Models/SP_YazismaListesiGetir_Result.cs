@@ -20,5 +20,6 @@ namespace OgrenciYonetimSistemi.Models
         public int Kullanici_Id { get; set; }
         public System.DateTime KayitTarihi { get; set; }
         public string GonderenAdiSoyadi { get; set; }
+        public Nullable<long> sira { get; set; }
     }
 }
