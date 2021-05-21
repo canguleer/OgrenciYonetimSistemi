@@ -7,29 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OgrenciYonetimSistemi.Models
+namespace OgrenciYonetimSistemi.Models.SqlModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class DonemDers
+    public partial class Fakulte
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Fakulte()
+        {
+            this.Bolum = new HashSet<Bolum>();
+        }
+    
         public int Id { get; set; }
-        public int Donem_Id { get; set; }
-        public int Ders_Id { get; set; }
-        public int Ogretmen_Id { get; set; }
-        public System.TimeSpan BaslamaSaati { get; set; }
-        public Nullable<System.TimeSpan> BitisSaati { get; set; }
-        public string DersGunu { get; set; }
-        public string SinifAdi { get; set; }
-        public byte Kapasite { get; set; }
-        public byte DersiAlanOgrenciSayisi { get; set; }
+        public string FakulteAdi { get; set; }
         public bool Statu { get; set; }
         public int Kullanici_Id { get; set; }
         public System.DateTime KayitTarihi { get; set; }
     
-        public virtual Ders Ders { get; set; }
-        public virtual Donem Donem { get; set; }
-        public virtual Ogretmen Ogretmen { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bolum> Bolum { get; set; }
     }
 }

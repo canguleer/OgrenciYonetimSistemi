@@ -7,26 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OgrenciYonetimSistemi.Models
+namespace OgrenciYonetimSistemi.Models.SqlModel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Fakulte
+    public partial class SP_YazismaListesiGetir_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Fakulte()
-        {
-            this.Bolum = new HashSet<Bolum>();
-        }
-    
         public int Id { get; set; }
-        public string FakulteAdi { get; set; }
+        public string Icerik { get; set; }
+        public int AliciUye_Id { get; set; }
         public bool Statu { get; set; }
         public int Kullanici_Id { get; set; }
         public System.DateTime KayitTarihi { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bolum> Bolum { get; set; }
+        public string GonderenAdiSoyadi { get; set; }
+        public Nullable<long> sira { get; set; }
     }
 }

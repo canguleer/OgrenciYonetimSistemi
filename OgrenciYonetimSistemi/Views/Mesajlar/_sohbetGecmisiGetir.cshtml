@@ -1,4 +1,35 @@
-﻿
-@model OgrenciYonetimSistemi.Models.SP_YazismaDetayGetir_Result
+﻿@model   OgrenciYonetimSistemi.Models.Helper.ChatSohbetGecmisiGetir
+
+
+@foreach (var yazismaDetay in Model.YazismaDetayListesi)
+{
+    if (yazismaDetay.MesajKonum == "R")
+    {
+
+        <div class="outgoing_msg">
+            <div class="sent_msg">
+                <p>
+                    @yazismaDetay.Icerik
+                </p>
+                <span class="time_date"> @yazismaDetay.KayitTarihi</span>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="incoming_msg">
+            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+            <div class="received_msg">
+                <div class="received_withd_msg">
+                    <p>
+                        @yazismaDetay.Icerik
+                    </p>
+                    <span class="time_date"> @yazismaDetay.KayitTarihi</span>
+                </div>
+            </div>
+        </div>
+    }
+}
+
 
 

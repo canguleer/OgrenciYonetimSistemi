@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OgrenciYonetimSistemi.Models
+namespace OgrenciYonetimSistemi.Models.SqlModel
 {
     using System;
     using System.Data.Entity;

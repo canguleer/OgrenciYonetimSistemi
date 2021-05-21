@@ -1,4 +1,7 @@
 ﻿using OgrenciYonetimSistemi.Models;
+using OgrenciYonetimSistemi.Models.Helper.Kullanıcı;
+using OgrenciYonetimSistemi.Models.Helper.Result;
+using OgrenciYonetimSistemi.Models.SqlModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +14,18 @@ namespace OgrenciYonetimSistemi.Controllers
     {
         // GET: Base
 
-        public OgrenciYonetimSistemiEntities db = new OgrenciYonetimSistemiEntities();
-     
+        public OgrenciYonetimSistemiEntities db;
+        public KullaniciBilgileri LoginUser;
+        public ResultObject ResultData;
+
+
+        public BaseController()
+        {
+            db = new OgrenciYonetimSistemiEntities();
+            LoginUser = KullaniciHesapBilgileri.GetCurrentUser();
+            ResultData = new ResultObject();
+        }
+
     }
 }
+

@@ -7,32 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OgrenciYonetimSistemi.Models
+namespace OgrenciYonetimSistemi.Models.SqlModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Ogretmen
+    public partial class Rol
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ogretmen()
+        public Rol()
         {
-            this.DonemDers = new HashSet<DonemDers>();
+            this.Kullanici = new HashSet<Kullanici>();
         }
     
         public int Id { get; set; }
-        public int UyeKullanici_Id { get; set; }
-        public string TcNo { get; set; }
-        public string CepTel { get; set; }
-        public Nullable<System.DateTime> DogumTarihi { get; set; }
-        public string Adres { get; set; }
-        public string Alani { get; set; }
+        public string Adi { get; set; }
         public bool Statu { get; set; }
-        public int Kullanici_Id { get; set; }
         public System.DateTime KayitTarihi { get; set; }
+        public int Kullanici_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonemDers> DonemDers { get; set; }
-        public virtual Kullanici Kullanici { get; set; }
+        public virtual ICollection<Kullanici> Kullanici { get; set; }
     }
 }

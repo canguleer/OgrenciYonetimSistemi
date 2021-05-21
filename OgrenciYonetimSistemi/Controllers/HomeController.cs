@@ -9,6 +9,7 @@ namespace OgrenciYonetimSistemi.Controllers
 {
     public class HomeController : BaseController
     {
+        [Authorize]
         public ActionResult Index()  
         {
             ChatDetayGetir chat = new ChatDetayGetir() {
@@ -17,6 +18,7 @@ namespace OgrenciYonetimSistemi.Controllers
             };
 
             var mesajlasilanKisi = "Ahmet Güler";
+
 
             ViewData["mesajlasilanKisi"] = mesajlasilanKisi;
 

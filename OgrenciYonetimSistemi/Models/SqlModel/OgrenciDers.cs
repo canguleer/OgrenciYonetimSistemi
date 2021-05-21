@@ -7,19 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OgrenciYonetimSistemi.Models
+namespace OgrenciYonetimSistemi.Models.SqlModel
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class SP_YazismaListesiGetir_Result
+    public partial class OgrenciDers
     {
         public int Id { get; set; }
-        public string Icerik { get; set; }
-        public int AliciUye_Id { get; set; }
+        public int Ogrenci_Id { get; set; }
+        public int Ders_Id { get; set; }
+        public int Donem_Id { get; set; }
+        public byte Sinav_1 { get; set; }
+        public byte Sinav_2 { get; set; }
+        public byte Final { get; set; }
+        public string HarfNotu { get; set; }
         public bool Statu { get; set; }
         public int Kullanici_Id { get; set; }
         public System.DateTime KayitTarihi { get; set; }
-        public string GonderenAdiSoyadi { get; set; }
-        public Nullable<long> sira { get; set; }
+    
+        public virtual Ders Ders { get; set; }
+        public virtual Donem Donem { get; set; }
+        public virtual Ogrenci Ogrenci { get; set; }
     }
 }

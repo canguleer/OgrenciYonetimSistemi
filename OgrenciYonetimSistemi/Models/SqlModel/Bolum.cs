@@ -7,26 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OgrenciYonetimSistemi.Models
+namespace OgrenciYonetimSistemi.Models.SqlModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Rol
+    public partial class Bolum
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Rol()
+        public Bolum()
         {
-            this.Kullanici = new HashSet<Kullanici>();
+            this.Ogrenci = new HashSet<Ogrenci>();
         }
     
         public int Id { get; set; }
-        public string Adi { get; set; }
+        public int Fakulte_Id { get; set; }
+        public string BolumAdi { get; set; }
+        public int OgrenciNumaraFormati { get; set; }
         public bool Statu { get; set; }
-        public System.DateTime KayitTarihi { get; set; }
         public int Kullanici_Id { get; set; }
+        public System.DateTime KayitTarihi { get; set; }
     
+        public virtual Fakulte Fakulte { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kullanici> Kullanici { get; set; }
+        public virtual ICollection<Ogrenci> Ogrenci { get; set; }
     }
 }

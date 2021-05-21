@@ -7,18 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OgrenciYonetimSistemi.Models
+namespace OgrenciYonetimSistemi.Models.SqlModel
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class SP_YazismaDetayGetir_Result
+    public partial class Mesajlar
     {
-        public int AliciUye_Id { get; set; }
-        public string AliciAdiSoyadi { get; set; }
-        public int GonderenUye_Id { get; set; }
-        public string GonderenAdiSoyadi { get; set; }
+        public int Id { get; set; }
         public string Icerik { get; set; }
+        public int AliciUye_Id { get; set; }
+        public bool Statu { get; set; }
+        public int Kullanici_Id { get; set; }
         public System.DateTime KayitTarihi { get; set; }
-        public string MesajKonum { get; set; }
+    
+        public virtual Kullanici Kullanici { get; set; }
     }
 }

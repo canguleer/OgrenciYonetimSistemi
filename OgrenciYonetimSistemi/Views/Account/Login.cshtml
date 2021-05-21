@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<html>
+<head>
+
+    <title>AdminLTE 3 | Log in</title>
+    <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <p class="login-box-msg">Öğrenci Yönetim Otomasyonu</p>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+
+                <form>
+                    @Html.AntiForgeryToken()
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" name="Email" placeholder="Email" id="inputEmail">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" name="Password" placeholder="Password" id="inputPassword">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="button" class="btn btn-primary btn-block" id="UserLogin">Giriş</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <!-- /.social-auth-links -->
+                <p class="mb-1">
+                    <a href="@Url.Action("ForgetPassword", "Account")">Şifremi Unuttum</a>
+                </p>
+
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/dist/js/adminlte.min.js"></script>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $('#UserLogin').on('click', function () {
+        KullaniciGirisYap();
+    });
+
+    function KullaniciGirisYap() {
+        try {
+
+            var Email = $('#inputEmail').val();
+            var Sifre = $('#inputPassword').val();
+            var token = $('input[name="__RequestVerificationToken"]').val();
+
+
+            if (Email == "" || Sifre == "") {
+                alert("Lütfen boş alan bırakmayınız");
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/Account/Login",
+                data: {
+
+                    Email: Email,
+                    Password: Sifre,
+                    __RequestVerificationToken: token
+                },
+                success: function (data) {
+                    if (data.status) {
+                        alert("başarılı");
+                        window.location.href = "../Mesajlar/Index";
+                    }
+                    else {
+                        console.log("hata");
+                    }
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                }
+            });
+
+
+        }
+        catch (e) {
+            console.log("error: " + e);
+        }
+
+    }
+</script>

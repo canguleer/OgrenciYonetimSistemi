@@ -128,67 +128,72 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MesajlarController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Bolum.cs">
+    <Compile Include="Models\SqlModel\Bolum.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ders.cs">
+    <Compile Include="Models\SqlModel\Ders.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Donem.cs">
+    <Compile Include="Models\SqlModel\Donem.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DonemDers.cs">
+    <Compile Include="Models\SqlModel\DonemDers.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Fakulte.cs">
+    <Compile Include="Models\SqlModel\Fakulte.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Kullanici.cs">
+    <Compile Include="Models\Helper\Kullanıcı\KullaniciBilgileri.cs" />
+    <Compile Include="Models\Helper\Kullanıcı\KullaniciHesapBilgileri.cs" />
+    <Compile Include="Models\Helper\Mesajlar\ChatSohbetGecmisiGetir.cs" />
+    <Compile Include="Models\Helper\Result\ResultObject.cs" />
+    <Compile Include="Models\SqlModel\Kullanici.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Mesajlar.cs">
+    <Compile Include="Models\SqlModel\Mesajlar.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ogrenci.cs">
+    <Compile Include="Models\SqlModel\Ogrenci.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OgrenciDers.cs">
+    <Compile Include="Models\SqlModel\OgrenciDers.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OgrenciYonetimOtomasyonuModel.Context.cs">
+    <Compile Include="Models\SqlModel\OgrenciYonetimOtomasyonuModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OgrenciYonetimOtomasyonuModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OgrenciYonetimOtomasyonuModel.cs">
+    <Compile Include="Models\SqlModel\OgrenciYonetimOtomasyonuModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OgrenciYonetimOtomasyonuModel.Designer.cs">
+    <Compile Include="Models\SqlModel\OgrenciYonetimOtomasyonuModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OgrenciYonetimOtomasyonuModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ogretmen.cs">
+    <Compile Include="Models\SqlModel\Ogretmen.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Rol.cs">
+    <Compile Include="Models\SqlModel\Rol.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SP_OgrenciListesi_Result.cs">
+    <Compile Include="Models\SqlModel\SP_OgrenciListesi_Result.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SP_YazismaDetayGetir_Result.cs">
+    <Compile Include="Models\SqlModel\SP_YazismaDetayGetir_Result.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SP_YazismaListesiGetir_Result.cs">
+    <Compile Include="Models\SqlModel\SP_YazismaListesiGetir_Result.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2261,13 +2266,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Compile Include="Models\Helper\ChatDetayGetir.cs" />
-    <Content Include="Models\OgrenciYonetimOtomasyonuModel.Context.tt">
+    <Compile Include="Models\Helper\Mesajlar\ChatDetayGetir.cs" />
+    <Content Include="Models\SqlModel\OgrenciYonetimOtomasyonuModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>OgrenciYonetimOtomasyonuModel.Context.cs</LastGenOutput>
       <DependentUpon>OgrenciYonetimOtomasyonuModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\OgrenciYonetimOtomasyonuModel.tt">
+    <Content Include="Models\SqlModel\OgrenciYonetimOtomasyonuModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OgrenciYonetimOtomasyonuModel.edmx</DependentUpon>
       <LastGenOutput>OgrenciYonetimOtomasyonuModel.cs</LastGenOutput>
@@ -2547,14 +2552,15 @@
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\plugins\summernote\summernote.min.js.map" />
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\plugins\toastr\toastr.js.map" />
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\README.md" />
-    <EntityDeploy Include="Models\OgrenciYonetimOtomasyonuModel.edmx">
+    <EntityDeploy Include="Models\SqlModel\OgrenciYonetimOtomasyonuModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OgrenciYonetimOtomasyonuModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\OgrenciYonetimOtomasyonuModel.edmx.diagram">
+    <Content Include="Models\SqlModel\OgrenciYonetimOtomasyonuModel.edmx.diagram">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\CustomScripts\Mesajlar.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -2580,6 +2586,8 @@
     <Content Include="Views\Home\DataTable.cshtml" />
     <Content Include="Views\Mesajlar\Index.cshtml" />
     <Content Include="Views\Mesajlar\_sohbetGecmisiGetir.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\ForgetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,38 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OgrenciYonetimSistemi.Models
+namespace OgrenciYonetimSistemi.Models.SqlModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Kullanici
+    public partial class Ders
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Kullanici()
+        public Ders()
         {
-            this.Ogrenci = new HashSet<Ogrenci>();
-            this.Ogretmen = new HashSet<Ogretmen>();
-            this.Mesajlar = new HashSet<Mesajlar>();
+            this.DonemDers = new HashSet<DonemDers>();
+            this.OgrenciDers = new HashSet<OgrenciDers>();
         }
     
         public int Id { get; set; }
-        public int Rol_Id { get; set; }
-        public string Adi { get; set; }
-        public string Soyadi { get; set; }
-        public string Sifre { get; set; }
-        public string Email { get; set; }
-        public string Resim { get; set; }
+        public string DersKodu { get; set; }
+        public byte GrupNo { get; set; }
+        public string DersAdi { get; set; }
+        public byte KrediSayisi { get; set; }
         public bool Statu { get; set; }
-        public System.DateTime KayitTarihi { get; set; }
         public int Kullanici_Id { get; set; }
+        public System.DateTime KayitTarihi { get; set; }
     
-        public virtual Rol Rol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ogrenci> Ogrenci { get; set; }
+        public virtual ICollection<DonemDers> DonemDers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ogretmen> Ogretmen { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Mesajlar> Mesajlar { get; set; }
+        public virtual ICollection<OgrenciDers> OgrenciDers { get; set; }
     }
 }

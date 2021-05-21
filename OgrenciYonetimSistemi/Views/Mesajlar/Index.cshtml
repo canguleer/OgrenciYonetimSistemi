@@ -29,6 +29,7 @@
                     <div class="card direct-chat direct-chat-primary">
                         <div class="card-header">
                             <h3 class="card-title">Yazışmalarım</h3>
+                            <h3>HOŞGELDİN  @ViewData["UserName"] </h3>
                             <div class="card-tools">
                                 <span title="3 New Messages" class="badge badge-primary">3</span>
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -86,7 +87,7 @@
                                                                     {
                                                                         string active_chat_Class = yazisma.sira == 1 ? "chat_list active_chat" : "chat_list";
 
-                                                                        <div class="@active_chat_Class">
+                                                                        <div class="@active_chat_Class" id="@yazisma.Kullanici_Id">
                                                                             <div class="chat_people">
                                                                                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                                                                 <div class="chat_ib">
@@ -212,39 +213,11 @@
                                                     </div>
 
                                                     <div class="mesgs">
-                                                        <div class="msg_history">
+                                                        <div class="msg_history" >
 
-                                                            @foreach (var yazismaDetay in Model.YazismaDetayListesi)
-                                                            {
-                                                                if (yazismaDetay.MesajKonum == "R")
-                                                                {
+                                                            @*chat detay*@
 
-                                                                    <div class="outgoing_msg">
-                                                                        <div class="sent_msg">
-                                                                            <p>
-                                                                                @yazismaDetay.Icerik
-                                                                            </p>
-                                                                            <span class="time_date"> @yazismaDetay.KayitTarihi</span>
-                                                                        </div>
-                                                                    </div>
-                                                                }
-                                                                else
-                                                                {
-                                                                    <div class="incoming_msg">
-                                                                        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                                                        <div class="received_msg">
-                                                                            <div class="received_withd_msg">
-                                                                                <p>
-                                                                                    @yazismaDetay.Icerik
-                                                                                </p>
-                                                                                <span class="time_date"> @yazismaDetay.KayitTarihi</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                }
-                                                            }
 
-                                                     
                                                         </div>
                                                         <div class="type_msg" style="margin-top:20px;">
                                                             <div class="input_msg_write">
@@ -282,46 +255,8 @@
 
 
 @section scripts{
-    <script>
-        $(document).ready(function () {
+ 
+    <script src="~/Scripts/CustomScripts/Mesajlar.js"></script>
 
-            $("#sohbetGecmisiAra").keyup(function () {
-                PersonelAra("sohbetGecmisiAra");
-            });
-
-            $("#yeniMesajAra").keyup(function () {
-                PersonelAra("yeniMesajAra");
-            })
-        });
-
-        function PersonelAra(data) {
-            var input, filter, mylist, txtValue, name;
-            if (data == "sohbetGecmisiAra") {
-                name = "sohbetGecmisiAra";
-                mylist = $(".sohbetGecmisiListe")[0];
-            }
-            else if (data == "yeniMesajAra") {
-                name = "yeniMesajAra";
-                mylist = $(".yeniMesajListe")[0];
-            }
-
-
-            input = $("#" + name);
-            filter = input.val().toUpperCase();
-
-            $(".chat_list", mylist).each(function (i, e) {
-                if ($(this)) {
-                    txtValue = $("h5", $(this)).html().toUpperCase();
-                    if (txtValue.indexOf(filter) > -1) {
-
-                        $(".chat_list", mylist)[i].style.display = "";
-                    }
-                    else {
-                        $(".chat_list", mylist)[i].style.display = "none";
-                    }
-                }
-            })
-        }
-    </script>
 }
 

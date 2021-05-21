@@ -1,4 +1,5 @@
 ﻿using OgrenciYonetimSistemi.Models.Helper;
+using OgrenciYonetimSistemi.Models.Helper.Kullanıcı;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace OgrenciYonetimSistemi.Controllers
 {
     public class MesajlarController : BaseController
     {
-        // GET: Mesajlar
+        [Authorize]
         public ActionResult Index()
         {
             ChatDetayGetir chat = new ChatDetayGetir()
@@ -21,28 +22,30 @@ namespace OgrenciYonetimSistemi.Controllers
             var mesajlasilanKisi = "Ahmet Güler";
 
             ViewData["mesajlasilanKisi"] = mesajlasilanKisi;
+            ViewData["UserName"] = LoginUser.Adi; 
+        
 
 
             return View(chat);
 
+            
+
         }
 
-        
 
-
-
-        public PartialViewResult _sohbetGecmisiGetir(int? SohbetGecmisiIstenilenUye_Id)
+        public ActionResult _sohbetGecmisiGetir(int? SohbetGecmisiIstenilenUye_Id)
         {
             int loginUser_Id = 2;
 
-            List<Models.SP_YazismaDetayGetir_Result> model = db.SP_YazismaDetayGetir(SohbetGecmisiIstenilenUye_Id, loginUser_Id).ToList();
-
-            return PartialView("_sohbetGecmisiGetir",model);
-
+            ChatSohbetGecmisiGetir model = new ChatSohbetGecmisiGetir()
+            {
+                YazismaDetayListesi = db.SP_YazismaDetayGetir(SohbetGecmisiIstenilenUye_Id, loginUser_Id).ToList()
+            };
+            return PartialView("_sohbetGecmisiGetir", model);
         }
-
 
 
 
     }
+
 }
