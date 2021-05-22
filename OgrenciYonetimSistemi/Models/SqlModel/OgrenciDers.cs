@@ -16,8 +16,7 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
     {
         public int Id { get; set; }
         public int Ogrenci_Id { get; set; }
-        public int Ders_Id { get; set; }
-        public int Donem_Id { get; set; }
+        public int DonemDers_Id { get; set; }
         public byte Sinav_1 { get; set; }
         public byte Sinav_2 { get; set; }
         public byte Final { get; set; }
@@ -26,8 +25,7 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
         public int Kullanici_Id { get; set; }
         public System.DateTime KayitTarihi { get; set; }
     
-        public virtual Ders Ders { get; set; }
-        public virtual Donem Donem { get; set; }
+        public virtual DonemDers DonemDers { get; set; }
         public virtual Ogrenci Ogrenci { get; set; }
     }
 }

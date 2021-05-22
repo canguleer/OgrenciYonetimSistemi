@@ -11,16 +11,9 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
 {
     using System;
     
-    public partial class SP_YazismaListesiGetir_Result
+    public partial class SP_OgretmenListesi_Result
     {
-        public int Id { get; set; }
-        public string Icerik { get; set; }
-        public int AliciUye_Id { get; set; }
-        public bool Statu { get; set; }
         public int Kullanici_Id { get; set; }
-        public System.DateTime KayitTarihi { get; set; }
-        public string GonderenAdiSoyadi { get; set; }
-        public Nullable<long> sira { get; set; }
-        public string AliciAdiSoyadi { get; set; }
+        public string AdiSoyadi { get; set; }
     }
 }

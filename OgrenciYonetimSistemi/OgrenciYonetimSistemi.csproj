@@ -138,6 +138,9 @@
     <Compile Include="Models\SqlModel\Bolum.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SqlModel\Cinsiyet.cs">
+      <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SqlModel\Ders.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
@@ -154,6 +157,9 @@
     <Compile Include="Models\Helper\Kullanıcı\KullaniciHesapBilgileri.cs" />
     <Compile Include="Models\Helper\Mesajlar\ChatSohbetGecmisiGetir.cs" />
     <Compile Include="Models\Helper\Result\ResultObject.cs" />
+    <Compile Include="Models\SqlModel\Hatalog.cs">
+      <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SqlModel\Kullanici.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
@@ -187,7 +193,13 @@
     <Compile Include="Models\SqlModel\Rol.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SqlModel\SP_MesajGonder_Result.cs">
+      <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SqlModel\SP_OgrenciListesi_Result.cs">
+      <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SqlModel\SP_OgretmenListesi_Result.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SqlModel\SP_YazismaDetayGetir_Result.cs">
@@ -2257,15 +2269,10 @@
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\plugins\uplot\uPlot.min.css" />
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\starter.html" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\BootstrapChat.css" />
+    <Content Include="Content\css\BootstrapChat.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Compile Include="Models\Helper\Mesajlar\ChatDetayGetir.cs" />
     <Content Include="Models\SqlModel\OgrenciYonetimOtomasyonuModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2277,8 +2284,6 @@
       <DependentUpon>OgrenciYonetimOtomasyonuModel.edmx</DependentUpon>
       <LastGenOutput>OgrenciYonetimOtomasyonuModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\.browserslistrc" />
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\.bundlewatch.config.json" />
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\.editorconfig" />
@@ -2559,18 +2564,7 @@
     <Content Include="Models\SqlModel\OgrenciYonetimOtomasyonuModel.edmx.diagram">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.edmx</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CustomScripts\Mesajlar.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2585,7 +2579,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\DataTable.cshtml" />
     <Content Include="Views\Mesajlar\Index.cshtml" />
-    <Content Include="Views\Mesajlar\_sohbetGecmisiGetir.cshtml" />
+    <Content Include="Views\Mesajlar\_sohbetDetaylariGetir.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\ForgetPassword.cshtml" />
   </ItemGroup>
@@ -2598,13 +2592,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\Home\Alerts.cshtml" />
+    <Content Include="Views\Mesajlar\_sohbetGecmisiListeGetir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

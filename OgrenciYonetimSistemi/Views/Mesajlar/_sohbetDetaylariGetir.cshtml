@@ -1,6 +1,7 @@
-﻿@model   OgrenciYonetimSistemi.Models.Helper.ChatSohbetGecmisiGetir
+﻿@model   OgrenciYonetimSistemi.Models.Helper.ChatDetayGetir
 
 
+<div style="display:none;" class="SohbetEdilecekUye" id="@ViewData["Uye_Id"]"></div>
 @foreach (var yazismaDetay in Model.YazismaDetayListesi)
 {
     if (yazismaDetay.MesajKonum == "R")

@@ -13,7 +13,7 @@ namespace OgrenciYonetimSistemi.Controllers
         public ActionResult Index()  
         {
             ChatDetayGetir chat = new ChatDetayGetir() {
-                 YazismaDetayListesi = db.SP_YazismaDetayGetir(4, 2).ToList(),
+                 YazismaDetayListesi = db.SP_YazismaDetayGetir(4, LoginUser.Kullanici_Id).ToList(),
                   YazismaListesi = db.SP_YazismaListesiGetir(2).ToList()
             };
 
@@ -26,6 +26,18 @@ namespace OgrenciYonetimSistemi.Controllers
             return View(chat);
 
         }
+
+        public ActionResult Alerts()
+        {
+ 
+
+
+            return View();
+
+        }
+
+
+
 
         public ActionResult DataTable()  
         {

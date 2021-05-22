@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/BootstrapChat.css" rel="stylesheet" />
+<link href="~/Content/css/BootstrapChat.css" rel="stylesheet" />
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -13,7 +13,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Mesajlar</h1>
+
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -29,7 +29,7 @@
                     <div class="card direct-chat direct-chat-primary">
                         <div class="card-header">
                             <h3 class="card-title">Yazışmalarım</h3>
-                            <h3>HOŞGELDİN  @ViewData["UserName"] </h3>
+
                             <div class="card-tools">
                                 <span title="3 New Messages" class="badge badge-primary">3</span>
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -83,22 +83,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="inbox_chat sohbetGecmisiListe">
-                                                                    @foreach (var yazisma in Model.YazismaListesi)
-                                                                    {
-                                                                        string active_chat_Class = yazisma.sira == 1 ? "chat_list active_chat" : "chat_list";
 
-                                                                        <div class="@active_chat_Class" id="@yazisma.Kullanici_Id">
-                                                                            <div class="chat_people">
-                                                                                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                                                                <div class="chat_ib">
-                                                                                    <h5>@yazisma.GonderenAdiSoyadi</h5>
-                                                                                    <p>
-                                                                                        @yazisma.Icerik
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    }
+                                                                    @*chat listesi refresh*@
 
 
 
@@ -119,92 +105,24 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                              
 
                                                                 <div class="inbox_chat yeniMesajListe">
-                                                                    <div class="chat_list active_chat">
-                                                                        <div class="chat_people">
-                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                                                            <div class="chat_ib">
-                                                                                <h5>Ahmet Rajput </h5>
-                                                                                <p>
-                                                                                    Test, which is a new approach to have all solutions
-                                                                                    astrology under one roof.
-                                                                                </p>
+                                                                    @foreach (var item in Model.OgretmenListesi)
+                                                                    {
+                                                                        <div class="chat_list"  id="@item.Kullanici_Id">
+                                                                            <div class="chat_people">
+                                                                                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                                                                <div class="chat_ib">
+                                                                                    <h5>@item.AdiSoyadi </h5>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="chat_list">
-                                                                        <div class="chat_people">
-                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                                                            <div class="chat_ib">
-                                                                                <h5>Can Rajput </h5>
-                                                                                <p>
-                                                                                    Test, which is a new approach to have all solutions
-                                                                                    astrology under one roof.
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat_list">
-                                                                        <div class="chat_people">
-                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                                                            <div class="chat_ib">
-                                                                                <h5>Deniz Rajput </h5>
-                                                                                <p>
-                                                                                    Test, which is a new approach to have all solutions
-                                                                                    astrology under one roof.
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat_list">
-                                                                        <div class="chat_people">
-                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                                                            <div class="chat_ib">
-                                                                                <h5>Suna Rajput </h5>
-                                                                                <p>
-                                                                                    Test, which is a new approach to have all solutions
-                                                                                    astrology under one roof.
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat_list">
-                                                                        <div class="chat_people">
-                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                                                            <div class="chat_ib">
-                                                                                <h5>Dnemet Rajput </h5>
-                                                                                <p>
-                                                                                    Test, which is a new approach to have all solutions
-                                                                                    astrology under one roof.
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat_list">
-                                                                        <div class="chat_people">
-                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                                                            <div class="chat_ib">
-                                                                                <h5>Mehmet Rajput </h5>
-                                                                                <p>
-                                                                                    Test, which is a new approach to have all solutions
-                                                                                    astrology under one roof.
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat_list">
-                                                                        <div class="chat_people">
-                                                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                                                            <div class="chat_ib">
-                                                                                <h5>Ayşe Rajput </h5>
-                                                                                <p>
-                                                                                    Test, which is a new approach to have all solutions
-                                                                                    astrology under one roof.
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    }
+
+
+
+
                                                                 </div>
                                                             </div>
 
@@ -215,6 +133,9 @@
                                                     <div class="mesgs">
                                                         <div class="msg_history" >
 
+                                                            <div class="alert alert-info" role="alert">
+                                                                Yazışmak istediğiniz kişiyi seçiniz.
+                                                            </div>
                                                             @*chat detay*@
 
 
@@ -255,7 +176,7 @@
 
 
 @section scripts{
- 
+
     <script src="~/Scripts/CustomScripts/Mesajlar.js"></script>
 
 }

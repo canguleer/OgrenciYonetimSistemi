@@ -28,16 +28,18 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
         }
     
         public virtual DbSet<Bolum> Bolum { get; set; }
+        public virtual DbSet<Cinsiyet> Cinsiyet { get; set; }
         public virtual DbSet<Ders> Ders { get; set; }
         public virtual DbSet<Donem> Donem { get; set; }
         public virtual DbSet<DonemDers> DonemDers { get; set; }
         public virtual DbSet<Fakulte> Fakulte { get; set; }
         public virtual DbSet<Kullanici> Kullanici { get; set; }
+        public virtual DbSet<Mesajlar> Mesajlar { get; set; }
         public virtual DbSet<Ogrenci> Ogrenci { get; set; }
         public virtual DbSet<OgrenciDers> OgrenciDers { get; set; }
         public virtual DbSet<Ogretmen> Ogretmen { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
-        public virtual DbSet<Mesajlar> Mesajlar { get; set; }
+        public virtual DbSet<Hatalog> Hatalog { get; set; }
     
         public virtual ObjectResult<SP_OgrenciListesi_Result> SP_OgrenciListesi()
         {
@@ -64,6 +66,33 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
                 new ObjectParameter("AliciUye_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_YazismaListesiGetir_Result>("SP_YazismaListesiGetir", aliciUye_IdParameter);
+        }
+    
+        public virtual ObjectResult<SP_OgretmenListesi_Result> SP_OgretmenListesi()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_OgretmenListesi_Result>("SP_OgretmenListesi");
+        }
+    
+        public virtual int SP_HataYakala()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_HataYakala");
+        }
+    
+        public virtual ObjectResult<SP_MesajGonder_Result> SP_MesajGonder(Nullable<int> aliciUye_Id, string mesaj, Nullable<int> kullanici_Id)
+        {
+            var aliciUye_IdParameter = aliciUye_Id.HasValue ?
+                new ObjectParameter("AliciUye_Id", aliciUye_Id) :
+                new ObjectParameter("AliciUye_Id", typeof(int));
+    
+            var mesajParameter = mesaj != null ?
+                new ObjectParameter("Mesaj", mesaj) :
+                new ObjectParameter("Mesaj", typeof(string));
+    
+            var kullanici_IdParameter = kullanici_Id.HasValue ?
+                new ObjectParameter("Kullanici_Id", kullanici_Id) :
+                new ObjectParameter("Kullanici_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_MesajGonder_Result>("SP_MesajGonder", aliciUye_IdParameter, mesajParameter, kullanici_IdParameter);
         }
     }
 }

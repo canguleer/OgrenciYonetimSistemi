@@ -1,6 +1,8 @@
 ﻿
 $(document).ready(function () {
 
+    sohbetGecmisListesiYenile();
+
     $("#sohbetGecmisiAra").keyup(function () {
         PersonelAra("sohbetGecmisiAra");
     });
@@ -9,20 +11,44 @@ $(document).ready(function () {
         PersonelAra("yeniMesajAra");
     });
 
-    $(".chat_list").click(function (event) {
+    
+
+    $(".chat_ib").click(function () {
+        alert("test");
+    });
+
+
+    $(".chat_list").on("click", function () {
         var Id = $(event.target)[0].closest(".chat_list").id;
 
-        sohbetGecmisiGetir(Id);
+        sohbetDetaylariGetir(Id);
     })
 
+    $("button.msg_send_btn").click(function () {
+        MesajGonder();
+    });
 
-
+    $(document).keypress(function (event) {
+        if (event.keyCode == 13) {
+            var Mesaj = $(".write_msg").val();
+            if (Mesaj.length > 0) {
+                MesajGonder();
+            }
+        }
+    });
 });
 
-function sohbetGecmisiGetir(Id) {
+function sohbetDetaylariGetir(Id) {
+
+    $("div.chat_list").removeClass("active_chat");
+    if (Id > 0) {
+        $("div#" + Id + ".chat_list").addClass("active_chat");
+
+    }
+
     $.ajax({
         type: "GET",
-        url: "/Mesajlar/_sohbetGecmisiGetir",
+        url: "/Mesajlar/_sohbetDetaylariGetir",
         contentType: "application/json; charset=utf-8",
         data: { SohbetGecmisiIstenilenUye_Id: Id },
         success: function (response) {
@@ -35,7 +61,21 @@ function sohbetGecmisiGetir(Id) {
     })
 }
 
+function sohbetGecmisListesiYenile() {
 
+    $.ajax({
+        type: "GET",
+        url: "/Mesajlar/_sohbetGecmisiListeGetir",
+        contentType: "application/json; charset=utf-8",
+        success: function (response) {
+            $(".sohbetGecmisiListe").html(response);
+        }
+        , error: function (errorData) {
+            console.log("error: " + errorData);
+        }
+
+    })
+}
 
 function PersonelAra(data) {
     var input, filter, mylist, txtValue, name;
@@ -64,4 +104,70 @@ function PersonelAra(data) {
             }
         }
     })
+}
+
+
+function MesajGonder() {
+    var Mesaj = $(".write_msg").val();
+    var AliciUye_Id = $("div.SohbetEdilecekUye").attr("id");
+
+
+    if (!(AliciUye_Id > 0)) {
+        Swal.fire(
+            'Uyarı',
+            'Mesajı göndereceğiniz kişiyi seçiniz.',
+            'warning'
+        );
+        return;
+    }
+
+    if (!(Mesaj.length > 0)) {
+        Swal.fire(
+            'Uyarı',
+            'Gönderilecek mesajı giriniz.',
+            'warning'
+        );
+        return;
+    }
+    $.ajax({
+        type: "POST",
+        url: "/Mesajlar/MesajGonder",
+        data: {
+            Mesaj: Mesaj,
+            AliciUye_Id: AliciUye_Id
+        },
+        success: function (result) {
+            if (result.status == 1) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Mesajlar/_sohbetDetaylariGetir",
+                    contentType: "application/json; charset=utf-8",
+                    data: { SohbetGecmisiIstenilenUye_Id: AliciUye_Id },
+                    success: function (response) {
+                        $(".msg_history").html(response);
+                        $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight); //scrool en alta iner..
+                        $(".write_msg").val("");
+                        sohbetGecmisListesiYenile();
+                    },
+                    error: function (errorData) {
+                        console.log("error: " + errorData);
+                    }
+                });
+            }
+            else {
+                Swal.fire(
+                    'Hata',
+                    result.message,
+                    'danger'
+                );
+                return;
+            }
+
+        },
+        error: function (errorData) {
+            console.log("error: " + errorData);
+        }
+
+    })
+
 }

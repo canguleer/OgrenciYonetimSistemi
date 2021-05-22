@@ -10,17 +10,17 @@
 namespace OgrenciYonetimSistemi.Models.SqlModel
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class SP_YazismaListesiGetir_Result
+    public partial class Hatalog
     {
-        public int Id { get; set; }
-        public string Icerik { get; set; }
-        public int AliciUye_Id { get; set; }
-        public bool Statu { get; set; }
-        public int Kullanici_Id { get; set; }
-        public System.DateTime KayitTarihi { get; set; }
-        public string GonderenAdiSoyadi { get; set; }
-        public Nullable<long> sira { get; set; }
-        public string AliciAdiSoyadi { get; set; }
+        public int Error_Id { get; set; }
+        public Nullable<int> HataNumara { get; set; }
+        public Nullable<int> HataDurum { get; set; }
+        public Nullable<int> HataSeviye { get; set; }
+        public Nullable<int> HataSatir { get; set; }
+        public string HataProcedure { get; set; }
+        public string HataMesaj { get; set; }
+        public Nullable<System.DateTime> HataTarih { get; set; }
     }
 }

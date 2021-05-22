@@ -17,9 +17,9 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Kullanici()
         {
+            this.Mesajlar = new HashSet<Mesajlar>();
             this.Ogrenci = new HashSet<Ogrenci>();
             this.Ogretmen = new HashSet<Ogretmen>();
-            this.Mesajlar = new HashSet<Mesajlar>();
         }
     
         public int Id { get; set; }
@@ -35,10 +35,10 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
     
         public virtual Rol Rol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mesajlar> Mesajlar { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ogrenci> Ogrenci { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ogretmen> Ogretmen { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Mesajlar> Mesajlar { get; set; }
     }
 }

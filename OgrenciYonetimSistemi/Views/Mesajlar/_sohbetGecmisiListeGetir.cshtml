@@ -1,0 +1,21 @@
+﻿@model  OgrenciYonetimSistemi.Models.Helper.ChatDetayGetir
+
+
+
+@foreach (var yazisma in Model.YazismaListesi)
+{
+    string active_chat_Class = yazisma.sira == 1 ? "chat_list active_chat" : "chat_list";
+
+    <div class="chat_list" id="@yazisma.AliciUye_Id">
+        <div class="chat_people">
+            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+            <div class="chat_ib">
+                <h5>@yazisma.AliciAdiSoyadi</h5>
+                <p>
+                    @yazisma.Icerik
+                </p>
+            </div>
+        </div>
+    </div>
+}
+

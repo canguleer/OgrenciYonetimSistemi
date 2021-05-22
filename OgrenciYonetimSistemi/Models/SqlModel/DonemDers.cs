@@ -14,6 +14,12 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
     
     public partial class DonemDers
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DonemDers()
+        {
+            this.OgrenciDers = new HashSet<OgrenciDers>();
+        }
+    
         public int Id { get; set; }
         public int Donem_Id { get; set; }
         public int Ders_Id { get; set; }
@@ -31,5 +37,7 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
         public virtual Ders Ders { get; set; }
         public virtual Donem Donem { get; set; }
         public virtual Ogretmen Ogretmen { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OgrenciDers> OgrenciDers { get; set; }
     }
 }

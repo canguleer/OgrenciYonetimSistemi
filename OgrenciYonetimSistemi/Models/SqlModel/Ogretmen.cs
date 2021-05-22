@@ -30,7 +30,9 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
         public bool Statu { get; set; }
         public int Kullanici_Id { get; set; }
         public System.DateTime KayitTarihi { get; set; }
+        public Nullable<int> Cinsiyet_Id { get; set; }
     
+        public virtual Cinsiyet Cinsiyet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonemDers> DonemDers { get; set; }
         public virtual Kullanici Kullanici { get; set; }

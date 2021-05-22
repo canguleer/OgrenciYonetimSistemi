@@ -18,7 +18,6 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
         public Ders()
         {
             this.DonemDers = new HashSet<DonemDers>();
-            this.OgrenciDers = new HashSet<OgrenciDers>();
         }
     
         public int Id { get; set; }
@@ -32,7 +31,5 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonemDers> DonemDers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OgrenciDers> OgrenciDers { get; set; }
     }
 }

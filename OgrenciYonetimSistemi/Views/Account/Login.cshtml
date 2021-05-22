@@ -6,11 +6,15 @@
 
 <html>
 <head>
-
-    <title>AdminLTE 3 | Log in</title>
     <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/dist/css/adminlte.min.css">
+
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/toastr/toastr.min.css">
+
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
@@ -63,12 +67,26 @@
     <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/jquery/jquery.min.js"></script>
     <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/dist/js/adminlte.min.js"></script>
+        <!-- SweetAlert2 -->
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/toastr/toastr.min.js"></script>
+
 
 </body>
 </html>
 
 <script type="text/javascript">
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500
+    });
+
     $('#UserLogin').on('click', function () {
+
+       
         KullaniciGirisYap();
     });
 
@@ -96,8 +114,13 @@
                 },
                 success: function (data) {
                     if (data.status) {
-                        alert("başarılı");
-                        window.location.href = "../Mesajlar/Index";
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Giriş Başarılı.'
+                        }).then(function () {
+                            window.location.href = "../Mesajlar/Index";
+                        })
+                       
                     }
                     else {
                         console.log("hata");
