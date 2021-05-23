@@ -5,18 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static OgrenciYonetimSistemi.Models.Helper.Kullanıcı.KullaniciEnum;
 
 namespace OgrenciYonetimSistemi.Controllers
 {
     public class MesajlarController : BaseController
     {
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int? Id)
         {
+            ViewData["MesajDetayiIstenilenUye_Id"] = Id.HasValue ? Id.Value : 0;
+
             ChatDetayGetir model = new ChatDetayGetir()
             {
                 YazismaListesi = db.SP_YazismaListesiGetir(LoginUser.Kullanici_Id).ToList(),
-                OgretmenListesi = db.SP_OgretmenListesi().ToList()
+                YeniMesajKullaniciListesi = db.SP_YeniMesajKullaniciListesiGetir(LoginUser.Role_Id).ToList()
             };
 
             return View(model);
@@ -42,6 +45,18 @@ namespace OgrenciYonetimSistemi.Controllers
             };
             return PartialView("_sohbetGecmisiListeGetir", model);
         }
+
+        public ActionResult _ustMesajlariGetir()
+        {
+            ChatDetayGetir model = new ChatDetayGetir()
+            {
+                YazismaListesi = db.SP_YazismaListesiGetir(LoginUser.Kullanici_Id).Take(3).ToList(),
+            };
+            return PartialView("_ustMesajlariGetir", model);
+        }
+
+
+
 
 
         [HttpPost]
@@ -77,7 +92,7 @@ namespace OgrenciYonetimSistemi.Controllers
             {
 
             }
-          
+
 
             ResultData.status = false;
             return Json(ResultData);

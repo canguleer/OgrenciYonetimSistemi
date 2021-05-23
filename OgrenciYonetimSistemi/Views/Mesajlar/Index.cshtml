@@ -7,6 +7,8 @@
 
 <link href="~/Content/css/BootstrapChat.css" rel="stylesheet" />
 
+@Html.Hidden("MesajDetayiIstenilenUye_Id", ViewData["MesajDetayiIstenilenUye_Id"])
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -88,6 +90,9 @@
 
 
 
+
+
+
                                                                 </div>
                                                             </div>
                                                             <div class="tab-pane fade" id="yeniMesaj" role="tabpanel" aria-labelledby="yeniMesaj-tab">
@@ -105,12 +110,12 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                              
+
 
                                                                 <div class="inbox_chat yeniMesajListe">
-                                                                    @foreach (var item in Model.OgretmenListesi)
+                                                                    @foreach (var item in Model.YeniMesajKullaniciListesi)
                                                                     {
-                                                                        <div class="chat_list"  id="@item.Kullanici_Id">
+                                                                        <div class="chat_list" id="@item.Kullanici_Id">
                                                                             <div class="chat_people">
                                                                                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                                                                 <div class="chat_ib">
@@ -131,7 +136,7 @@
                                                     </div>
 
                                                     <div class="mesgs">
-                                                        <div class="msg_history" >
+                                                        <div class="msg_history">
 
                                                             <div class="alert alert-info" role="alert">
                                                                 Yazışmak istediğiniz kişiyi seçiniz.

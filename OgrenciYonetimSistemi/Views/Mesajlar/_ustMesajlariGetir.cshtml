@@ -1,0 +1,33 @@
+﻿@model  OgrenciYonetimSistemi.Models.Helper.ChatDetayGetir
+
+
+@foreach (var yazismaDetay in Model.YazismaListesi)
+{
+    <a href="#" onclick="mesajDetayiGetir('@yazismaDetay.MesajlasilanUye_Id')" class="dropdown-item">
+        <!-- Message Start -->
+        <div class="media">
+            <img src="~/Content/images/user-profile.png" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+            <div class="media-body">
+                <h3 class="dropdown-item-title">
+                    @yazismaDetay.MesajlasilanUyeAdiSoyadi
+                </h3>
+
+                @if (yazismaDetay.Icerik.Length > 15)
+                {
+                    <p> @Html.Raw(yazismaDetay.Icerik.Substring(0, 15))..</p>
+                }
+                else
+                {
+                    <p>@yazismaDetay.Icerik</p>
+                }
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> @yazismaDetay.MesajGecenSure</p>
+            </div>
+        </div>
+        <!-- Message End -->
+    </a>
+    <div class="dropdown-divider"></div>
+
+
+}
+
+<a href="@Url.Action("Index","Mesajlar")" class="dropdown-item dropdown-footer">Bütün Mesajları Göster</a>

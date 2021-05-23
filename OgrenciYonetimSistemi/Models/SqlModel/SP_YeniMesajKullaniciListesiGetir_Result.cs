@@ -11,7 +11,7 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
 {
     using System;
     
-    public partial class SP_OgrenciListesi_Result
+    public partial class SP_YeniMesajKullaniciListesiGetir_Result
     {
         public int Kullanici_Id { get; set; }
         public string AdiSoyadi { get; set; }

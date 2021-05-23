@@ -59,13 +59,13 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_YazismaDetayGetir_Result>("SP_YazismaDetayGetir", yazismaGecmisiIstenilenUye_IdParameter, loginKullanici_IdParameter);
         }
     
-        public virtual ObjectResult<SP_YazismaListesiGetir_Result> SP_YazismaListesiGetir(Nullable<int> aliciUye_Id)
+        public virtual ObjectResult<SP_YazismaListesiGetir_Result> SP_YazismaListesiGetir(Nullable<int> loginKullanici_Id)
         {
-            var aliciUye_IdParameter = aliciUye_Id.HasValue ?
-                new ObjectParameter("AliciUye_Id", aliciUye_Id) :
-                new ObjectParameter("AliciUye_Id", typeof(int));
+            var loginKullanici_IdParameter = loginKullanici_Id.HasValue ?
+                new ObjectParameter("LoginKullanici_Id", loginKullanici_Id) :
+                new ObjectParameter("LoginKullanici_Id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_YazismaListesiGetir_Result>("SP_YazismaListesiGetir", aliciUye_IdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_YazismaListesiGetir_Result>("SP_YazismaListesiGetir", loginKullanici_IdParameter);
         }
     
         public virtual ObjectResult<SP_OgretmenListesi_Result> SP_OgretmenListesi()
@@ -93,6 +93,15 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
                 new ObjectParameter("Kullanici_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_MesajGonder_Result>("SP_MesajGonder", aliciUye_IdParameter, mesajParameter, kullanici_IdParameter);
+        }
+    
+        public virtual ObjectResult<SP_YeniMesajKullaniciListesiGetir_Result> SP_YeniMesajKullaniciListesiGetir(Nullable<int> rol_Id)
+        {
+            var rol_IdParameter = rol_Id.HasValue ?
+                new ObjectParameter("Rol_Id", rol_Id) :
+                new ObjectParameter("Rol_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_YeniMesajKullaniciListesiGetir_Result>("SP_YeniMesajKullaniciListesiGetir", rol_IdParameter);
         }
     }
 }

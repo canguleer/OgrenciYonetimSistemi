@@ -67,7 +67,7 @@
     <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/jquery/jquery.min.js"></script>
     <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/dist/js/adminlte.min.js"></script>
-        <!-- SweetAlert2 -->
+    <!-- SweetAlert2 -->
     <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- Toastr -->
     <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/toastr/toastr.min.js"></script>
@@ -86,7 +86,7 @@
 
     $('#UserLogin').on('click', function () {
 
-       
+
         KullaniciGirisYap();
     });
 
@@ -120,10 +120,15 @@
                         }).then(function () {
                             window.location.href = "../Mesajlar/Index";
                         })
-                       
+
                     }
                     else {
-                        console.log("hata");
+                        Swal.fire(
+                            'Hata',
+                            data.message,
+                            'error'
+                        );
+                        return;
                     }
 
                 },

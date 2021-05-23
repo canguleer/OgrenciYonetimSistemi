@@ -11,16 +11,10 @@ $(document).ready(function () {
         PersonelAra("yeniMesajAra");
     });
 
-    
 
-    $(".chat_ib").click(function () {
-        alert("test");
-    });
-
-
+    //öğretmen listesi için kullanılıyor, sohbet geçmişi detay için ise foreach içinde onclik tanımlı..
     $(".chat_list").on("click", function () {
         var Id = $(event.target)[0].closest(".chat_list").id;
-
         sohbetDetaylariGetir(Id);
     })
 
@@ -36,7 +30,14 @@ $(document).ready(function () {
             }
         }
     });
+
+    if ($("#MesajDetayiIstenilenUye_Id").val() > 0) {
+        sohbetDetaylariGetir($("#MesajDetayiIstenilenUye_Id").val());
+    }
 });
+
+
+
 
 function sohbetDetaylariGetir(Id) {
 
@@ -53,6 +54,12 @@ function sohbetDetaylariGetir(Id) {
         data: { SohbetGecmisiIstenilenUye_Id: Id },
         success: function (response) {
             $(".msg_history").html(response);
+            $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight); //scrool en alta iner..
+            if (!($($("div#" + Id + ".chat_list")[0]).hasClass("active_chat")))
+            {
+                $($("div#" + Id + ".chat_list")[0]).addClass("active_chat")
+            }
+
         }
         , error: function (errorData) {
             console.log("error: " + errorData);
@@ -61,7 +68,7 @@ function sohbetDetaylariGetir(Id) {
     })
 }
 
-function sohbetGecmisListesiYenile() {
+function sohbetGecmisListesiYenile(Id) {
 
     $.ajax({
         type: "GET",
@@ -69,6 +76,9 @@ function sohbetGecmisListesiYenile() {
         contentType: "application/json; charset=utf-8",
         success: function (response) {
             $(".sohbetGecmisiListe").html(response);
+            if (Id > 0) { //sohnet yenilendikten sonra en son mesaj atılan kişiyi aktif işaretle
+                $("div#" + Id + ".chat_list").addClass("active_chat");
+            }
         }
         , error: function (errorData) {
             console.log("error: " + errorData);
@@ -147,7 +157,8 @@ function MesajGonder() {
                         $(".msg_history").html(response);
                         $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight); //scrool en alta iner..
                         $(".write_msg").val("");
-                        sohbetGecmisListesiYenile();
+                        sohbetGecmisListesiYenile(AliciUye_Id);
+
                     },
                     error: function (errorData) {
                         console.log("error: " + errorData);
@@ -171,3 +182,4 @@ function MesajGonder() {
     })
 
 }
+

@@ -21,6 +21,8 @@ img {
     overflow: hidden;
 }
 
+
+
 .top_spac {
     margin: 20px 0 0;
 }
@@ -105,7 +107,7 @@ img {
 .chat_list {
     border-bottom: 1px solid #c4c4c4;
     margin: 0;
-    padding: 18px 16px 10px;
+    padding: 8px 16px 13px;
 }
 
 .inbox_chat {
@@ -116,6 +118,8 @@ img {
 .active_chat {
     background: #5f5f5f47;
 }
+
+
 
 .incoming_msg_img {
     display: inline-block;

@@ -351,7 +351,10 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
           <Parameter Name="LoginKullanici_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_YazismaListesiGetir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$YazismaListesiGetir">
-          <Parameter Name="AliciUye_Id" Type="int" Mode="In" />
+          <Parameter Name="LoginKullanici_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_YeniMesajKullaniciListesiGetir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$YeniMesajKullaniciListesiGetir">
+          <Parameter Name="Rol_Id" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="OgrenciYonetimSistemiModelStoreContainer">
           <EntitySet Name="Bolum" EntityType="Self.Bolum" Schema="dbo" store:Type="Tables" />
@@ -442,7 +445,7 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
             <Parameter Name="LoginKullanici_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_YazismaListesiGetir" ReturnType="Collection(OgrenciYonetimSistemiModel.SP_YazismaListesiGetir_Result)">
-          <Parameter Name="AliciUye_Id" Mode="In" Type="Int32" />
+          <Parameter Name="LoginKullanici_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_OgretmenListesi" ReturnType="Collection(OgrenciYonetimSistemiModel.SP_OgretmenListesi_Result)" />
           <EntitySet Name="Bolum" EntityType="OgrenciYonetimSistemiModel.Bolum" />
@@ -516,9 +519,13 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
             <Parameter Name="Mesaj" Mode="In" Type="String" />
             <Parameter Name="Kullanici_Id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_YeniMesajKullaniciListesiGetir" ReturnType="Collection(OgrenciYonetimSistemiModel.SP_YeniMesajKullaniciListesiGetir_Result)">
+          <Parameter Name="Rol_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="SP_OgrenciListesi_Result">
-          <Property Type="String" Name="Adres" Nullable="false" />
+        <Property Type="Int32" Name="Kullanici_Id" Nullable="false" />
+          <Property Type="String" Name="AdiSoyadi" Nullable="false" MaxLength="129" />
         </ComplexType>
         <ComplexType Name="SP_YazismaDetayGetir_Result">
           <Property Type="Int32" Name="AliciUye_Id" Nullable="false" />
@@ -531,14 +538,16 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
         </ComplexType>
         <ComplexType Name="SP_YazismaListesiGetir_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Icerik" Nullable="false" />
           <Property Type="Int32" Name="AliciUye_Id" Nullable="false" />
-          <Property Type="Boolean" Name="Statu" Nullable="false" />
-          <Property Type="Int32" Name="Kullanici_Id" Nullable="false" />
           <Property Type="DateTime" Name="KayitTarihi" Nullable="false" Precision="23" />
           <Property Type="String" Name="GonderenAdiSoyadi" Nullable="false" MaxLength="129" />
           <Property Type="Int64" Name="sira" Nullable="true" />
           <Property Type="String" Name="AliciAdiSoyadi" Nullable="false" MaxLength="129" />
+          <Property Type="Int32" Name="GonderenUye_Id" Nullable="false" />
+          <Property Type="String" Name="Icerik" Nullable="false" />
+          <Property Type="Int32" Name="MesajlasilanUye_Id" Nullable="false" />
+          <Property Type="String" Name="MesajlasilanUyeAdiSoyadi" Nullable="false" MaxLength="129" />
+          <Property Type="String" Name="MesajGecenSure" Nullable="true" MaxLength="40" />
         </ComplexType>
         <ComplexType Name="SP_OgretmenListesi_Result">
           <Property Type="Int32" Name="Kullanici_Id" Nullable="false" />
@@ -906,6 +915,10 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
           <Property Type="String" Name="Message" Nullable="true" MaxLength="4000" />
           <Property Type="Int32" Name="Kayit_Id" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="SP_YeniMesajKullaniciListesiGetir_Result">
+          <Property Type="Int32" Name="Kullanici_Id" Nullable="false" />
+          <Property Type="String" Name="AdiSoyadi" Nullable="false" MaxLength="129" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -915,7 +928,8 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
           <FunctionImportMapping FunctionImportName="SP_OgrenciListesi" FunctionName="OgrenciYonetimSistemiModel.Store.SP_OgrenciListesi" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="OgrenciYonetimSistemiModel.SP_OgrenciListesi_Result">
-                <ScalarProperty Name="Adres" ColumnName="Adres" />
+              <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="AdiSoyadi" ColumnName="AdiSoyadi" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -936,14 +950,16 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
             <ResultMapping>
               <ComplexTypeMapping TypeName="OgrenciYonetimSistemiModel.SP_YazismaListesiGetir_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
                 <ScalarProperty Name="AliciUye_Id" ColumnName="AliciUye_Id" />
-                <ScalarProperty Name="Statu" ColumnName="Statu" />
-                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
                 <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
                 <ScalarProperty Name="GonderenAdiSoyadi" ColumnName="GonderenAdiSoyadi" />
                 <ScalarProperty Name="sira" ColumnName="sira" />
                 <ScalarProperty Name="AliciAdiSoyadi" ColumnName="AliciAdiSoyadi" />
+                <ScalarProperty Name="GonderenUye_Id" ColumnName="GonderenUye_Id" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+                <ScalarProperty Name="MesajlasilanUye_Id" ColumnName="MesajlasilanUye_Id" />
+                <ScalarProperty Name="MesajlasilanUyeAdiSoyadi" ColumnName="MesajlasilanUyeAdiSoyadi" />
+                <ScalarProperty Name="MesajGecenSure" ColumnName="MesajGecenSure" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1150,6 +1166,14 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Kayit_Id" ColumnName="Kayit_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_YeniMesajKullaniciListesiGetir" FunctionName="OgrenciYonetimSistemiModel.Store.SP_YeniMesajKullaniciListesiGetir">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OgrenciYonetimSistemiModel.SP_YeniMesajKullaniciListesiGetir_Result">
+                <ScalarProperty Name="Kullanici_Id" ColumnName="Kullanici_Id" />
+                <ScalarProperty Name="AdiSoyadi" ColumnName="AdiSoyadi" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

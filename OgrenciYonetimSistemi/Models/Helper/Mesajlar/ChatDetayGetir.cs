@@ -10,7 +10,7 @@ namespace OgrenciYonetimSistemi.Models.Helper
 	{
         public List<SP_YazismaDetayGetir_Result> YazismaDetayListesi { get; set; }
         public List<SP_YazismaListesiGetir_Result> YazismaListesi { get; set; }
-        public List<SP_OgretmenListesi_Result> OgretmenListesi { get; set; }
+        public List<SP_YeniMesajKullaniciListesiGetir_Result> YeniMesajKullaniciListesi { get; set; }
 
     }
 }
