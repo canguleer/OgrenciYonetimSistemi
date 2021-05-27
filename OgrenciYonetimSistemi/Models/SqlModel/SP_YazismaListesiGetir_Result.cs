@@ -24,5 +24,6 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
         public int MesajlasilanUye_Id { get; set; }
         public string MesajlasilanUyeAdiSoyadi { get; set; }
         public string MesajGecenSure { get; set; }
+        public Nullable<int> OkunmamisMesajSayisi { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
         public bool Statu { get; set; }
         public int Kullanici_Id { get; set; }
         public System.DateTime KayitTarihi { get; set; }
+        public bool OkunduMu { get; set; }
     
         public virtual Kullanici Kullanici { get; set; }
     }

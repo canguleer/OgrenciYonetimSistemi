@@ -55,8 +55,7 @@ function sohbetDetaylariGetir(Id) {
         success: function (response) {
             $(".msg_history").html(response);
             $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight); //scrool en alta iner..
-            if (!($($("div#" + Id + ".chat_list")[0]).hasClass("active_chat")))
-            {
+            if (!($($("div#" + Id + ".chat_list")[0]).hasClass("active_chat"))) {
                 $($("div#" + Id + ".chat_list")[0]).addClass("active_chat")
             }
 
@@ -79,6 +78,17 @@ function sohbetGecmisListesiYenile(Id) {
             if (Id > 0) { //sohnet yenilendikten sonra en son mesaj atılan kişiyi aktif işaretle
                 $("div#" + Id + ".chat_list").addClass("active_chat");
             }
+            var obj = $(".sohbetGecmisiListe");
+            $("div.chat_list", obj).each(function (i, e) {
+                var sayi = $(this).find("[name=OkunmayanMesajAdet]").val();
+                if (sayi > 0) {
+                    $(this).find("p#mesaj").css({
+                        "color": "blue",
+                        "font-weight": "bold"
+                    });
+                }
+
+            });
         }
         , error: function (errorData) {
             console.log("error: " + errorData);

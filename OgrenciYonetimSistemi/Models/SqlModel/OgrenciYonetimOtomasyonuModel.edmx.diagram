@@ -12,11 +12,12 @@
         <EntityTypeShape EntityType="OgrenciYonetimSistemiModel.DonemDers" Width="1.5" PointX="8.25" PointY="4.75" />
         <EntityTypeShape EntityType="OgrenciYonetimSistemiModel.Fakulte" Width="1.5" PointX="1.5" PointY="13.75" />
         <EntityTypeShape EntityType="OgrenciYonetimSistemiModel.Kullanici" Width="1.5" PointX="0.75" PointY="1" />
-        <EntityTypeShape EntityType="OgrenciYonetimSistemiModel.Mesajlar" Width="1.5" PointX="3" PointY="1.625" />
+        <EntityTypeShape EntityType="OgrenciYonetimSistemiModel.Mesajlar" Width="1.5" PointX="3" PointY="1.125" />
         <EntityTypeShape EntityType="OgrenciYonetimSistemiModel.Ogrenci" Width="1.5" PointX="6" PointY="4.625" />
         <EntityTypeShape EntityType="OgrenciYonetimSistemiModel.OgrenciDers" Width="1.5" PointX="10.5" PointY="5.25" />
         <EntityTypeShape EntityType="OgrenciYonetimSistemiModel.Ogretmen" Width="1.5" PointX="3" PointY="5" />
         <EntityTypeShape EntityType="OgrenciYonetimSistemiModel.Rol" Width="1.5" PointX="1.5" PointY="9.75" />
+        <EntityTypeShape EntityType="OgrenciYonetimSistemiModel.Hatalog" Width="1.5" PointX="8.75" PointY="10.625" />
         <AssociationConnector Association="OgrenciYonetimSistemiModel.FK__Bolum__KayitTari__3F466844" />
         <AssociationConnector Association="OgrenciYonetimSistemiModel.FK__Ogrenci__Bolum_I__4222D4EF" />
         <AssociationConnector Association="OgrenciYonetimSistemiModel.FK__Ogrenci__Cinsiye__3F115E1A" />
@@ -30,7 +31,6 @@
         <AssociationConnector Association="OgrenciYonetimSistemiModel.FK__Ogrenci__Kullani__2A164134" />
         <AssociationConnector Association="OgrenciYonetimSistemiModel.FK_Ogretmen_Kullanici" />
         <AssociationConnector Association="OgrenciYonetimSistemiModel.FK__OgrenciDe__Ogren__123EB7A3" />
-        <EntityTypeShape EntityType="OgrenciYonetimSistemiModel.Hatalog" Width="1.5" PointX="8.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
