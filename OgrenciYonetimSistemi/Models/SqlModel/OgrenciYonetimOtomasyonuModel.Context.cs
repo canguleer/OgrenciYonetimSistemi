@@ -103,5 +103,18 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_YeniMesajKullaniciListesiGetir_Result>("SP_YeniMesajKullaniciListesiGetir", rol_IdParameter);
         }
+    
+        public virtual ObjectResult<SP_MesajOkundu_Result> SP_MesajOkundu(Nullable<int> loginKullanici_Id, Nullable<int> mesajGonderenUye_Id)
+        {
+            var loginKullanici_IdParameter = loginKullanici_Id.HasValue ?
+                new ObjectParameter("LoginKullanici_Id", loginKullanici_Id) :
+                new ObjectParameter("LoginKullanici_Id", typeof(int));
+    
+            var mesajGonderenUye_IdParameter = mesajGonderenUye_Id.HasValue ?
+                new ObjectParameter("MesajGonderenUye_Id", mesajGonderenUye_Id) :
+                new ObjectParameter("MesajGonderenUye_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_MesajOkundu_Result>("SP_MesajOkundu", loginKullanici_IdParameter, mesajGonderenUye_IdParameter);
+        }
     }
 }

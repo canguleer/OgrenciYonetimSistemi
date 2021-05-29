@@ -7,9 +7,10 @@ using System.Web.Mvc;
 
 namespace OgrenciYonetimSistemi.Controllers
 {
+    [Authorize]
     public class HomeController : BaseController
     {
-        [Authorize]
+    
         public ActionResult Index()  
         {
             ChatDetayGetir chat = new ChatDetayGetir() {

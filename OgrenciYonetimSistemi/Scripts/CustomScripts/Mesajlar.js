@@ -193,3 +193,31 @@ function MesajGonder() {
 
 }
 
+function mesajOkunmaKontrol(o) {
+    var obj = $(o);
+    //$(o).find("[name=OkunmayanMesajAdet]").attr("value") bu şekilde de değer alınabilir..
+    var okunmayanMesajAdet = $("#OkunmayanMesajAdet", obj).val();
+    var mesajGonderenUye_Id = obj.attr("id");
+
+    if (okunmayanMesajAdet > 0) {
+        $.ajax({
+            type: "POST",
+            url: "/Mesajlar/MesajOkundu",
+            data: {
+                mesajGonderenUye_Id: mesajGonderenUye_Id
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    $("p#mesaj", obj).removeAttr("style");
+                    //$("span", obj)[0].style.display = "none"; bu bir yöntem.. in javascript
+                    $("span", obj).css("display", "none");
+                }
+            },
+            error: function (errorData) {
+                console.log("error: " + errorData);
+            }
+        });
+    }
+
+}
+

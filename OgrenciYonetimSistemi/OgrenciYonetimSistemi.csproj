@@ -197,6 +197,9 @@
     <Compile Include="Models\SqlModel\SP_MesajGonder_Result.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SqlModel\SP_MesajOkundu_Result.cs">
+      <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SqlModel\SP_OgrenciListesi_Result.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>

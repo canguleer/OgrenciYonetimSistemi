@@ -345,6 +345,10 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
           <Parameter Name="Mesaj" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="Kullanici_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_MesajOkundu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$MesajOkundu">
+          <Parameter Name="LoginKullanici_Id" Type="int" Mode="In" />
+          <Parameter Name="MesajGonderenUye_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_OgrenciListesi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$OgrenciListesi" />
         <Function Name="SP_OgretmenListesi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$OgretmenListesi" />
         <Function Name="SP_YazismaDetayGetir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$YazismaDetayGetir">
@@ -523,6 +527,10 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
             <End Role="Ogrenci" EntitySet="Ogrenci" />
             <End Role="OgrenciDers" EntitySet="OgrenciDers" />
           </AssociationSet>
+          <FunctionImport Name="SP_MesajOkundu" ReturnType="Collection(OgrenciYonetimSistemiModel.SP_MesajOkundu_Result)">
+            <Parameter Name="LoginKullanici_Id" Mode="In" Type="Int32" />
+            <Parameter Name="MesajGonderenUye_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="SP_OgrenciListesi_Result">
         <Property Type="Int32" Name="Kullanici_Id" Nullable="false" />
@@ -922,6 +930,11 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SP_MesajOkundu_Result">
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+          <Property Type="String" Name="Message" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="Kayit_Id" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1182,6 +1195,15 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_MesajOkundu" FunctionName="OgrenciYonetimSistemiModel.Store.SP_MesajOkundu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OgrenciYonetimSistemiModel.SP_MesajOkundu_Result">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Kayit_Id" ColumnName="Kayit_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

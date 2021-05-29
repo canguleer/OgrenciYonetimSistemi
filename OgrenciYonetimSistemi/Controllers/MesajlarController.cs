@@ -92,8 +92,30 @@ namespace OgrenciYonetimSistemi.Controllers
             {
 
             }
+            ResultData.status = false;
+            return Json(ResultData);
+        }
 
+        [HttpPost]
+        public JsonResult MesajOkundu(int? mesajGonderenUye_Id)
+        {
+            try
+            {
+                var mesaj = db.SP_MesajOkundu(LoginUser.Kullanici_Id, mesajGonderenUye_Id).FirstOrDefault();
+                if (mesaj.Status == true)
+                {
+                    ResultData = new Models.Helper.Result.ResultObject
+                    {
+                        data = mesaj,
+                        status = true
+                    };
+                    return Json(ResultData);
+                }
+            }
+            catch (Exception ex)
+            {
 
+            }
             ResultData.status = false;
             return Json(ResultData);
         }

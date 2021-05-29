@@ -7,7 +7,7 @@
 
     string active_chat_Class = yazisma.sira == 1 ? "chat_list active_chat" : "chat_list";
 
-<div class="chat_list" id="@yazisma.MesajlasilanUye_Id" onclick="sohbetDetaylariGetir('@yazisma.MesajlasilanUye_Id');">
+<div class="chat_list" id="@yazisma.MesajlasilanUye_Id" onclick="sohbetDetaylariGetir('@yazisma.MesajlasilanUye_Id'),mesajOkunmaKontrol(this);">
     @Html.Hidden("OkunmayanMesajAdet", yazisma.OkunmamisMesajSayisi)
     <div class="chat_people">
         <div class="chat_img"> <img src="~/Content/images/user-profile.png" alt="sunil"> </div>
