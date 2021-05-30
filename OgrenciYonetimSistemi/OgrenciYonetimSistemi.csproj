@@ -52,11 +52,17 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.10\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -135,7 +141,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Filters\CustomAuthenticationFilter.cs" />
     <Compile Include="Models\Helper\Kullanıcı\KullaniciEnum.cs" />
+    <Compile Include="Models\Helper\Mesajlar\UstMesajlariGetir.cs" />
     <Compile Include="Models\SqlModel\Bolum.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
@@ -2601,6 +2609,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Nlog.config" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Alerts.cshtml" />
     <Content Include="Views\Mesajlar\_sohbetGecmisiListeGetir.cshtml" />

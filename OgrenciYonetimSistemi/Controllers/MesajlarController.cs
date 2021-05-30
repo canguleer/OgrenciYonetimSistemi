@@ -1,4 +1,5 @@
-﻿using OgrenciYonetimSistemi.Models.Helper;
+﻿using OgrenciYonetimSistemi.Models.Filters;
+using OgrenciYonetimSistemi.Models.Helper;
 using OgrenciYonetimSistemi.Models.Helper.Kullanıcı;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace OgrenciYonetimSistemi.Controllers
 {
     public class MesajlarController : BaseController
     {
-        [Authorize]
+        [CustomAuthenticationFilter]
         public ActionResult Index(int? Id)
         {
             ViewData["MesajDetayiIstenilenUye_Id"] = Id.HasValue ? Id.Value : 0;
@@ -48,9 +49,18 @@ namespace OgrenciYonetimSistemi.Controllers
 
         public ActionResult _ustMesajlariGetir()
         {
-            ChatDetayGetir model = new ChatDetayGetir()
+            int okunmayanMesajAdet = db.Mesajlar.Where(x => x.AliciUye_Id == LoginUser.Kullanici_Id && x.OkunduMu == false && x.Statu == true).Count();
+
+            UstMesajlariGetir model = new UstMesajlariGetir()
             {
-                YazismaListesi = db.SP_YazismaListesiGetir(LoginUser.Kullanici_Id).Take(3).ToList(),
+                YazismaListesi = (from _okunmayanMesajListe in db.SP_YazismaListesiGetir(LoginUser.Kullanici_Id)
+                                  where _okunmayanMesajListe.OkunmamisMesajSayisi > 0
+                                  orderby _okunmayanMesajListe.KayitTarihi descending
+                                  select _okunmayanMesajListe
+                                  ).Take(3).ToList(),
+
+
+                OkunmayanMesajSayisi = okunmayanMesajAdet
             };
             return PartialView("_ustMesajlariGetir", model);
         }
@@ -64,6 +74,7 @@ namespace OgrenciYonetimSistemi.Controllers
         {
             try
             {
+
                 if (string.IsNullOrEmpty(Mesaj))
                 {
                     ResultData.message = "Mesaj alanı boş olamaz.";
@@ -91,8 +102,13 @@ namespace OgrenciYonetimSistemi.Controllers
             catch (Exception ex)
             {
 
+                logger.Error(ex, "Hata");
+                ResultData = new Models.Helper.Result.ResultObject
+                {
+                    message = "İşleminiz sırasında istisna ile karşılaşıldı.",
+                    status = false
+                };
             }
-            ResultData.status = false;
             return Json(ResultData);
         }
 
@@ -114,14 +130,15 @@ namespace OgrenciYonetimSistemi.Controllers
             }
             catch (Exception ex)
             {
-
+                logger.Error(ex, "Hata");
+                ResultData = new Models.Helper.Result.ResultObject
+                {
+                    message = "İşleminiz sırasında istisna ile karşılaşıldı.",
+                    status = false
+                };
             }
-            ResultData.status = false;
             return Json(ResultData);
         }
-
-
-
     }
 
 }

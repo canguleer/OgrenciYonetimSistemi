@@ -1,4 +1,5 @@
-﻿using OgrenciYonetimSistemi.Models;
+﻿using NLog;
+using OgrenciYonetimSistemi.Models;
 using OgrenciYonetimSistemi.Models.Helper.Kullanıcı;
 using OgrenciYonetimSistemi.Models.Helper.Result;
 using OgrenciYonetimSistemi.Models.SqlModel;
@@ -17,6 +18,7 @@ namespace OgrenciYonetimSistemi.Controllers
         public OgrenciYonetimSistemiEntities db;
         public KullaniciBilgileri LoginUser;
         public ResultObject ResultData;
+        public Logger logger;
 
 
         public BaseController()
@@ -24,6 +26,7 @@ namespace OgrenciYonetimSistemi.Controllers
             db = new OgrenciYonetimSistemiEntities();
             LoginUser = KullaniciHesapBilgileri.GetCurrentUser();
             ResultData = new ResultObject();
+            logger = LogManager.GetCurrentClassLogger();
         }
 
     }

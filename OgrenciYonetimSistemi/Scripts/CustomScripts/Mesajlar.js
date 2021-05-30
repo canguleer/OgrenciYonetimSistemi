@@ -1,7 +1,8 @@
 ﻿
 $(document).ready(function () {
+    var MesajDetayiIstenilenUye_Id = $("#MesajDetayiIstenilenUye_Id").val(); //Index html sayfasından html.Hidden ile gelen deger.. (üye seçilmiş demektir.)
 
-    sohbetGecmisListesiYenile();
+    sohbetGecmisListesiYenile(MesajDetayiIstenilenUye_Id);
 
     $("#sohbetGecmisiAra").keyup(function () {
         PersonelAra("sohbetGecmisiAra");
@@ -31,8 +32,10 @@ $(document).ready(function () {
         }
     });
 
-    if ($("#MesajDetayiIstenilenUye_Id").val() > 0) {
-        sohbetDetaylariGetir($("#MesajDetayiIstenilenUye_Id").val());
+
+
+    if (MesajDetayiIstenilenUye_Id > 0) { //Yazışmalarım sayfasınında değilken üst mesajlardan sohbet detayı istenirse ilgili kişinin mesaj detaylarını aç..
+        sohbetDetaylariGetir(MesajDetayiIstenilenUye_Id);
     }
 });
 
@@ -57,8 +60,10 @@ function sohbetDetaylariGetir(Id) {
             $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight); //scrool en alta iner..
             if (!($($("div#" + Id + ".chat_list")[0]).hasClass("active_chat"))) {
                 $($("div#" + Id + ".chat_list")[0]).addClass("active_chat")
-            }
 
+
+            }
+            ustMesajOkunmaKontrol(Id);// okunmayan mesaj ifaesi varsa kaldır..
         }
         , error: function (errorData) {
             console.log("error: " + errorData);
@@ -75,9 +80,7 @@ function sohbetGecmisListesiYenile(Id) {
         contentType: "application/json; charset=utf-8",
         success: function (response) {
             $(".sohbetGecmisiListe").html(response);
-            if (Id > 0) { //sohnet yenilendikten sonra en son mesaj atılan kişiyi aktif işaretle
-                $("div#" + Id + ".chat_list").addClass("active_chat");
-            }
+
             var obj = $(".sohbetGecmisiListe");
             $("div.chat_list", obj).each(function (i, e) {
                 var sayi = $(this).find("[name=OkunmayanMesajAdet]").val();
@@ -86,9 +89,22 @@ function sohbetGecmisListesiYenile(Id) {
                         "color": "blue",
                         "font-weight": "bold"
                     });
+
+                    $(this).find("h5").append("<span>(" + sayi + ")</span>")
+                    $(this).find("span").css({
+                        "font-size": "15px",
+                        "color": "blue",
+                        "font-weight": "800"
+                    });
                 }
 
             });
+
+            if (Id > 0) {  // bir üyenin sohbet geçmişi isteniyor demektir..
+                $("div#" + Id + ".chat_list").addClass("active_chat"); //sohnet yenilendikten sonra en son mesaj atılan kişiyi aktif işaretle
+                //setTimeout('ustMesajOkunmaKontrol(' + Id + ')', 500); 0.5 sn bekletipte yönlendirme yapılabilir..
+                ustMesajOkunmaKontrol(Id); //okunmayan mesajlar yüklenmiş , layout üst mesajlardan üye seçilmiş dolayısıyla mesaj okundu yap ve okunmamış mesaj özelliği kaldır..
+            }
         }
         , error: function (errorData) {
             console.log("error: " + errorData);
@@ -167,7 +183,7 @@ function MesajGonder() {
                         $(".msg_history").html(response);
                         $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight); //scrool en alta iner..
                         $(".write_msg").val("");
-                        sohbetGecmisListesiYenile(AliciUye_Id);
+                        sohbetGecmisListesiYenile(AliciUye_Id); //her yeni mesajdan sonra liste yenilenir..
 
                     },
                     error: function (errorData) {
@@ -179,7 +195,7 @@ function MesajGonder() {
                 Swal.fire(
                     'Hata',
                     result.message,
-                    'danger'
+                    'error'
                 );
                 return;
             }
@@ -188,9 +204,7 @@ function MesajGonder() {
         error: function (errorData) {
             console.log("error: " + errorData);
         }
-
     })
-
 }
 
 function mesajOkunmaKontrol(o) {
@@ -211,6 +225,39 @@ function mesajOkunmaKontrol(o) {
                     $("p#mesaj", obj).removeAttr("style");
                     //$("span", obj)[0].style.display = "none"; bu bir yöntem.. in javascript
                     $("span", obj).css("display", "none");
+
+                    UstMesajlariGetir();
+                }
+            },
+            error: function (errorData) {
+                console.log("error: " + errorData);
+            }
+        });
+    }
+
+}
+
+
+function ustMesajOkunmaKontrol(Id) {
+
+    //$(o).find("[name=OkunmayanMesajAdet]").attr("value") bu şekilde de değer alınabilir..
+    var sohbetObj = $.find("div#" + Id + ".chat_list:eq(0)"); // iki divden ilk child ı al dedim.
+    var okunmayanMesajAdet = $("#OkunmayanMesajAdet", sohbetObj).val();
+
+    if (okunmayanMesajAdet > 0) {
+        $.ajax({
+            type: "POST",
+            url: "/Mesajlar/MesajOkundu",
+            data: {
+                mesajGonderenUye_Id: Id
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    $("p#mesaj", sohbetObj).removeAttr("style");
+                    //$("span", obj)[0].style.display = "none"; bu bir yöntem.. in javascript
+                    $("span", sohbetObj).css("display", "none");
+
+                    UstMesajlariGetir();
                 }
             },
             error: function (errorData) {

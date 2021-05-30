@@ -23,7 +23,6 @@ namespace OgrenciYonetimSistemi.Models.Helper.Kullanıcı
                 }
                 else
                 {
-                    FormsAuthentication.SignOut();
                     return new KullaniciBilgileri();
                 }
             }

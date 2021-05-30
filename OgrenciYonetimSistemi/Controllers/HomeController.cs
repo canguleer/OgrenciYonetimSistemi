@@ -1,4 +1,5 @@
-﻿using OgrenciYonetimSistemi.Models.Helper;
+﻿using OgrenciYonetimSistemi.Models.Filters;
+using OgrenciYonetimSistemi.Models.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Web.Mvc;
 
 namespace OgrenciYonetimSistemi.Controllers
 {
-    [Authorize]
+    [CustomAuthenticationFilter]
     public class HomeController : BaseController
     {
     

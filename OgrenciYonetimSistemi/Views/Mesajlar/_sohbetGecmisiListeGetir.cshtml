@@ -7,34 +7,28 @@
 
     string active_chat_Class = yazisma.sira == 1 ? "chat_list active_chat" : "chat_list";
 
-<div class="chat_list" id="@yazisma.MesajlasilanUye_Id" onclick="sohbetDetaylariGetir('@yazisma.MesajlasilanUye_Id'),mesajOkunmaKontrol(this);">
-    @Html.Hidden("OkunmayanMesajAdet", yazisma.OkunmamisMesajSayisi)
-    <div class="chat_people">
-        <div class="chat_img"> <img src="~/Content/images/user-profile.png" alt="sunil"> </div>
-        <div class="chat_ib">
+    <div class="chat_list" id="@yazisma.MesajlasilanUye_Id" onclick="sohbetDetaylariGetir('@yazisma.MesajlasilanUye_Id'),mesajOkunmaKontrol(this);">
+        @Html.Hidden("OkunmayanMesajAdet", yazisma.OkunmamisMesajSayisi)
+        <div class="chat_people">
+            <div class="chat_img"> <img src="~/Content/images/user-profile.png" alt="sunil"> </div>
+            <div class="chat_ib">
 
-            <h5>
-                @yazisma.MesajlasilanUyeAdiSoyadi
-                @if (yazisma.OkunmamisMesajSayisi > 0)
+                <h5>@yazisma.MesajlasilanUyeAdiSoyadi</h5>
+
+                @if (yazisma.Icerik.Length > 55)
                 {
-                    <span style="font-size:15px; color:blue; font-weight:800">(@yazisma.OkunmamisMesajSayisi)</span>
+                    <p id="mesaj"> @Html.Raw(yazisma.Icerik.Substring(0, 55))..</p>
                 }
-            </h5>
+                else
+                {
+                    <p id="mesaj">@yazisma.Icerik</p>
+                }
 
-            @if (yazisma.Icerik.Length > 55)
-            {
-                <p id="mesaj"> @Html.Raw(yazisma.Icerik.Substring(0, 55))..</p>
-            }
-            else
-            {
-                <p id="mesaj">@yazisma.Icerik</p>
-            }
-
-            <p style="font-size: 9px; margin-left: 275px; position: absolute;"> @yazisma.KayitTarihi</p>
+                <p style="font-size: 9px; margin-left: 275px; position: absolute;"> @yazisma.KayitTarihi</p>
 
 
+            </div>
         </div>
     </div>
-</div>
 }
 

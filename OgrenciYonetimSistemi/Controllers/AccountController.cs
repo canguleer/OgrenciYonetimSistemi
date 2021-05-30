@@ -1,4 +1,5 @@
-﻿using OgrenciYonetimSistemi.Models.Helper.Kullanıcı;
+﻿using OgrenciYonetimSistemi.Models.Filters;
+using OgrenciYonetimSistemi.Models.Helper.Kullanıcı;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,7 @@ namespace OgrenciYonetimSistemi.Controllers
 
 
         }
-
+        [CustomAuthenticationFilter]
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
@@ -54,8 +55,8 @@ namespace OgrenciYonetimSistemi.Controllers
             return RedirectToAction("Login");
         }
 
-        
 
+   
         public ActionResult ForgetPassword(int? User_Id, string Password)
         {
             return View();

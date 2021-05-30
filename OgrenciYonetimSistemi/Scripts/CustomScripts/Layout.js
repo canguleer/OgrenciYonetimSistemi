@@ -9,7 +9,7 @@ function UstMesajlariGetir() {
         url: "/Mesajlar/_ustMesajlariGetir",
         contentType: "application/json; charset=utf-8",
         success: function (response) {
-            $("#sohbetGecmisiListe").html(response);
+            $("#sohbetUstMesaj").html(response);
 
         }
         , error: function (errorData) {
