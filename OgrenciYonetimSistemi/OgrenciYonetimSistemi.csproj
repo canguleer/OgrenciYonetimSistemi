@@ -138,6 +138,8 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MesajlarController.cs" />
+    <Compile Include="Controllers\OgretmenTanimlamaController.cs" />
+    <Compile Include="Controllers\OgrenciTanimlamaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2614,6 +2616,8 @@
     <Content Include="Views\Home\Alerts.cshtml" />
     <Content Include="Views\Mesajlar\_sohbetGecmisiListeGetir.cshtml" />
     <Content Include="Views\Mesajlar\_ustMesajlariGetir.cshtml" />
+    <Content Include="Views\OgrenciTanimlama\Index.cshtml" />
+    <Content Include="Views\OgretmenTanimlama\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

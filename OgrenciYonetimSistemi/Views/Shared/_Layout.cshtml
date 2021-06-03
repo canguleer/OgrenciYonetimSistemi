@@ -35,6 +35,14 @@
     <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/toastr/toastr.min.css">
 
 
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -49,7 +57,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-            
+
             </ul>
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -73,8 +81,8 @@
                     </div>
                 </li>
                 <!-- Messages Dropdown Menu -->
-                <li class="nav-item dropdown"  id="sohbetUstMesaj">
-                  
+                <li class="nav-item dropdown" id="sohbetUstMesaj">
+
                     @*sohbet mesajları yükleniyor*@
                 </li>
                 <!-- Notifications Dropdown Menu -->
@@ -112,7 +120,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
 
 
                         <li class="nav-item">
@@ -125,13 +133,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/tables/simple.html" class="nav-link">
+                                    <a href="@Url.Action("Index","OgrenciTanimlama")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Öğrenci Kullanıcısı Tanımlama</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/tables/data.html" class="nav-link">
+                                    <a href="@Url.Action("Index","OgretmenTanimlama")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Öğretmen Kullanıcısı Tanımlama</p>
                                     </a>
@@ -256,7 +264,31 @@
     <!-- Toastr -->
     <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/toastr/toastr.min.js"></script>
 
+    <!-- CUSTOM  -->
     <script src="~/Scripts/CustomScripts/Layout.js"></script>
+
+
+
+
+    <!-- DataTables  & Plugins -->
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/jszip/jszip.min.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    @*<script src="~/Content/AdminTemplate/AdminLTE-3.1.0/dist/js/adminlte.min.js"></script>*@
+    <!-- AdminLTE for demo purposes -->
+    @*<script src="~/Content/AdminTemplate/AdminLTE-3.1.0/dist/js/demo.js"></script>*@
+    <!-- Page specific script -->
+
 
 
     @RenderSection("scripts", required: false)
