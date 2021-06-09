@@ -1,0 +1,56 @@
+﻿@model OgrenciYonetimSistemi.Models.Helper.Ogrenci.OgrenciEkle
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:535px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><span class="fas fa-plus"></span> Öğrenci Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="OgrenciEkleModal">
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" name="Email" id="staticEmail" value="email@example.com" title="email giriniz." required="required">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="Password" id="inputPassword" placeholder="Password" title="şifre giriniz." required="required">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Bölüm</label>
+                            <div class="col-sm-10">
+                                @Html.DropDownList("Bolum_Id", (IEnumerable<SelectListItem>)ViewData["BolumListesi"], "Seçiniz",
+                                new {
+                                    @class = "form-control",
+                                    @required="required",
+                                    @title ="Bölüm Seçiniz.",
+                                    @onclick= "ValidateControl();"
+                                })
+
+                            </div>
+                        </div>
+                    </form>
+
+        
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fas fa-times"></span> İptal</button>
+                <button type="button" class="btn btn-primary" onclick="ValidateControl(this);"><span class="fas fa-save" id="ogrenciKaydet"></span> Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

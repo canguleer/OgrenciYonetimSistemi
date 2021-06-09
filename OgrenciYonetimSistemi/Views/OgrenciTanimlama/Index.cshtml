@@ -31,6 +31,8 @@
                 </div>
             </div>
             <div class="card-body">
+
+                <div id="ogrenciEkleModal" aria-hidden="true"></div>
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -454,7 +456,7 @@
                             <td>U</td>
                         </tr>
                     </tbody>
-                   
+
                 </table>
 
 
@@ -462,8 +464,8 @@
 
             </div>
             <!-- /.card-body -->
-         
-         
+
+
         </div>
 
 
@@ -477,25 +479,8 @@
 </div>
 
 @section scripts{
+<script src="~/Scripts/CustomScripts/Ogrenci.js"></script>
 
-<script>
-    $(function () {
-        $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-    });</script>
 
 }
 

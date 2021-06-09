@@ -10,9 +10,10 @@ using static OgrenciYonetimSistemi.Models.Helper.Kullanıcı.KullaniciEnum;
 
 namespace OgrenciYonetimSistemi.Controllers
 {
+    [CustomAuthenticationFilter]
     public class MesajlarController : BaseController
     {
-        [CustomAuthenticationFilter]
+
         public ActionResult Index(int? Id)
         {
             ViewData["MesajDetayiIstenilenUye_Id"] = Id.HasValue ? Id.Value : 0;

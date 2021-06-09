@@ -51,6 +51,8 @@ namespace OgrenciYonetimSistemi.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
+            Session.Clear();
+            Session.Abandon();
             System.Web.HttpContext.Current.Session["LoginUser"] = null;
             return RedirectToAction("Login");
         }

@@ -146,6 +146,8 @@
     <Compile Include="Models\Filters\CustomAuthenticationFilter.cs" />
     <Compile Include="Models\Helper\Kullanıcı\KullaniciEnum.cs" />
     <Compile Include="Models\Helper\Mesajlar\UstMesajlariGetir.cs" />
+    <Compile Include="Models\Helper\Ogrenci\Bolum.cs" />
+    <Compile Include="Models\Helper\Ogrenci\OgrenciEkle.cs" />
     <Compile Include="Models\SqlModel\Bolum.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
@@ -2582,6 +2584,7 @@
     <Content Include="Models\SqlModel\OgrenciYonetimOtomasyonuModel.edmx.diagram">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Scripts\CustomScripts\Ogrenci.js" />
     <Content Include="Scripts\CustomScripts\Layout.js" />
     <Content Include="Scripts\CustomScripts\Mesajlar.js" />
     <Content Include="Web.config" />
@@ -2618,6 +2621,7 @@
     <Content Include="Views\Mesajlar\_ustMesajlariGetir.cshtml" />
     <Content Include="Views\OgrenciTanimlama\Index.cshtml" />
     <Content Include="Views\OgretmenTanimlama\Index.cshtml" />
+    <Content Include="Views\OgrenciTanimlama\_ogrenciEklePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
