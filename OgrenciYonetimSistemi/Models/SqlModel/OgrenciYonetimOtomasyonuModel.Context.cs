@@ -116,5 +116,71 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_MesajOkundu_Result>("SP_MesajOkundu", loginKullanici_IdParameter, mesajGonderenUye_IdParameter);
         }
+    
+        public virtual ObjectResult<SP_OgrenciBilgileriListe_Result> SP_OgrenciBilgileriListe(Nullable<int> ogrenci_Id)
+        {
+            var ogrenci_IdParameter = ogrenci_Id.HasValue ?
+                new ObjectParameter("Ogrenci_Id", ogrenci_Id) :
+                new ObjectParameter("Ogrenci_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_OgrenciBilgileriListe_Result>("SP_OgrenciBilgileriListe", ogrenci_IdParameter);
+        }
+    
+        public virtual ObjectResult<SP_OgrenciEkle_Result> SP_OgrenciEkle(string adi, string soyadi, string sifre, string email, string resim, Nullable<long> ogrenciNo, Nullable<int> bolum_Id, string tC, string cepTel, Nullable<System.DateTime> dogumTarihi, string adres, Nullable<int> cinsiyet_Id, Nullable<int> kullanici_Id)
+        {
+            var adiParameter = adi != null ?
+                new ObjectParameter("Adi", adi) :
+                new ObjectParameter("Adi", typeof(string));
+    
+            var soyadiParameter = soyadi != null ?
+                new ObjectParameter("Soyadi", soyadi) :
+                new ObjectParameter("Soyadi", typeof(string));
+    
+            var sifreParameter = sifre != null ?
+                new ObjectParameter("Sifre", sifre) :
+                new ObjectParameter("Sifre", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var resimParameter = resim != null ?
+                new ObjectParameter("Resim", resim) :
+                new ObjectParameter("Resim", typeof(string));
+    
+            var ogrenciNoParameter = ogrenciNo.HasValue ?
+                new ObjectParameter("OgrenciNo", ogrenciNo) :
+                new ObjectParameter("OgrenciNo", typeof(long));
+    
+            var bolum_IdParameter = bolum_Id.HasValue ?
+                new ObjectParameter("Bolum_Id", bolum_Id) :
+                new ObjectParameter("Bolum_Id", typeof(int));
+    
+            var tCParameter = tC != null ?
+                new ObjectParameter("TC", tC) :
+                new ObjectParameter("TC", typeof(string));
+    
+            var cepTelParameter = cepTel != null ?
+                new ObjectParameter("CepTel", cepTel) :
+                new ObjectParameter("CepTel", typeof(string));
+    
+            var dogumTarihiParameter = dogumTarihi.HasValue ?
+                new ObjectParameter("DogumTarihi", dogumTarihi) :
+                new ObjectParameter("DogumTarihi", typeof(System.DateTime));
+    
+            var adresParameter = adres != null ?
+                new ObjectParameter("Adres", adres) :
+                new ObjectParameter("Adres", typeof(string));
+    
+            var cinsiyet_IdParameter = cinsiyet_Id.HasValue ?
+                new ObjectParameter("Cinsiyet_Id", cinsiyet_Id) :
+                new ObjectParameter("Cinsiyet_Id", typeof(int));
+    
+            var kullanici_IdParameter = kullanici_Id.HasValue ?
+                new ObjectParameter("Kullanici_Id", kullanici_Id) :
+                new ObjectParameter("Kullanici_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_OgrenciEkle_Result>("SP_OgrenciEkle", adiParameter, soyadiParameter, sifreParameter, emailParameter, resimParameter, ogrenciNoParameter, bolum_IdParameter, tCParameter, cepTelParameter, dogumTarihiParameter, adresParameter, cinsiyet_IdParameter, kullanici_IdParameter);
+        }
     }
 }

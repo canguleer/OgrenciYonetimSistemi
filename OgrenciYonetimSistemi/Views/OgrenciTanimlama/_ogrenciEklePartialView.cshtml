@@ -11,35 +11,96 @@
             </div>
             <div class="modal-body">
                 <form id="OgrenciEkleModal">
-                        <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" name="Email" id="staticEmail" value="email@example.com" title="email giriniz." required="required">
-                            </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Adı</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Adi" id="Adi" title="Adını giriniz." required="required" class="form-control">
                         </div>
-                        <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="Password" id="inputPassword" placeholder="Password" title="şifre giriniz." required="required">
-                            </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Soyadı</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Soyadi" id="Soyadi" title="Soyadını giriniz." required="required" class="form-control">
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Bölüm</label>
-                            <div class="col-sm-10">
-                                @Html.DropDownList("Bolum_Id", (IEnumerable<SelectListItem>)ViewData["BolumListesi"], "Seçiniz",
-                                new {
-                                    @class = "form-control",
-                                    @required="required",
-                                    @title ="Bölüm Seçiniz.",
-                                    @onclick= "ValidateControl();"
-                                })
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Bölüm</label>
+                        <div class="col-sm-9">
+                            @Html.DropDownList("Bolum_Id", (IEnumerable<SelectListItem>)ViewData["BolumListesi"], "Seçiniz",
+                            new {
+                                @class = "form-control",
+                                @required="required",
+                                @title ="Bölüm Seçiniz.",
+                                @onclick= "ValidateControl();"
+                            })
 
-                            </div>
                         </div>
-                    </form>
+                    </div>
 
-        
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Öğrenci No</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="OgrenciNo" id="OgrenciNo" title="Öğrenci No giriniz." required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Email" id="Email" title="Email giriniz." required="required">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Şifre</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Sifre" id="Sifre" title="Şifre giriniz." required="required">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Cinsiyet</label>
+                        <div class="col-sm-9">
+                            <div class="form-check form-check-inline" style="margin-top:7px;">
+                                <input class="form-check-input" type="radio" name="Cinsiyet_Id" id="1" value="1">
+                                <label class="form-check-label" for="Cinsiyet_Id">Erkek</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Cinsiyet_Id" id="2" value="2">
+                                <label class="form-check-label" for="Cinsiyet_Id">Kız</label>
+                            </div>
+                            
+                        </div>
+                    </div>
+                   
+
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Cep Tel</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="CepTel" id="CepTel" title="Cep giriniz." required="required">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Tc Kimlik No </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Tc" id="Tc" title="Tc giriniz." required="required">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Doğum Tarihi</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" name="DogumTarihi" id="DogumTarihi" title="Doğum Tarihi giriniz." required="required" min="1900-01-01" max="2050-01-01">
+                        </div>
+                    </div>
+
+
+                </form>
+
+
 
 
 
@@ -47,7 +108,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fas fa-times"></span> İptal</button>
-                <button type="button" class="btn btn-primary" onclick="ValidateControl(this);"><span class="fas fa-save" id="ogrenciKaydet"></span> Kaydet</button>
+                <button type="button" class="btn btn-primary" onclick="YeniOgrenciKaydet(this);"><span class="fas fa-save" id="ogrenciKaydet"></span> Kaydet</button>
             </div>
         </div>
     </div>

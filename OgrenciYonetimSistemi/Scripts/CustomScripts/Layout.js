@@ -54,17 +54,25 @@ function ValidateControl(o) {
     var form = $("form#" + Id);
     var element_message;
 
+    var IsValid = 1;
+
 
     $("input, select, textarea", form)
         .not(":submit")
         .each(function (i, element) {
             element = $(element);
             if ((element.is(".required") || element.prop("required")) && (element.val() == "" || element.val() == 0 || element.val() == null || element.val() == "null")) {
+
+                if (IsValid == 1) {
+                    IsValid = 0;
+                }
+
                 var elementName = element[0].name;
                 element_message = element.attr("title");
                 if (!$(element).hasClass('is-invalid')) {
                     $(element).addClass('is-invalid');
-                    element.closest('.col-sm-10').append('<span style="color:red; font-size:14px;">' + element_message + '</span>');
+                    element.closest('.col-sm-9').append('<span style="color:red; font-size:14px;">' + element_message + '</span>');
+
                 }
             }
             else {
@@ -75,7 +83,5 @@ function ValidateControl(o) {
             }
         });
 
-
-
-
+    return IsValid;
 }

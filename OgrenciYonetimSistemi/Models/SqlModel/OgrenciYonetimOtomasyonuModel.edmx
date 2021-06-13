@@ -134,7 +134,7 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
           <Property Name="TcNo" Type="char" MaxLength="11" Nullable="false" />
           <Property Name="CepTel" Type="nvarchar" MaxLength="32" />
           <Property Name="DogumTarihi" Type="datetime" />
-          <Property Name="Adres" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar(max)" />
           <Property Name="Sinif" Type="int" Nullable="false" />
           <Property Name="Donem" Type="int" Nullable="false" />
           <Property Name="Statu" Type="bit" Nullable="false" />
@@ -349,6 +349,24 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
           <Parameter Name="LoginKullanici_Id" Type="int" Mode="In" />
           <Parameter Name="MesajGonderenUye_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_OgrenciBilgileriListe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$OgrenciBilgileriListe">
+          <Parameter Name="Ogrenci_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_OgrenciEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$OgrenciEkle">
+          <Parameter Name="Adi" Type="nvarchar" Mode="In" />
+          <Parameter Name="Soyadi" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sifre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Resim" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="OgrenciNo" Type="bigint" Mode="In" />
+          <Parameter Name="Bolum_Id" Type="int" Mode="In" />
+          <Parameter Name="TC" Type="char" Mode="In" />
+          <Parameter Name="CepTel" Type="nvarchar" Mode="In" />
+          <Parameter Name="DogumTarihi" Type="datetime" Mode="In" />
+          <Parameter Name="Adres" Type="nvarchar" Mode="In" />
+          <Parameter Name="Cinsiyet_Id" Type="int" Mode="In" />
+          <Parameter Name="Kullanici_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_OgrenciListesi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$OgrenciListesi" />
         <Function Name="SP_OgretmenListesi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$OgretmenListesi" />
         <Function Name="SP_YazismaDetayGetir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$YazismaDetayGetir">
@@ -531,6 +549,24 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
             <Parameter Name="LoginKullanici_Id" Mode="In" Type="Int32" />
             <Parameter Name="MesajGonderenUye_Id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_OgrenciBilgileriListe" ReturnType="Collection(OgrenciYonetimSistemiModel.SP_OgrenciBilgileriListe_Result)" >
+          <Parameter Name="Ogrenci_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_OgrenciEkle" ReturnType="Collection(OgrenciYonetimSistemiModel.SP_OgrenciEkle_Result)">
+            <Parameter Name="Adi" Mode="In" Type="String" />
+            <Parameter Name="Soyadi" Mode="In" Type="String" />
+            <Parameter Name="Sifre" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Resim" Mode="In" Type="String" />
+            <Parameter Name="OgrenciNo" Mode="In" Type="Int64" />
+            <Parameter Name="Bolum_Id" Mode="In" Type="Int32" />
+            <Parameter Name="TC" Mode="In" Type="String" />
+            <Parameter Name="CepTel" Mode="In" Type="String" />
+            <Parameter Name="DogumTarihi" Mode="In" Type="DateTime" />
+            <Parameter Name="Adres" Mode="In" Type="String" />
+            <Parameter Name="Cinsiyet_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Kullanici_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="SP_OgrenciListesi_Result">
         <Property Type="Int32" Name="Kullanici_Id" Nullable="false" />
@@ -702,7 +738,7 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
           <Property Name="TcNo" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
           <Property Name="CepTel" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="DogumTarihi" Type="DateTime" Precision="3" />
-          <Property Name="Adres" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Sinif" Type="Int32" Nullable="false" />
           <Property Name="Donem" Type="Int32" Nullable="false" />
           <Property Name="Statu" Type="Boolean" Nullable="false" />
@@ -931,6 +967,22 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
           </ReferentialConstraint>
         </Association>
         <ComplexType Name="SP_MesajOkundu_Result">
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+          <Property Type="String" Name="Message" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="Kayit_Id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_OgrenciBilgileriListe_Result">
+          <Property Type="Int32" Name="Ogrenci_Id" Nullable="false" />
+          <Property Type="String" Name="AdiSoyadi" Nullable="false" MaxLength="129" />
+          <Property Type="Int64" Name="OgrenciNumarasi" Nullable="false" />
+          <Property Type="String" Name="BolumAdi" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="TcNo" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="CepTel" Nullable="true" MaxLength="32" />
+          <Property Type="String" Name="DogumTarihi" Nullable="true" MaxLength="16" />
+          <Property Type="Int32" Name="Sinif" Nullable="false" />
+          <Property Type="Int32" Name="Donem" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_OgrenciEkle_Result">
           <Property Type="Boolean" Name="Status" Nullable="true" />
           <Property Type="String" Name="Message" Nullable="true" MaxLength="4000" />
           <Property Type="Int32" Name="Kayit_Id" Nullable="true" />
@@ -1198,6 +1250,30 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
           <FunctionImportMapping FunctionImportName="SP_MesajOkundu" FunctionName="OgrenciYonetimSistemiModel.Store.SP_MesajOkundu">
             <ResultMapping>
               <ComplexTypeMapping TypeName="OgrenciYonetimSistemiModel.SP_MesajOkundu_Result">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Kayit_Id" ColumnName="Kayit_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_OgrenciBilgileriListe" FunctionName="OgrenciYonetimSistemiModel.Store.SP_OgrenciBilgileriListe">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OgrenciYonetimSistemiModel.SP_OgrenciBilgileriListe_Result">
+                <ScalarProperty Name="Ogrenci_Id" ColumnName="Ogrenci_Id" />
+                <ScalarProperty Name="AdiSoyadi" ColumnName="AdiSoyadi" />
+                <ScalarProperty Name="OgrenciNumarasi" ColumnName="OgrenciNumarasi" />
+                <ScalarProperty Name="BolumAdi" ColumnName="BolumAdi" />
+                <ScalarProperty Name="TcNo" ColumnName="TcNo" />
+                <ScalarProperty Name="CepTel" ColumnName="CepTel" />
+                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+                <ScalarProperty Name="Sinif" ColumnName="Sinif" />
+                <ScalarProperty Name="Donem" ColumnName="Donem" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_OgrenciEkle" FunctionName="OgrenciYonetimSistemiModel.Store.SP_OgrenciEkle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OgrenciYonetimSistemiModel.SP_OgrenciEkle_Result">
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Kayit_Id" ColumnName="Kayit_Id" />

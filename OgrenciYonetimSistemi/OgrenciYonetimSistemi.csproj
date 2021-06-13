@@ -147,6 +147,7 @@
     <Compile Include="Models\Helper\Kullanıcı\KullaniciEnum.cs" />
     <Compile Include="Models\Helper\Mesajlar\UstMesajlariGetir.cs" />
     <Compile Include="Models\Helper\Ogrenci\Bolum.cs" />
+    <Compile Include="Models\Helper\Ogrenci\OgrenciBilgileriListeModel.cs" />
     <Compile Include="Models\Helper\Ogrenci\OgrenciEkle.cs" />
     <Compile Include="Models\SqlModel\Bolum.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
@@ -210,6 +211,12 @@
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SqlModel\SP_MesajOkundu_Result.cs">
+      <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SqlModel\SP_OgrenciBilgileriListe_Result.cs">
+      <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SqlModel\SP_OgrenciEkle_Result.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SqlModel\SP_OgrenciListesi_Result.cs">
@@ -2290,6 +2297,7 @@
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\starter.html" />
     <Content Include="Content\css\BootstrapChat.css" />
     <Content Include="Content\images\user-profile.png" />
+    <Content Include="Content\js\jquery.mask.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -2621,6 +2629,7 @@
     <Content Include="Views\Mesajlar\_ustMesajlariGetir.cshtml" />
     <Content Include="Views\OgrenciTanimlama\Index.cshtml" />
     <Content Include="Views\OgretmenTanimlama\Index.cshtml" />
+    <Content Include="Views\OgrenciTanimlama\_ogrenciListesiPartial.cshtml" />
     <Content Include="Views\OgrenciTanimlama\_ogrenciEklePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
