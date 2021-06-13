@@ -46,6 +46,7 @@ namespace OgrenciYonetimSistemi.Controllers
         {
             try
             {
+                //aynı öğrenciden daha önce var mı tc kontrolü yap.. email ve öğrenci no kontrolü yap..
                 var ogrenci = db.SP_OgrenciEkle(post_model.Adi,
                                               post_model.Soyadi,
                                               post_model.Sifre,

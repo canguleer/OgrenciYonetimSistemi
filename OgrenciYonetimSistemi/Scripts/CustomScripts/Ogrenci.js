@@ -89,9 +89,10 @@ function MaskeUygula() {
 function YeniOgrenciKaydet(o) {
 
     if (ValidateControl(o) == 0) {
+     
         return true;
     }
-
+    $("#overlay").fadeIn(1);　
 
     var obj = $(o).parents("div.modal.fade");
     var Id = $("form", obj).attr("id");
@@ -106,6 +107,8 @@ function YeniOgrenciKaydet(o) {
         data: data,
         success: function (result) {
             if (result.status == 1) {
+                $("#overlay").fadeOut(300);　
+
                 $("#ogrenciEkleModal").find(".modal").modal("hide");
 
                 var newRow = `
@@ -116,7 +119,7 @@ function YeniOgrenciKaydet(o) {
                       <td>${result.data.BolumAdi}</td>
                       <td>${result.data.TcNo}</td>
                       <td>${result.data.CepTel}</td>
-                      <td>${ConvertToLocalDate(result.data.DogumTarihi)}</td>
+                      <td style="text-align:center;">${ConvertToLocalDate(result.data.DogumTarihi)}</td>
                       <td>${result.data.Sinif}</td>
                       <td>${result.data.Donem}</td>
                   </tr>

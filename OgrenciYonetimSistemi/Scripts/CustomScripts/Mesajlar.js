@@ -43,6 +43,7 @@ $(document).ready(function () {
 
 
 function sohbetDetaylariGetir(Id) {
+    $("#overlay").fadeIn(1);　
 
     $("div.chat_list").removeClass("active_chat");
     if (Id > 0) {
@@ -56,6 +57,7 @@ function sohbetDetaylariGetir(Id) {
         contentType: "application/json; charset=utf-8",
         data: { SohbetGecmisiIstenilenUye_Id: Id },
         success: function (response) {
+            $("#overlay").fadeOut(300);　
             $(".msg_history").html(response);
             $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight); //scrool en alta iner..
             if (!($($("div#" + Id + ".chat_list")[0]).hasClass("active_chat"))) {

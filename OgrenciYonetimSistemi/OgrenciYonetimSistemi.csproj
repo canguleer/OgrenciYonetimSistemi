@@ -2295,7 +2295,9 @@
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\plugins\uplot\uPlot.min.css" />
     <Content Include="Content\AdminTemplate\AdminLTE-3.1.0\starter.html" />
+    <Content Include="Content\css\Loading.css" />
     <Content Include="Content\css\BootstrapChat.css" />
+    <Content Include="Content\images\Iphone-spinner-2.gif" />
     <Content Include="Content\images\user-profile.png" />
     <Content Include="Content\js\jquery.mask.js" />
     <Content Include="favicon.ico" />

@@ -1,5 +1,5 @@
 ﻿@using OgrenciYonetimSistemi.Models.Helper.Kullanıcı;
-@{ 
+@{
     KullaniciBilgileri LoginUser = KullaniciHesapBilgileri.GetCurrentUser();
 }
 
@@ -40,11 +40,18 @@
     <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link href="~/Content/css/Loading.css" rel="stylesheet" />
+
 
 
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
@@ -285,7 +292,7 @@
     <script src="~/Content/AdminTemplate/AdminLTE-3.1.0/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
     <!-- Mask -->
-    <script src="~/Content/js/jquery.mask.js"></script> 
+    <script src="~/Content/js/jquery.mask.js"></script>
 
 
     @RenderSection("scripts", required: false)
