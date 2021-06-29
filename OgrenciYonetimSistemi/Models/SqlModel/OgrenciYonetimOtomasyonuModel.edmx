@@ -369,6 +369,10 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
         </Function>
         <Function Name="SP_OgrenciListesi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$OgrenciListesi" />
         <Function Name="SP_OgretmenListesi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$OgretmenListesi" />
+        <Function Name="SP_TopluMesajGonder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$TopluMesajGonder">
+          <Parameter Name="MesajiGonderenUye_Id" Type="int" Mode="In" />
+          <Parameter Name="Mesaj" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="SP_YazismaDetayGetir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$YazismaDetayGetir">
           <Parameter Name="YazismaGecmisiIstenilenUye_Id" Type="int" Mode="In" />
           <Parameter Name="LoginKullanici_Id" Type="int" Mode="In" />
@@ -566,6 +570,10 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
             <Parameter Name="Adres" Mode="In" Type="String" />
             <Parameter Name="Cinsiyet_Id" Mode="In" Type="Int32" />
             <Parameter Name="Kullanici_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_TopluMesajGonder" ReturnType="Collection(OgrenciYonetimSistemiModel.SP_TopluMesajGonder_Result)">
+            <Parameter Name="MesajiGonderenUye_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Mesaj" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="SP_OgrenciListesi_Result">
@@ -987,6 +995,11 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
           <Property Type="String" Name="Message" Nullable="true" MaxLength="4000" />
           <Property Type="Int32" Name="Kayit_Id" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="SP_TopluMesajGonder_Result">
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+          <Property Type="String" Name="Message" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="Kayit_Id" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1274,6 +1287,15 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
           <FunctionImportMapping FunctionImportName="SP_OgrenciEkle" FunctionName="OgrenciYonetimSistemiModel.Store.SP_OgrenciEkle">
             <ResultMapping>
               <ComplexTypeMapping TypeName="OgrenciYonetimSistemiModel.SP_OgrenciEkle_Result">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Kayit_Id" ColumnName="Kayit_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_TopluMesajGonder" FunctionName="OgrenciYonetimSistemiModel.Store.SP_TopluMesajGonder">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OgrenciYonetimSistemiModel.SP_TopluMesajGonder_Result">
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Kayit_Id" ColumnName="Kayit_Id" />

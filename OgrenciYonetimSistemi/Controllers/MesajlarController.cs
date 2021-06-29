@@ -140,6 +140,48 @@ namespace OgrenciYonetimSistemi.Controllers
             }
             return Json(ResultData);
         }
+
+
+
+        [HttpPost]
+        public JsonResult TopluMesajGonder(string Mesaj)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(Mesaj))
+                {
+                    ResultData.message = "Mesaj alanı boş olamaz.";
+                    ResultData.status = false;
+                    return Json(ResultData);
+                }
+              
+                var mesaj = db.SP_TopluMesajGonder(LoginUser.Kullanici_Id, Mesaj).FirstOrDefault();
+                if (mesaj.Status == true)
+                {
+                    ResultData = new Models.Helper.Result.ResultObject
+                    {
+                        data = mesaj,
+                        status = true
+                    };
+                    return Json(ResultData);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                logger.Error(ex, "Hata");
+                ResultData = new Models.Helper.Result.ResultObject
+                {
+                    message = "İşleminiz sırasında istisna ile karşılaşıldı.",
+                    status = false
+                };
+            }
+            return Json(ResultData);
+        }
+
+
+
+
     }
 
 }

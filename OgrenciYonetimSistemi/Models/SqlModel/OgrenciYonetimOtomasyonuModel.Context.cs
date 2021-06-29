@@ -182,5 +182,18 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_OgrenciEkle_Result>("SP_OgrenciEkle", adiParameter, soyadiParameter, sifreParameter, emailParameter, resimParameter, ogrenciNoParameter, bolum_IdParameter, tCParameter, cepTelParameter, dogumTarihiParameter, adresParameter, cinsiyet_IdParameter, kullanici_IdParameter);
         }
+    
+        public virtual ObjectResult<SP_TopluMesajGonder_Result> SP_TopluMesajGonder(Nullable<int> mesajiGonderenUye_Id, string mesaj)
+        {
+            var mesajiGonderenUye_IdParameter = mesajiGonderenUye_Id.HasValue ?
+                new ObjectParameter("MesajiGonderenUye_Id", mesajiGonderenUye_Id) :
+                new ObjectParameter("MesajiGonderenUye_Id", typeof(int));
+    
+            var mesajParameter = mesaj != null ?
+                new ObjectParameter("Mesaj", mesaj) :
+                new ObjectParameter("Mesaj", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_TopluMesajGonder_Result>("SP_TopluMesajGonder", mesajiGonderenUye_IdParameter, mesajParameter);
+        }
     }
 }

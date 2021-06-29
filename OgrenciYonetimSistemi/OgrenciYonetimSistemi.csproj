@@ -225,6 +225,9 @@
     <Compile Include="Models\SqlModel\SP_OgretmenListesi_Result.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SqlModel\SP_TopluMesajGonder_Result.cs">
+      <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SqlModel\SP_YazismaDetayGetir_Result.cs">
       <DependentUpon>OgrenciYonetimOtomasyonuModel.tt</DependentUpon>
     </Compile>

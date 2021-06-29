@@ -12,6 +12,9 @@ $(document).ready(function () {
         PersonelAra("yeniMesajAra");
     });
 
+    $("#topluMesajModal").click(function () {
+        TopluMesajModalGizleGoster();
+    })
 
     //öğretmen listesi için kullanılıyor, sohbet geçmişi detay için ise foreach içinde onclik tanımlı..
     $(".chat_list").on("click", function () {
@@ -37,13 +40,15 @@ $(document).ready(function () {
     if (MesajDetayiIstenilenUye_Id > 0) { //Yazışmalarım sayfasınında değilken üst mesajlardan sohbet detayı istenirse ilgili kişinin mesaj detaylarını aç..
         sohbetDetaylariGetir(MesajDetayiIstenilenUye_Id);
     }
+
+
 });
 
 
 
 
 function sohbetDetaylariGetir(Id) {
-    $("#overlay").fadeIn(1);　
+    $("#overlay").fadeIn(1);
 
     $("div.chat_list").removeClass("active_chat");
     if (Id > 0) {
@@ -57,7 +62,7 @@ function sohbetDetaylariGetir(Id) {
         contentType: "application/json; charset=utf-8",
         data: { SohbetGecmisiIstenilenUye_Id: Id },
         success: function (response) {
-            $("#overlay").fadeOut(300);　
+            $("#overlay").fadeOut(300);
             $(".msg_history").html(response);
             $(".msg_history").scrollTop($(".msg_history")[0].scrollHeight); //scrool en alta iner..
             if (!($($("div#" + Id + ".chat_list")[0]).hasClass("active_chat"))) {
@@ -270,3 +275,53 @@ function ustMesajOkunmaKontrol(Id) {
 
 }
 
+
+function TopluMesajModalGizleGoster() {
+    var topluMesajModal = $("#topluMesajGonder");
+    topluMesajModal.find(".modal").modal("show");
+}
+
+
+function TopluMesajGonder(o) {
+
+    if (ValidateControl(o) == 0) {
+
+        return true;
+    }
+    $("#overlay").fadeIn(1);
+
+    var obj = $(o).parents("div.modal.fade");
+    var Id = $("form", obj).attr("id");
+
+    //burada sadece $("form") da denilbilirdi biz burada örnekleri çoğaltmak istedik....
+    var form = $("form#" + Id);
+    var Mesaj = $("#mesaj", form).val();
+
+    $.ajax({
+        type: "POST",
+        url: "/Mesajlar/TopluMesajGonder",
+        data: {
+            Mesaj: Mesaj
+        },
+        success: function (result) {
+            if (result.status == 1) {
+                $("#overlay").fadeOut(300);
+                $("#topluMesajGonder").find(".modal").modal("hide");
+
+                toastr.success(result.data.Message, "Başarılı!");
+            }
+            else {
+                Swal.fire(
+                    'Hata',
+                    result.message,
+                    'error'
+                );
+                return;
+            }
+        },
+        error: function (errorData) {
+            console.log("error: " + errorData);
+        }
+    })
+
+}
