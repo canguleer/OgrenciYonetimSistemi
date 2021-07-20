@@ -2636,6 +2636,7 @@
     <Content Include="Views\OgretmenTanimlama\Index.cshtml" />
     <Content Include="Views\OgrenciTanimlama\_ogrenciListesiPartial.cshtml" />
     <Content Include="Views\OgrenciTanimlama\_ogrenciEklePartialView.cshtml" />
+    <Content Include="Views\OgrenciTanimlama\_ogrenciFiltrePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

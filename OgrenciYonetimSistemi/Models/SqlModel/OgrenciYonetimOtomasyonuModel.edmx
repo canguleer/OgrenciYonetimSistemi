@@ -351,6 +351,10 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
         </Function>
         <Function Name="SP_OgrenciBilgileriListe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$OgrenciBilgileriListe">
           <Parameter Name="Ogrenci_Id" Type="int" Mode="In" />
+          <Parameter Name="Bolum_Id" Type="int" Mode="In" />
+          <Parameter Name="Adi" Type="nvarchar" Mode="In" />
+          <Parameter Name="Soyadi" Type="nvarchar" Mode="In" />
+          <Parameter Name="IlkYuklenmeMi" Type="bit" Mode="In" />
         </Function>
         <Function Name="SP_OgrenciEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="SP$OgrenciEkle">
           <Parameter Name="Adi" Type="nvarchar" Mode="In" />
@@ -554,7 +558,11 @@ warning 6002: The table/view 'OgrenciYonetimSistemi.dbo.Hatalog' does not have a
             <Parameter Name="MesajGonderenUye_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_OgrenciBilgileriListe" ReturnType="Collection(OgrenciYonetimSistemiModel.SP_OgrenciBilgileriListe_Result)" >
-          <Parameter Name="Ogrenci_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Ogrenci_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Bolum_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Adi" Mode="In" Type="String" />
+            <Parameter Name="Soyadi" Mode="In" Type="String" />
+            <Parameter Name="IlkYuklenmeMi" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="SP_OgrenciEkle" ReturnType="Collection(OgrenciYonetimSistemiModel.SP_OgrenciEkle_Result)">
             <Parameter Name="Adi" Mode="In" Type="String" />

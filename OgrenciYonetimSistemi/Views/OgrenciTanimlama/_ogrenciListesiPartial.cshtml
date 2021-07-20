@@ -1,21 +1,37 @@
 ﻿@model OgrenciYonetimSistemi.Models.Helper.Ogrenci.OgrenciBilgileriListeModel
-@{
-    ViewBag.Title = "Index";
-    Layout = null;
-}
 
 
-@foreach (var item in Model.OgrenciListesi)
-{
-    <tr>
-        <td id="Ogrenci_Id">@item.Ogrenci_Id</td>
-        <td>@item.AdiSoyadi</td>
-        <td>@item.OgrenciNumarasi</td>
-        <td>@item.BolumAdi</td>
-        <td>@item.TcNo</td>
-        <td>@item.CepTel</td>
-        <td>@item.DogumTarihi</td>
-        <td>@item.Sinif</td>
-        <td>@item.Donem</td>
-    </tr>
-}
+<table id="example1" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Ogrenci_Id</th>
+            <th>Adı Soyadı</th>
+            <th>Öğrenci No</th>
+            <th>Bölüm Adı</th>
+            <th>Tc Kimlik No</th>
+            <th>Cep Tel</th>
+            <th>Doğum Tarihi</th>
+            <th>Sınıf</th>
+            <th>Dönem</th>
+        </tr>
+    </thead>
+    <tbody id="OgrenciTable">
+
+        @foreach (var item in Model.OgrenciListesi)
+        {
+            <tr>
+                <td id="Ogrenci_Id">@item.Ogrenci_Id</td>
+                <td>@item.AdiSoyadi</td>
+                <td>@item.OgrenciNumarasi</td>
+                <td>@item.BolumAdi</td>
+                <td>@item.TcNo</td>
+                <td>@item.CepTel</td>
+                <td style="text-align:center;">@item.DogumTarihi</td>
+                <td>@item.Sinif</td>
+                <td>@item.Donem</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

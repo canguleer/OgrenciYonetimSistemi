@@ -117,13 +117,29 @@ namespace OgrenciYonetimSistemi.Models.SqlModel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_MesajOkundu_Result>("SP_MesajOkundu", loginKullanici_IdParameter, mesajGonderenUye_IdParameter);
         }
     
-        public virtual ObjectResult<SP_OgrenciBilgileriListe_Result> SP_OgrenciBilgileriListe(Nullable<int> ogrenci_Id)
+        public virtual ObjectResult<SP_OgrenciBilgileriListe_Result> SP_OgrenciBilgileriListe(Nullable<int> ogrenci_Id, Nullable<int> bolum_Id, string adi, string soyadi, Nullable<bool> ilkYuklenmeMi)
         {
             var ogrenci_IdParameter = ogrenci_Id.HasValue ?
                 new ObjectParameter("Ogrenci_Id", ogrenci_Id) :
                 new ObjectParameter("Ogrenci_Id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_OgrenciBilgileriListe_Result>("SP_OgrenciBilgileriListe", ogrenci_IdParameter);
+            var bolum_IdParameter = bolum_Id.HasValue ?
+                new ObjectParameter("Bolum_Id", bolum_Id) :
+                new ObjectParameter("Bolum_Id", typeof(int));
+    
+            var adiParameter = adi != null ?
+                new ObjectParameter("Adi", adi) :
+                new ObjectParameter("Adi", typeof(string));
+    
+            var soyadiParameter = soyadi != null ?
+                new ObjectParameter("Soyadi", soyadi) :
+                new ObjectParameter("Soyadi", typeof(string));
+    
+            var ilkYuklenmeMiParameter = ilkYuklenmeMi.HasValue ?
+                new ObjectParameter("IlkYuklenmeMi", ilkYuklenmeMi) :
+                new ObjectParameter("IlkYuklenmeMi", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_OgrenciBilgileriListe_Result>("SP_OgrenciBilgileriListe", ogrenci_IdParameter, bolum_IdParameter, adiParameter, soyadiParameter, ilkYuklenmeMiParameter);
         }
     
         public virtual ObjectResult<SP_OgrenciEkle_Result> SP_OgrenciEkle(string adi, string soyadi, string sifre, string email, string resim, Nullable<long> ogrenciNo, Nullable<int> bolum_Id, string tC, string cepTel, Nullable<System.DateTime> dogumTarihi, string adres, Nullable<int> cinsiyet_Id, Nullable<int> kullanici_Id)

@@ -1,15 +1,17 @@
 ﻿$(function () {
 
     ToasterMesajYukle()
-
-    OgrenciTablosunuDatatableYap();
+    //OgrenciListele();
 
     $("#ogrenciEkle").click(function () {
         OgrenciEkleModalGizleGoster();
     });
 
+    $("#filtre").click(function () {
+        OgrenciFiltreModalGizleGoster();
+    });
 
-
+    OgrenciListele(null, true);
 
 });
 
@@ -20,18 +22,20 @@ function OgrenciTablosunuDatatableYap() {
         "responsive": true, "lengthChange": false, "autoWidth": false,
         "buttons": [
             "copy", "excel", "pdf", "print",
+            {
+                text: 'Filtre',
+                attr: {
+                    id: "filtre",
+                },
 
+            },
             {
                 text: 'Öğrenci Ekle',
                 attr: {
                     id: "ogrenciEkle",
                 },
                 className: 'btn btn-success',
-                //action: function (e, dt, node, config) {
-                //    alert('Button activated');
-                //}
-            }
-
+            },
         ],
         language: {
             "emptyTable": "Tabloda herhangi bir veri mevcut değil",
@@ -69,8 +73,26 @@ function OgrenciEkleModalGizleGoster() {
             ogrenciEkleModal.html(data);
             MaskeUygula();
             ogrenciEkleModal.find(".modal").modal("show");
+        },
+        error: function (errorData) {
+            console.log("error: " + errorData);
+        }
+
+    })
+}
 
 
+function OgrenciFiltreModalGizleGoster() {
+    var ogrenciFiltreModal = $("#ogrenciFiltreModal");
+
+    $.ajax({
+        type: "GET",
+        url: "/OgrenciTanimlama/_ogrenciFiltrePartialView",
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            ogrenciFiltreModal.html(data);
+            MaskeUygula();
+            ogrenciFiltreModal.find(".modal").modal("show");
         },
         error: function (errorData) {
             console.log("error: " + errorData);
@@ -81,18 +103,15 @@ function OgrenciEkleModalGizleGoster() {
 
 function MaskeUygula() {
     $("#CepTel").mask("(999) 999-99-99");
-
     //$('#DogumTarihi').mask('00/00/0000');
-
 }
 
 function YeniOgrenciKaydet(o) {
 
     if (ValidateControl(o) == 0) {
-     
         return true;
     }
-    $("#overlay").fadeIn(1);　
+    $("#overlay").fadeIn(1);
 
     var obj = $(o).parents("div.modal.fade");
     var Id = $("form", obj).attr("id");
@@ -107,8 +126,7 @@ function YeniOgrenciKaydet(o) {
         data: data,
         success: function (result) {
             if (result.status == 1) {
-                $("#overlay").fadeOut(300);　
-
+                $("#overlay").fadeOut(300);
                 $("#ogrenciEkleModal").find(".modal").modal("hide");
 
                 var newRow = `
@@ -148,21 +166,7 @@ function YeniOgrenciKaydet(o) {
 
 }
 
-function OgrenciListesliYenile() {
-    $.ajax({
-        type: "GET",
-        url: "/OgrenciTanimlama/_ogrenciListesiPartial",
-        contentType: "application/json; charset=utf-8",
-        success: function (response) {
-            $("tbody").html(response);
 
-        },
-        error: function (errorData) {
-            console.log("error: " + errorData);
-        }
-
-    })
-}
 
 function ToasterMesajYukle() {
     var Toast = Swal.mixin({
@@ -177,6 +181,57 @@ function ConvertToLocalDate(date) {
 
     var localDate = new Date(parseInt((date).replace("/Date(", "").replace(")/", ""))).toLocaleDateString();
     return localDate;
+}
+
+
+function OgrenciListele(o, IlkYuklenmeMi) {
+
+    $("#overlay").fadeIn(1);
+    var obj = $(o).parents("div.modal.fade");
+    var Id = $("form", obj).attr("id");
+    var form = $("form#" + Id);
+
+    var data = form.serialize();
+
+    if (IlkYuklenmeMi == true) {
+        data = { IlkYuklenmeMi: IlkYuklenmeMi };
+    }
+
+    $.ajax({
+        type: "GET",
+        url: "/OgrenciTanimlama/_ogrenciListesiPartial",
+        contentType: "application/json; charset=utf-8",
+        data: data,
+        success: function (data) {
+            $("#overlay").fadeOut(300);
+            $("#ogrenciFiltreModal").find(".modal").modal("hide");
+            $("#ogrenciBilgileriListe").html(data);
+
+            SayfaFonksiyonlariniTekrarYukle(IlkYuklenmeMi); // ilk açıldığında filtre karta gelmesi sağlanılarak bütün dataları yüklemekten kurtuldu.
+        },
+        error: function (errorData) {
+            console.log("error: " + errorData);
+        }
+    });
+}
+
+function SayfaFonksiyonlariniTekrarYukle(durum) {
+
+    OgrenciTablosunuDatatableYap();
+
+    $("#ogrenciEkle").click(function () {
+        OgrenciEkleModalGizleGoster();
+    });
+
+    $("#filtre").click(function () {
+        OgrenciFiltreModalGizleGoster();
+    });
+
+    if (durum == true) {
+        OgrenciFiltreModalGizleGoster();
+    }
+
+
 }
 
 

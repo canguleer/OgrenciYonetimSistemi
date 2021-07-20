@@ -1,0 +1,51 @@
+﻿@model OgrenciYonetimSistemi.Models.Helper.Ogrenci.OgrenciEkle
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:535px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><span class="fas fa-search"></span> Filtrele</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="OgrenciFiltreModal">
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Adı</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Adi" id="Adi" title="Adını giriniz." required="required" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Soyadı</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Soyadi" id="Soyadi" title="Soyadını giriniz." required="required" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Bölüm</label>
+                        <div class="col-sm-9">
+                            @Html.DropDownList("Bolum_Id", (IEnumerable<SelectListItem>)ViewData["BolumListesi"], "Seçiniz",
+                            new {
+                                @class = "form-control",
+                                @required="required",
+                                @title ="Bölüm Seçiniz."
+                            
+                            })
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fas fa-times"></span> İptal</button>
+                <button type="button" class="btn btn-primary" onclick="OgrenciListele(this,false);"><span class="fas fa-save" id="ogrenciListele"></span> Listele</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

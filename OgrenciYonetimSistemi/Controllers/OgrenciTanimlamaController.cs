@@ -15,11 +15,7 @@ namespace OgrenciYonetimSistemi.Controllers
 
         public ActionResult Index()
         {
-            OgrenciBilgileriListeModel model = new OgrenciBilgileriListeModel()
-            {
-                OgrenciListesi = db.SP_OgrenciBilgileriListe(null).ToList()
-            };
-            return View(model);
+            return View();
         }
 
         public PartialViewResult _ogrenciEklePartialView()
@@ -40,6 +36,33 @@ namespace OgrenciYonetimSistemi.Controllers
             return PartialView("_ogrenciEklePartialView");
 
         }
+        public PartialViewResult _ogrenciFiltrePartialView()
+        {
+
+            var bolumModel = (from _bolumList in db.Bolum
+                              where _bolumList.Statu == true
+                              select new
+                              {
+                                  Value = _bolumList.Id,
+                                  Text = _bolumList.BolumAdi
+                              }).ToList();
+
+            ViewData["BolumListesi"] = new SelectList(bolumModel, "Value", "Text");
+
+            return PartialView("_ogrenciFiltrePartialView");
+
+        }
+
+        public PartialViewResult _ogrenciListesiPartial(int? Bolum_Id, string Adi, string Soyadi,bool? IlkYuklenmeMi)
+        {
+            OgrenciBilgileriListeModel model = new OgrenciBilgileriListeModel()
+            {
+                OgrenciListesi = db.SP_OgrenciBilgileriListe(null, Bolum_Id, Adi, Soyadi,IlkYuklenmeMi).ToList()
+            };
+            return PartialView("_ogrenciListesiPartial", model);
+
+        }
+
 
         [HttpPost]
         public JsonResult OgrenciEkle(OgrenciEkle post_model)
@@ -62,7 +85,7 @@ namespace OgrenciYonetimSistemi.Controllers
                                               LoginUser.Kullanici_Id).FirstOrDefault();
                 if (ogrenci.Status == true)
                 {
-                    var ogrenciGetir = db.SP_OgrenciBilgileriListe(ogrenci.Kayit_Id).FirstOrDefault(); //yeni eklenen öğrenci bilgisi
+                    var ogrenciGetir = db.SP_OgrenciBilgileriListe(ogrenci.Kayit_Id, null, null, null,false).FirstOrDefault(); //yeni eklenen öğrenci bilgisi
                     ResultData = new Models.Helper.Result.ResultObject
                     {
                         data = ogrenciGetir,

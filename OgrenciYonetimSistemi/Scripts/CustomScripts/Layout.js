@@ -74,7 +74,7 @@ function ValidateControl(o) {
                 element_message = element.attr("title");
                 if (!$(element).hasClass('is-invalid')) {
                     $(element).addClass('is-invalid');
-                    element.closest('.col-sm-9').append('<span style="color:red; font-size:14px;">' + element_message + '</span>');
+                    element.closest("div[class*='col-sm']").append('<span style="color:red; font-size:14px;">' + element_message + '</span>');
 
                 }
             }

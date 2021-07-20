@@ -285,9 +285,9 @@ function TopluMesajModalGizleGoster() {
 function TopluMesajGonder(o) {
 
     if (ValidateControl(o) == 0) {
-
         return true;
     }
+
     $("#overlay").fadeIn(1);
 
     var obj = $(o).parents("div.modal.fade");
