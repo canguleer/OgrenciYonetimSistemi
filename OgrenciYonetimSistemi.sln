@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OgrenciYonetimSistemi", "OgrenciYonetimSistemi\OgrenciYonetimSistemi.csproj", "{298CFA30-3731-474E-BD9F-4317E7733C6D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A7161A9A-D1E6-45A1-B311-50C94A3D994D} = {A7161A9A-D1E6-45A1-B311-50C94A3D994D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFService", "WCFService\WCFService.csproj", "{A7161A9A-D1E6-45A1-B311-50C94A3D994D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{298CFA30-3731-474E-BD9F-4317E7733C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{298CFA30-3731-474E-BD9F-4317E7733C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{298CFA30-3731-474E-BD9F-4317E7733C6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7161A9A-D1E6-45A1-B311-50C94A3D994D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7161A9A-D1E6-45A1-B311-50C94A3D994D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7161A9A-D1E6-45A1-B311-50C94A3D994D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7161A9A-D1E6-45A1-B311-50C94A3D994D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

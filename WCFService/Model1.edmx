@@ -1,0 +1,1157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Language_Id" Type="int" />
+          <Property Name="CourseCode" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="GroupNo" Type="int" Nullable="false" />
+          <Property Name="CoursName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="NumberOfCredits" Type="int" Nullable="false" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Course_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Language_Id" Type="int" Nullable="false" />
+          <Property Name="CourseCode" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="GroupNo" Type="int" Nullable="false" />
+          <Property Name="CoursName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="NumberOfCredits" Type="int" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="LogType" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Faculty_Id" Type="int" />
+          <Property Name="RecordDate" Type="datetime" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Faculty_Id" Type="int" />
+          <Property Name="RecordDate" Type="datetime" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="LogType" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ErrorDate" Type="datetime" />
+          <Property Name="ErrorNumber" Type="int" />
+          <Property Name="ErrorSeverity" Type="int" />
+          <Property Name="ErrorState" Type="tinyint" />
+          <Property Name="ErrorProcedure" Type="nvarchar(max)" />
+          <Property Name="ErrorLine" Type="int" />
+          <Property Name="ErrorMessage" Type="text" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FacultyName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RecordDate" Type="datetime" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Faculty_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FacultyName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RecordDate" Type="datetime" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="LogType" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Language" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Period">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PeriodName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="YearOfPeriod" Type="int" Nullable="false" />
+          <Property Name="SatartOfPeriod" Type="date" Nullable="false" />
+          <Property Name="EndOfPeriod" Type="date" Nullable="false" />
+          <Property Name="RecordDate" Type="datetime" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PeriodCourse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Period_Id" Type="int" />
+          <Property Name="Teacher_Id" Type="int" />
+          <Property Name="Course_Id" Type="int" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="StartTime" Type="time" Precision="7" />
+          <Property Name="EndTime" Type="time" Precision="7" />
+          <Property Name="DayOfWeek" Type="nvarchar" MaxLength="16" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="16" />
+          <Property Name="Capacity" Type="tinyint" />
+          <Property Name="NumberOfStudentsTakingTheCourse" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentNo" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Department_Id" Type="int" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RecordDate" Type="datetime" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="TcIdentityNo" Type="nvarchar" MaxLength="11" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Period" Type="tinyint" Nullable="false" />
+          <Property Name="Class" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentNo" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Department_Id" Type="int" Nullable="false" />
+          <Property Name="TcIdentityNo" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RecordDate" Type="datetime" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="LogType" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Period" Type="tinyint" />
+          <Property Name="Class" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="StudentCourse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Student_Id" Type="int" />
+          <Property Name="Course_Id" Type="int" />
+          <Property Name="Midterm_1" Type="int" />
+          <Property Name="Midterm_2" Type="int" />
+          <Property Name="FinalExam" Type="int" />
+          <Property Name="LetterNote" Type="nvarchar" MaxLength="2" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="Period_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="StudentCourse_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Student_Id" Type="int" Nullable="false" />
+          <Property Name="Course_Id" Type="int" Nullable="false" />
+          <Property Name="Midterm_1" Type="int" />
+          <Property Name="Midterm_2" Type="int" />
+          <Property Name="FinalExam" Type="int" />
+          <Property Name="LetterNote" Type="nvarchar" MaxLength="2" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="LogType" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Period_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="StudentGradePointAverage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Student_Id" Type="int" />
+          <Property Name="Period_Id" Type="int" />
+          <Property Name="YANO" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="YanoNumberOfCredits" Type="int" Nullable="false" />
+          <Property Name="AGNO" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="AgnoNumberOfCredits" Type="int" Nullable="false" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TcIdentityNo" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Branch" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="RecordDate" Type="datetime" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teacher_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TcIdentityNo" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Branch" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="RecordDate" Type="datetime" />
+          <Property Name="Statu" Type="bit" Nullable="false" />
+          <Property Name="LogType" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Course__Language__239E4DCF">
+          <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="Language_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Facul__1367E606">
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="Faculty_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PeriodCou__Cours__29572725">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="PeriodCourse" Type="Self.PeriodCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PeriodCourse">
+              <PropertyRef Name="Course_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PeriodCou__Perio__276EDEB3">
+          <End Role="Period" Type="Self.Period" Multiplicity="0..1" />
+          <End Role="PeriodCourse" Type="Self.PeriodCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PeriodCourse">
+              <PropertyRef Name="Period_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PeriodCou__Teach__286302EC">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+          <End Role="PeriodCourse" Type="Self.PeriodCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PeriodCourse">
+              <PropertyRef Name="Teacher_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__Departm__1CF15040">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Department_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentCo__Cours__66603565">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentCourse">
+              <PropertyRef Name="Course_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentCo__Stude__656C112C">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentCourse">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentGr__Perio__32E0915F">
+          <End Role="Period" Type="Self.Period" Multiplicity="0..1" />
+          <End Role="StudentGradePointAverage" Type="Self.StudentGradePointAverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentGradePointAverage">
+              <PropertyRef Name="Period_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentGr__Stude__31EC6D26">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="StudentGradePointAverage" Type="Self.StudentGradePointAverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentGradePointAverage">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SchoolModelStoreContainer">
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course_Log" EntityType="Self.Course_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department_Log" EntityType="Self.Department_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faculty_Log" EntityType="Self.Faculty_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Period" EntityType="Self.Period" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeriodCourse" EntityType="Self.PeriodCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Log" EntityType="Self.Student_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentCourse" EntityType="Self.StudentCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentCourse_Log" EntityType="Self.StudentCourse_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentGradePointAverage" EntityType="Self.StudentGradePointAverage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher_Log" EntityType="Self.Teacher_Log" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Course__Language__239E4DCF" Association="Self.FK__Course__Language__239E4DCF">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Facul__1367E606" Association="Self.FK__Departmen__Facul__1367E606">
+            <End Role="Faculty" EntitySet="Faculty" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PeriodCou__Cours__29572725" Association="Self.FK__PeriodCou__Cours__29572725">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="PeriodCourse" EntitySet="PeriodCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PeriodCou__Perio__276EDEB3" Association="Self.FK__PeriodCou__Perio__276EDEB3">
+            <End Role="Period" EntitySet="Period" />
+            <End Role="PeriodCourse" EntitySet="PeriodCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PeriodCou__Teach__286302EC" Association="Self.FK__PeriodCou__Teach__286302EC">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="PeriodCourse" EntitySet="PeriodCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__Departm__1CF15040" Association="Self.FK__Student__Departm__1CF15040">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentCo__Cours__66603565" Association="Self.FK__StudentCo__Cours__66603565">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="StudentCourse" EntitySet="StudentCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentCo__Stude__656C112C" Association="Self.FK__StudentCo__Stude__656C112C">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="StudentCourse" EntitySet="StudentCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentGr__Perio__32E0915F" Association="Self.FK__StudentGr__Perio__32E0915F">
+            <End Role="Period" EntitySet="Period" />
+            <End Role="StudentGradePointAverage" EntitySet="StudentGradePointAverage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentGr__Stude__31EC6D26" Association="Self.FK__StudentGr__Stude__31EC6D26">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="StudentGradePointAverage" EntitySet="StudentGradePointAverage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Language_Id" Type="Int32" />
+          <Property Name="CourseCode" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GroupNo" Type="Int32" Nullable="false" />
+          <Property Name="CoursName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberOfCredits" Type="Int32" Nullable="false" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Language" Relationship="Self.FK__Course__Language__239E4DCF" FromRole="Course" ToRole="Language" />
+          <NavigationProperty Name="PeriodCourse" Relationship="Self.FK__PeriodCou__Cours__29572725" FromRole="Course" ToRole="PeriodCourse" />
+          <NavigationProperty Name="StudentCourse" Relationship="Self.FK__StudentCo__Cours__66603565" FromRole="Course" ToRole="StudentCourse" />
+        </EntityType>
+        <EntityType Name="Course_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Language_Id" Type="Int32" Nullable="false" />
+          <Property Name="CourseCode" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GroupNo" Type="Int32" Nullable="false" />
+          <Property Name="CoursName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberOfCredits" Type="Int32" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="LogType" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Faculty_Id" Type="Int32" />
+          <Property Name="RecordDate" Type="DateTime" Precision="3" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Faculty" Relationship="Self.FK__Departmen__Facul__1367E606" FromRole="Department" ToRole="Faculty" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Student__Departm__1CF15040" FromRole="Department" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Department_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Faculty_Id" Type="Int32" />
+          <Property Name="RecordDate" Type="DateTime" Precision="3" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="LogType" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ErrorDate" Type="DateTime" Precision="3" />
+          <Property Name="ErrorNumber" Type="Int32" />
+          <Property Name="ErrorSeverity" Type="Int32" />
+          <Property Name="ErrorState" Type="Byte" />
+          <Property Name="ErrorProcedure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorLine" Type="Int32" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacultyName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecordDate" Type="DateTime" Precision="3" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK__Departmen__Facul__1367E606" FromRole="Faculty" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="Faculty_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacultyName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecordDate" Type="DateTime" Precision="3" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="LogType" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Language1" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__Course__Language__239E4DCF" FromRole="Language" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Period">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PeriodName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="YearOfPeriod" Type="Int32" Nullable="false" />
+          <Property Name="SatartOfPeriod" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndOfPeriod" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RecordDate" Type="DateTime" Precision="3" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PeriodCourse" Relationship="Self.FK__PeriodCou__Perio__276EDEB3" FromRole="Period" ToRole="PeriodCourse" />
+          <NavigationProperty Name="StudentGradePointAverage" Relationship="Self.FK__StudentGr__Perio__32E0915F" FromRole="Period" ToRole="StudentGradePointAverage" />
+        </EntityType>
+        <EntityType Name="PeriodCourse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Period_Id" Type="Int32" />
+          <Property Name="Teacher_Id" Type="Int32" />
+          <Property Name="Course_Id" Type="Int32" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="EndTime" Type="Time" Precision="7" />
+          <Property Name="DayOfWeek" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="ClassName" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Capacity" Type="Byte" />
+          <Property Name="NumberOfStudentsTakingTheCourse" Type="Byte" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__PeriodCou__Cours__29572725" FromRole="PeriodCourse" ToRole="Course" />
+          <NavigationProperty Name="Period" Relationship="Self.FK__PeriodCou__Perio__276EDEB3" FromRole="PeriodCourse" ToRole="Period" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__PeriodCou__Teach__286302EC" FromRole="PeriodCourse" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentNo" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Department_Id" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecordDate" Type="DateTime" Precision="3" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="TcIdentityNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Period" Type="Byte" Nullable="false" />
+          <Property Name="Class" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK__Student__Departm__1CF15040" FromRole="Student" ToRole="Department" />
+          <NavigationProperty Name="StudentCourse" Relationship="Self.FK__StudentCo__Stude__656C112C" FromRole="Student" ToRole="StudentCourse" />
+          <NavigationProperty Name="StudentGradePointAverage" Relationship="Self.FK__StudentGr__Stude__31EC6D26" FromRole="Student" ToRole="StudentGradePointAverage" />
+        </EntityType>
+        <EntityType Name="Student_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentNo" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Department_Id" Type="Int32" Nullable="false" />
+          <Property Name="TcIdentityNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecordDate" Type="DateTime" Precision="3" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="LogType" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Period" Type="Byte" />
+          <Property Name="Class" Type="Byte" />
+        </EntityType>
+        <EntityType Name="StudentCourse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Student_Id" Type="Int32" />
+          <Property Name="Course_Id" Type="Int32" />
+          <Property Name="Midterm_1" Type="Int32" />
+          <Property Name="Midterm_2" Type="Int32" />
+          <Property Name="FinalExam" Type="Int32" />
+          <Property Name="LetterNote" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="Period_Id" Type="Int32" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__StudentCo__Cours__66603565" FromRole="StudentCourse" ToRole="Course" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__StudentCo__Stude__656C112C" FromRole="StudentCourse" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="StudentCourse_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Student_Id" Type="Int32" Nullable="false" />
+          <Property Name="Course_Id" Type="Int32" Nullable="false" />
+          <Property Name="Midterm_1" Type="Int32" />
+          <Property Name="Midterm_2" Type="Int32" />
+          <Property Name="FinalExam" Type="Int32" />
+          <Property Name="LetterNote" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="LogType" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Period_Id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="StudentGradePointAverage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Student_Id" Type="Int32" />
+          <Property Name="Period_Id" Type="Int32" />
+          <Property Name="YANO" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="YanoNumberOfCredits" Type="Int32" Nullable="false" />
+          <Property Name="AGNO" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="AgnoNumberOfCredits" Type="Int32" Nullable="false" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Period" Relationship="Self.FK__StudentGr__Perio__32E0915F" FromRole="StudentGradePointAverage" ToRole="Period" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__StudentGr__Stude__31EC6D26" FromRole="StudentGradePointAverage" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TcIdentityNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Branch" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecordDate" Type="DateTime" Precision="3" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PeriodCourse" Relationship="Self.FK__PeriodCou__Teach__286302EC" FromRole="Teacher" ToRole="PeriodCourse" />
+        </EntityType>
+        <EntityType Name="Teacher_Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TcIdentityNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Branch" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecordDate" Type="DateTime" Precision="3" />
+          <Property Name="Statu" Type="Boolean" Nullable="false" />
+          <Property Name="LogType" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Course__Language__239E4DCF">
+          <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="Language_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PeriodCou__Cours__29572725">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="PeriodCourse" Type="Self.PeriodCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PeriodCourse">
+              <PropertyRef Name="Course_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentCo__Cours__66603565">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentCourse">
+              <PropertyRef Name="Course_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Facul__1367E606">
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="Faculty_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__Departm__1CF15040">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Department_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PeriodCou__Perio__276EDEB3">
+          <End Role="Period" Type="Self.Period" Multiplicity="0..1" />
+          <End Role="PeriodCourse" Type="Self.PeriodCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PeriodCourse">
+              <PropertyRef Name="Period_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentGr__Perio__32E0915F">
+          <End Role="Period" Type="Self.Period" Multiplicity="0..1" />
+          <End Role="StudentGradePointAverage" Type="Self.StudentGradePointAverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentGradePointAverage">
+              <PropertyRef Name="Period_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PeriodCou__Teach__286302EC">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+          <End Role="PeriodCourse" Type="Self.PeriodCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PeriodCourse">
+              <PropertyRef Name="Teacher_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentCo__Stude__656C112C">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentCourse">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentGr__Stude__31EC6D26">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="StudentGradePointAverage" Type="Self.StudentGradePointAverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentGradePointAverage">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SchoolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Course" EntityType="Self.Course" />
+          <EntitySet Name="Course_Log" EntityType="Self.Course_Log" />
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="Department_Log" EntityType="Self.Department_Log" />
+          <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" />
+          <EntitySet Name="Faculty" EntityType="Self.Faculty" />
+          <EntitySet Name="Faculty_Log" EntityType="Self.Faculty_Log" />
+          <EntitySet Name="Language" EntityType="Self.Language" />
+          <EntitySet Name="Period" EntityType="Self.Period" />
+          <EntitySet Name="PeriodCourse" EntityType="Self.PeriodCourse" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <EntitySet Name="Student_Log" EntityType="Self.Student_Log" />
+          <EntitySet Name="StudentCourse" EntityType="Self.StudentCourse" />
+          <EntitySet Name="StudentCourse_Log" EntityType="Self.StudentCourse_Log" />
+          <EntitySet Name="StudentGradePointAverage" EntityType="Self.StudentGradePointAverage" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+          <EntitySet Name="Teacher_Log" EntityType="Self.Teacher_Log" />
+          <AssociationSet Name="FK__Course__Language__239E4DCF" Association="Self.FK__Course__Language__239E4DCF">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PeriodCou__Cours__29572725" Association="Self.FK__PeriodCou__Cours__29572725">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="PeriodCourse" EntitySet="PeriodCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentCo__Cours__66603565" Association="Self.FK__StudentCo__Cours__66603565">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="StudentCourse" EntitySet="StudentCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Facul__1367E606" Association="Self.FK__Departmen__Facul__1367E606">
+            <End Role="Faculty" EntitySet="Faculty" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__Departm__1CF15040" Association="Self.FK__Student__Departm__1CF15040">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PeriodCou__Perio__276EDEB3" Association="Self.FK__PeriodCou__Perio__276EDEB3">
+            <End Role="Period" EntitySet="Period" />
+            <End Role="PeriodCourse" EntitySet="PeriodCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentGr__Perio__32E0915F" Association="Self.FK__StudentGr__Perio__32E0915F">
+            <End Role="Period" EntitySet="Period" />
+            <End Role="StudentGradePointAverage" EntitySet="StudentGradePointAverage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PeriodCou__Teach__286302EC" Association="Self.FK__PeriodCou__Teach__286302EC">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="PeriodCourse" EntitySet="PeriodCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentCo__Stude__656C112C" Association="Self.FK__StudentCo__Stude__656C112C">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="StudentCourse" EntitySet="StudentCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentGr__Stude__31EC6D26" Association="Self.FK__StudentGr__Stude__31EC6D26">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="StudentGradePointAverage" EntitySet="StudentGradePointAverage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer" CdmEntityContainer="SchoolEntities">
+          <EntitySetMapping Name="Course">
+            <EntityTypeMapping TypeName="SchoolModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Language_Id" ColumnName="Language_Id" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="GroupNo" ColumnName="GroupNo" />
+                <ScalarProperty Name="CoursName" ColumnName="CoursName" />
+                <ScalarProperty Name="NumberOfCredits" ColumnName="NumberOfCredits" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course_Log">
+            <EntityTypeMapping TypeName="SchoolModel.Course_Log">
+              <MappingFragment StoreEntitySet="Course_Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Language_Id" ColumnName="Language_Id" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="GroupNo" ColumnName="GroupNo" />
+                <ScalarProperty Name="CoursName" ColumnName="CoursName" />
+                <ScalarProperty Name="NumberOfCredits" ColumnName="NumberOfCredits" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="SchoolModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Faculty_Id" ColumnName="Faculty_Id" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department_Log">
+            <EntityTypeMapping TypeName="SchoolModel.Department_Log">
+              <MappingFragment StoreEntitySet="Department_Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Faculty_Id" ColumnName="Faculty_Id" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErrorLog">
+            <EntityTypeMapping TypeName="SchoolModel.ErrorLog">
+              <MappingFragment StoreEntitySet="ErrorLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ErrorDate" ColumnName="ErrorDate" />
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faculty">
+            <EntityTypeMapping TypeName="SchoolModel.Faculty">
+              <MappingFragment StoreEntitySet="Faculty">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faculty_Log">
+            <EntityTypeMapping TypeName="SchoolModel.Faculty_Log">
+              <MappingFragment StoreEntitySet="Faculty_Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Language">
+            <EntityTypeMapping TypeName="SchoolModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Language1" ColumnName="Language" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Period">
+            <EntityTypeMapping TypeName="SchoolModel.Period">
+              <MappingFragment StoreEntitySet="Period">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PeriodName" ColumnName="PeriodName" />
+                <ScalarProperty Name="YearOfPeriod" ColumnName="YearOfPeriod" />
+                <ScalarProperty Name="SatartOfPeriod" ColumnName="SatartOfPeriod" />
+                <ScalarProperty Name="EndOfPeriod" ColumnName="EndOfPeriod" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PeriodCourse">
+            <EntityTypeMapping TypeName="SchoolModel.PeriodCourse">
+              <MappingFragment StoreEntitySet="PeriodCourse">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Period_Id" ColumnName="Period_Id" />
+                <ScalarProperty Name="Teacher_Id" ColumnName="Teacher_Id" />
+                <ScalarProperty Name="Course_Id" ColumnName="Course_Id" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="NumberOfStudentsTakingTheCourse" ColumnName="NumberOfStudentsTakingTheCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="SchoolModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Department_Id" ColumnName="Department_Id" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="TcIdentityNo" ColumnName="TcIdentityNo" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_Log">
+            <EntityTypeMapping TypeName="SchoolModel.Student_Log">
+              <MappingFragment StoreEntitySet="Student_Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Department_Id" ColumnName="Department_Id" />
+                <ScalarProperty Name="TcIdentityNo" ColumnName="TcIdentityNo" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentCourse">
+            <EntityTypeMapping TypeName="SchoolModel.StudentCourse">
+              <MappingFragment StoreEntitySet="StudentCourse">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Student_Id" ColumnName="Student_Id" />
+                <ScalarProperty Name="Course_Id" ColumnName="Course_Id" />
+                <ScalarProperty Name="Midterm_1" ColumnName="Midterm_1" />
+                <ScalarProperty Name="Midterm_2" ColumnName="Midterm_2" />
+                <ScalarProperty Name="FinalExam" ColumnName="FinalExam" />
+                <ScalarProperty Name="LetterNote" ColumnName="LetterNote" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Period_Id" ColumnName="Period_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentCourse_Log">
+            <EntityTypeMapping TypeName="SchoolModel.StudentCourse_Log">
+              <MappingFragment StoreEntitySet="StudentCourse_Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Student_Id" ColumnName="Student_Id" />
+                <ScalarProperty Name="Course_Id" ColumnName="Course_Id" />
+                <ScalarProperty Name="Midterm_1" ColumnName="Midterm_1" />
+                <ScalarProperty Name="Midterm_2" ColumnName="Midterm_2" />
+                <ScalarProperty Name="FinalExam" ColumnName="FinalExam" />
+                <ScalarProperty Name="LetterNote" ColumnName="LetterNote" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+                <ScalarProperty Name="Period_Id" ColumnName="Period_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentGradePointAverage">
+            <EntityTypeMapping TypeName="SchoolModel.StudentGradePointAverage">
+              <MappingFragment StoreEntitySet="StudentGradePointAverage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Student_Id" ColumnName="Student_Id" />
+                <ScalarProperty Name="Period_Id" ColumnName="Period_Id" />
+                <ScalarProperty Name="YANO" ColumnName="YANO" />
+                <ScalarProperty Name="YanoNumberOfCredits" ColumnName="YanoNumberOfCredits" />
+                <ScalarProperty Name="AGNO" ColumnName="AGNO" />
+                <ScalarProperty Name="AgnoNumberOfCredits" ColumnName="AgnoNumberOfCredits" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SchoolModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher">
+            <EntityTypeMapping TypeName="SchoolModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="TcIdentityNo" ColumnName="TcIdentityNo" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher_Log">
+            <EntityTypeMapping TypeName="SchoolModel.Teacher_Log">
+              <MappingFragment StoreEntitySet="Teacher_Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="TcIdentityNo" ColumnName="TcIdentityNo" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="Statu" ColumnName="Statu" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

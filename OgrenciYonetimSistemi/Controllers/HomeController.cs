@@ -1,5 +1,6 @@
 ﻿using OgrenciYonetimSistemi.Models.Filters;
 using OgrenciYonetimSistemi.Models.Helper;
+using OgrenciYonetimSistemi.Models.Helper.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,27 +12,41 @@ namespace OgrenciYonetimSistemi.Controllers
     [CustomAuthenticationFilter]
     public class HomeController : BaseController
     {
-    
-        public ActionResult Index()  
+
+        ServiceReference1.Service1Client svc = new ServiceReference1.Service1Client();
+
+        public ActionResult Index()
         {
-            ChatDetayGetir chat = new ChatDetayGetir() {
-                 YazismaDetayListesi = db.SP_YazismaDetayGetir(4, LoginUser.Kullanici_Id).ToList(),
-                  YazismaListesi = db.SP_YazismaListesiGetir(2).ToList()
-            };
-
-            var mesajlasilanKisi = "Ahmet Güler";
+            var dersler = svc.GetAllLessons();
 
 
-            ViewData["mesajlasilanKisi"] = mesajlasilanKisi;
+
+            List<Ders> model = new List<Ders>();
+            foreach (var item in dersler)
+            {
+                model.Add(new Ders
+                {
+                    Id = item.Id,
+                    DersinAdi = item.DersAdi,
+                    GroupNo = item.GrupNo,
+                    KrediSayisi = item.KrediSayisi,
+                   
+                });
+            }
+        
+            DersListesi data = new DersListesi();
+
+            data.Dersler = model;
 
 
-            return View(chat);
+
+            return View(data);
 
         }
 
         public ActionResult Alerts()
         {
- 
+
 
 
             return View();
@@ -41,11 +56,11 @@ namespace OgrenciYonetimSistemi.Controllers
 
 
 
-        public ActionResult DataTable()  
+        public ActionResult DataTable()
         {
-            return View();  
+            return View();
         }
 
- 
+
     }
-} 
+}

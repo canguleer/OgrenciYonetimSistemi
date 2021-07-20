@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e2d01dc9acc0469c9c2b0a52ca058001" Name="Diagram1">
+        <EntityTypeShape EntityType="SchoolModel.Course" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Course_Log" Width="1.5" PointX="7.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Department" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Department_Log" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.ErrorLog" Width="1.5" PointX="7.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Faculty" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Faculty_Log" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Language" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Period" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.PeriodCourse" Width="1.5" PointX="13.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Student" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Student_Log" Width="1.5" PointX="9.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.StudentCourse" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.StudentCourse_Log" Width="1.5" PointX="11.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.StudentGradePointAverage" Width="1.5" PointX="10.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.sysdiagrams" Width="1.5" PointX="12.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Teacher" Width="1.5" PointX="11.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Teacher_Log" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
+        <AssociationConnector Association="SchoolModel.FK__Course__Language__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK__PeriodCou__Cours__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK__StudentCo__Cours__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK__Departmen__Facul__1367E606" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK__Student__Departm__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK__PeriodCou__Perio__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK__StudentGr__Perio__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK__PeriodCou__Teach__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK__StudentCo__Stude__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK__StudentGr__Stude__31EC6D26" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
