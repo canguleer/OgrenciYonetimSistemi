@@ -139,6 +139,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\TCKimlikDogrulama\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -254,6 +259,15 @@
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
     <None Include="Connected Services\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\TCKimlikDogrulama\configuration91.svcinfo" />
+    <None Include="Connected Services\TCKimlikDogrulama\configuration.svcinfo" />
+    <Content Include="Connected Services\TCKimlikDogrulama\OgrenciYonetimSistemi.TCKimlikDogrulama.TCKimlikNoDogrulaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\TCKimlikDogrulama\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -2617,7 +2631,9 @@
     <Content Include="Scripts\CustomScripts\Ogrenci.js" />
     <Content Include="Scripts\CustomScripts\Layout.js" />
     <Content Include="Scripts\CustomScripts\Mesajlar.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -2655,6 +2671,7 @@
     <None Include="Connected Services\ServiceReference1\Service12.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\TCKimlikDogrulama\KPSPublic.wsdl" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Alerts.cshtml" />
     <Content Include="Views\Mesajlar\_sohbetGecmisiListeGetir.cshtml" />
@@ -2673,6 +2690,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
+    <WCFMetadataStorage Include="Connected Services\TCKimlikDogrulama\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

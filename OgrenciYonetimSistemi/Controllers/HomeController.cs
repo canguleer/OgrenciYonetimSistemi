@@ -14,10 +14,14 @@ namespace OgrenciYonetimSistemi.Controllers
     {
 
         ServiceReference1.Service1Client svc = new ServiceReference1.Service1Client();
+        TCKimlikDogrulama.KPSPublicSoapClient tcService = new TCKimlikDogrulama.KPSPublicSoapClient();
 
         public ActionResult Index()
         {
+
+            TcDogrulama();
             var dersler = svc.GetAllLessons();
+
 
 
 
@@ -51,6 +55,19 @@ namespace OgrenciYonetimSistemi.Controllers
 
             return View();
 
+        }
+
+        public int TcDogrulama()
+        {
+            long tc = long.Parse("37076133202");
+            bool durum = tcService.TCKimlikNoDogrula(tc, "Can", "Güler", 1997);
+
+
+            long tc2 = long.Parse("37076133201");
+            bool durum2 = tcService.TCKimlikNoDogrula(tc2, "Can", "Güler", 1997);
+
+
+            return 1;
         }
 
 
