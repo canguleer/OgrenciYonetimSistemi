@@ -38,9 +38,7 @@ namespace WCFService
 
             return dersler;
 
-
         }
-
 
         public string InsertLesson(Ders data)
         {
